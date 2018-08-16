@@ -93,7 +93,10 @@ function generatePropDescription(description, type) {
     }
 
     signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs.map(stringifyParam).join(', ');
+    signature += parsedArgs
+      .map(stringifyParam)
+      .join(', ')
+      .replace(/\|/g, '\\|');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
