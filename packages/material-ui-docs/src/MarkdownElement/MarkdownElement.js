@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import unescape from 'lodash/unescape';
 import marked from 'marked';
 import { withStyles } from '@material-ui/core/styles';
 import prism from './prism';
@@ -24,6 +25,20 @@ export function textToHash(text) {
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
     .replace(/[^\w]+/g, '-');
 }
+
+const renderCodespanOriginal = renderer.codespan;
+renderer.codespan = function renderCodespan(escapedCode) {
+  const inlineMatch = escapedCode.match(/^inline-(\w+)\|/);
+  if (inlineMatch != null) {
+    const [inlineDirective, lang] = inlineMatch;
+    const actualCode = unescape(escapedCode.replace(inlineDirective, ''));
+    console.log(actualCode);
+    const highlightedCode = this.options.highlight(actualCode, lang);
+    return `<code class="${this.options.langPrefix}${lang}">${highlightedCode}</code>`;
+  }
+
+  return renderCodespanOriginal(escapedCode);
+};
 
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.

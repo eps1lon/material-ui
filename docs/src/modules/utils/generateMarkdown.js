@@ -92,7 +92,7 @@ function generatePropDescription(description, type) {
       parsedReturns = { type: { name: 'void' } };
     }
 
-    signature += '<br><br>**Signature:**<br>`function(';
+    signature += '<br><br>**Signature:**<br>`inline-js\\|function(';
     signature += parsedArgs
       .map(stringifyParam)
       .join(', ')
