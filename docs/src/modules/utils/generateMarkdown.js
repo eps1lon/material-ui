@@ -2,6 +2,7 @@
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
+import { stringifyParam } from './doctrine';
 import { pageToTitle } from './helpers';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
@@ -92,19 +93,7 @@ function generatePropDescription(description, type) {
     }
 
     signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs
-      .map(tag => {
-        if (tag.type.type === 'AllLiteral') {
-          return `${tag.name}: any`;
-        }
-
-        if (tag.type.type === 'OptionalType') {
-          return `${tag.name}?: ${tag.type.expression.name}`;
-        }
-
-        return `${tag.name}: ${tag.type.name}`;
-      })
-      .join(', ');
+    signature += parsedArgs.map(stringifyParam).join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
