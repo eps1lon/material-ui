@@ -117,9 +117,10 @@ ToggleButtonGroup.propTypes = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {object} value of the selected buttons. When `exclusive` is true
-   * this is a single value; when false an array of selected values.
+   * @param {MouseEvent} event The event source of the callback
+   * @param {T?} value of the selected buttons. When `exclusive` is true
+   * this is a single value; when false an array of selected values. If no value
+   * is selected `null` is returned.
    */
   onChange: PropTypes.func,
   /**
