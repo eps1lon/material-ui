@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { deprecatedVariants, restyledVariants } from '../styles/typographyMigration';
 import { capitalize } from '../utils/helpers';
@@ -33,6 +34,30 @@ export const styles = theme => ({
   caption: theme.typography.caption,
   /* Styles applied to the root element if `variant="button"`. */
   button: theme.typography.button,
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline1: theme.typography.headline1,
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline2: theme.typography.headline2,
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline3: theme.typography.headline3,
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline4: theme.typography.headline4,
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline5: theme.typography.headline5,
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline6: theme.typography.headline6,
+  /* Styles applied to the root element if `variant="subtitle1"`. */
+  subtitle1: theme.typography.subtitle1,
+  /* Styles applied to the root element if `variant="subtitle2"`. */
+  subtitle2: theme.typography.subtitle2,
+  /* Styles applied to the root element if `variant="body2" && useNewVariants`. */
+  body2New: theme.typography.body2New,
+  /* Styles applied to the root element if `variant="body1" && useNewVariants`. */
+  body1New: theme.typography.body1New,
+  /* Styles applied to the root element if `variant="caption" && useNewVariants`. */
+  captionNew: theme.typography.captionNew,
+  /* Styles applied to the root element if `variant="button" && useNewVariants`. */
+  buttonNew: theme.typography.buttonNew,
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -98,11 +123,26 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
+    internalUsage,
     noWrap,
     paragraph,
+    theme,
     variant,
+    useNewVariants,
     ...other
   } = props;
+
+  warning(
+    !internalUsage && deprecatedVariants.includes(variant),
+    'Deprecation Warning: Material-UI: You are using a deprecated typography ' +
+      'variant that will be removed in the next major release. Check the migration guide.',
+  );
+
+  warning(
+    !internalUsage && restyledVariants.includes(variant) && !useNewVariants,
+    'Deprecation Warning: Material-UI: You are using a typography' +
+      'variant that will be restyled in the next major release. Check the migration guide',
+  );
 
   const className = classNames(
     classes.root,
@@ -169,6 +209,10 @@ Typography.propTypes = {
    */
   headlineMapping: PropTypes.object,
   /**
+   * @ignore
+   */
+  internalUsage: PropTypes.bool,
+  /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
   noWrap: PropTypes.bool,
@@ -177,20 +221,26 @@ Typography.propTypes = {
    */
   paragraph: PropTypes.bool,
   /**
+   * if `true` all variants marked for restyle in the next major
+   * will use the new style
+   */
+  useNewVariants: PropTypes.bool,
+  /**
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
-    'display4',
-    'display3',
-    'display2',
-    'display1',
-    'headline',
-    'title',
-    'subheading',
-    'body2',
-    'body1',
-    'caption',
-    'button',
+    // new
+    'headline1',
+    'headline2',
+    'headline3',
+    'headline4',
+    'headline5',
+    'headline6',
+    'subtitle1',
+    'subtitle2',
+    'overline',
+    ...restyledVariants,
+    ...deprecatedVariants,
   ]),
 };
 
@@ -199,6 +249,7 @@ Typography.defaultProps = {
   color: 'default',
   gutterBottom: false,
   headlineMapping: {
+    // deprecated
     display4: 'h1',
     display3: 'h1',
     display2: 'h1',
@@ -206,12 +257,23 @@ Typography.defaultProps = {
     headline: 'h1',
     title: 'h2',
     subheading: 'h3',
+    // restyled
     body2: 'aside',
     body1: 'p',
+    // new
+    headline1: 'h1',
+    headline2: 'h2',
+    headline3: 'h3',
+    headline4: 'h4',
+    headline5: 'h5',
+    headline6: 'h6',
+    subtitle1: 'h6',
+    subtitle2: 'h6',
   },
   noWrap: false,
   paragraph: false,
   variant: 'body1',
+  useNewVariants: false,
 };
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);
