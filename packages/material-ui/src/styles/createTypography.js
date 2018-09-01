@@ -36,7 +36,7 @@ export default function createTypography(palette, typography) {
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   warning(
-    Object.keys(other).some(variant => dangerousVariants.includes(variant)),
+    !Object.keys(other).some(variant => dangerousVariants.includes(variant)),
     'Deprecation Warning: Material-UI: Your are passing a deprecated variant ' +
       'or a variant that will be restyled in the next major release to createTypography. ' +
       'Please read the migration guide.',

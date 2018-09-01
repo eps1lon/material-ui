@@ -126,22 +126,32 @@ function Typography(props) {
     internalUsage,
     noWrap,
     paragraph,
+    suppressDeprecationWarnings,
     theme,
     variant,
     useNextVariants,
     ...other
   } = props;
 
+  if (!suppressDeprecationWarnings) {
   warning(
-    !internalUsage && deprecatedVariants.includes(variant),
-    'Deprecation Warning: Material-UI: You are using a deprecated typography ' +
-      'variant that will be removed in the next major release. Check the migration guide.',
+      !deprecatedVariants.includes(variantProp),
+      'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
+        `${variantProp} that will be removed in the next major release. Check the migration guide.`,
   );
 
   warning(
-    !internalUsage && restyledVariants.includes(variant) && !useNextVariants,
-    'Deprecation Warning: Material-UI: You are using a typography' +
-      'variant that will be restyled in the next major release. Check the migration guide',
+      !restyledVariants.includes(variantProp),
+      'Deprecation Warning: Material-UI: You are using the typography variant ' +
+        `${variantProp} that will be restyled in the next major release. Check the migration guide`,
+    );
+  }
+
+  warning(
+    !variantProp.endsWith('Next'),
+    "Material-UI: Avoid using the new variants with the 'Next' suffix." +
+      'They will be removed in the next major release.' +
+      `Use 'variant="${variantProp.slice(-4)}" useNextVariants' instead`,
   );
 
   const className = classNames(
@@ -209,10 +219,6 @@ Typography.propTypes = {
    */
   headlineMapping: PropTypes.object,
   /**
-   * @ignore
-   */
-  internalUsage: PropTypes.bool,
-  /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
   noWrap: PropTypes.bool,
@@ -220,6 +226,10 @@ Typography.propTypes = {
    * If `true`, the text will have a bottom margin.
    */
   paragraph: PropTypes.bool,
+  /**
+   * Suppresses deprecation warnings that are triggered by deprecated variants
+   */
+  suppressDeprecationWarnings: PropTypes.bool,
   /**
    * if `true` all variants marked for restyle in the next major
    * will use the new style
