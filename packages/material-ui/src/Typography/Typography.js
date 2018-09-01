@@ -36,27 +36,27 @@ export const styles = theme => ({
   button: theme.typography.button,
   /* Styles applied to the root element if `variant="headline1"`. */
   headline1: theme.typography.headline1,
-  /* Styles applied to the root element if `variant="headline1"`. */
+  /* Styles applied to the root element if `variant="headline2"`. */
   headline2: theme.typography.headline2,
-  /* Styles applied to the root element if `variant="headline1"`. */
+  /* Styles applied to the root element if `variant="headline3"`. */
   headline3: theme.typography.headline3,
-  /* Styles applied to the root element if `variant="headline1"`. */
+  /* Styles applied to the root element if `variant="headline4"`. */
   headline4: theme.typography.headline4,
-  /* Styles applied to the root element if `variant="headline1"`. */
+  /* Styles applied to the root element if `variant="headline5"`. */
   headline5: theme.typography.headline5,
-  /* Styles applied to the root element if `variant="headline1"`. */
+  /* Styles applied to the root element if `variant="headline6"`. */
   headline6: theme.typography.headline6,
   /* Styles applied to the root element if `variant="subtitle1"`. */
   subtitle1: theme.typography.subtitle1,
   /* Styles applied to the root element if `variant="subtitle2"`. */
   subtitle2: theme.typography.subtitle2,
-  /* Styles applied to the root element if `variant="body2" && useNextVariants`. */
+  /* Styles applied to the root element if `variant="body2" useNextVariants`. */
   body2Next: theme.typography.body2Next,
-  /* Styles applied to the root element if `variant="body1" && useNextVariants`. */
+  /* Styles applied to the root element if `variant="body1" useNextVariants`. */
   body1Next: theme.typography.body1Next,
-  /* Styles applied to the root element if `variant="caption" && useNextVariants`. */
+  /* Styles applied to the root element if `variant="caption" useNextVariants`. */
   captionNext: theme.typography.captionNext,
-  /* Styles applied to the root element if `variant="button" && useNextVariants`. */
+  /* Styles applied to the root element if `variant="button" useNextVariants`. */
   buttonNext: theme.typography.buttonNext,
   /* Styles applied to the root element if `variant="overline"`. */
   overline: theme.typography.overline,
