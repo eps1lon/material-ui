@@ -128,19 +128,19 @@ function Typography(props) {
     paragraph,
     suppressDeprecationWarnings,
     theme,
-    variant,
     useNextVariants,
+    variant: variantProp,
     ...other
   } = props;
 
   if (!suppressDeprecationWarnings) {
-  warning(
+    warning(
       !deprecatedVariants.includes(variantProp),
       'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
         `${variantProp} that will be removed in the next major release. Check the migration guide.`,
-  );
+    );
 
-  warning(
+    warning(
       !restyledVariants.includes(variantProp),
       'Deprecation Warning: Material-UI: You are using the typography variant ' +
         `${variantProp} that will be restyled in the next major release. Check the migration guide`,
@@ -153,6 +153,9 @@ function Typography(props) {
       'They will be removed in the next major release.' +
       `Use 'variant="${variantProp.slice(-4)}" useNextVariants' instead`,
   );
+
+  const variant =
+    useNextVariants && restyledVariants.includes(variantProp) ? `${variantProp}Next` : variantProp;
 
   const className = classNames(
     classes.root,
