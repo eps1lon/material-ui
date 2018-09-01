@@ -44,55 +44,44 @@ export default function createTypography(palette, typography) {
 
   const coef = fontSize / 14;
 
-  const letterSpacingToRem = (tracking, spSize) => {
-    return `${(tracking / spSize / htmlFontSize) * coef}rem`;
+  const letterSpacingToEm = (tracking, spSize) => {
+    return `${(tracking / spSize) * coef}em`;
   };
 
   const pxToRem = size => {
     return `${(size / htmlFontSize) * coef}rem`;
   };
 
-  const spToRem = size => {
-    const spToRemConversionRate = 0.0625;
-    return `${(size / htmlFontSize) * coef * spToRemConversionRate}rem`;
-  };
-
-  // line height should be proportional to its type size
-  const lineHeightToRem = spSize => {
-    return spToRem(spSize * 1.4);
-  };
-
   const propertiesForCategory = (weight, size, casing, letterSpacing) => {
     return {
       color: palette.text.primary,
       fontFamily,
-      fontSize: spToRem(size),
+      fontSize: pxToRem(size),
       fontWeight: weight,
-      letterSpacing: letterSpacingToRem(letterSpacing, size),
-      lineHeight: lineHeightToRem(size),
+      letterSpacing: letterSpacingToEm(letterSpacing, size),
       ...casing,
       ...allVariants,
     };
   };
 
-  const utils = { lineHeightToRem, letterSpacingToRem, pxToRem, spToRem };
+  const utils = { letterSpacingToEm, pxToRem };
 
   /* eslint-disable key-spacing, no-multi-spaces */
   // prettier-ignore
   const newVariants = {
-    headline1:  propertiesForCategory(fontWeightLight,   96, caseSentence, -1.5),
-    headline2:  propertiesForCategory(fontWeightLight,   60, caseSentence, -0.5),
-    headline3:  propertiesForCategory(fontWeightRegular, 48, caseSentence,  0),
-    headline4:  propertiesForCategory(fontWeightRegular, 34, caseSentence,  0.25),
-    headline5:  propertiesForCategory(fontWeightRegular, 24, caseSentence,  0),
-    headline6:  propertiesForCategory(fontWeightMedium,  20, caseSentence,  0.15),
-    subtitle1:  propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.15),
-    subtitle2:  propertiesForCategory(fontWeightMedium,  14, caseSentence,  0.1),
+    headline1:   propertiesForCategory(fontWeightLight,   96, caseSentence, -1.5),
+    headline2:   propertiesForCategory(fontWeightLight,   60, caseSentence, -0.5),
+    headline3:   propertiesForCategory(fontWeightRegular, 48, caseSentence,  0),
+    headline4:   propertiesForCategory(fontWeightRegular, 34, caseSentence,  0.25),
+    headline5:   propertiesForCategory(fontWeightRegular, 24, caseSentence,  0),
+    headline6:   propertiesForCategory(fontWeightMedium,  20, caseSentence,  0.15),
+    subtitle1:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.15),
+    subtitle2:   propertiesForCategory(fontWeightMedium,  14, caseSentence,  0.1),
     body1Next:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.5),
-    body2Next:   propertiesForCategory(fontWeightRegular, 14, caseSentence,  0.35),
+    body2Next:   propertiesForCategory(fontWeightRegular, 14, caseSentence,  0.25),
     buttonNext:  propertiesForCategory(fontWeightMedium,  14, caseAllCaps,   0.75),
-    captionNext: propertiesForCategory(fontWeightRegular, 12, caseSentence,  0.5),
-    overline:   propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
+    captionNext: propertiesForCategory(fontWeightRegular, 12, caseSentence,  0.4),
+    overline:    propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
   };
   /* eslint-enable key-spacing, no-multi-spaces */
 
@@ -202,7 +191,6 @@ export default function createTypography(palette, typography) {
     : {};
 
   return deepmerge(
-    // prettier-ignore
     {
       round,
       fontFamily,

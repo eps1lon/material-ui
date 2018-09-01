@@ -58,6 +58,8 @@ export const styles = theme => ({
   captionNext: theme.typography.captionNext,
   /* Styles applied to the root element if `variant="button" && useNextVariants`. */
   buttonNext: theme.typography.buttonNext,
+  /* Styles applied to the root element if `variant="overline"`. */
+  overline: theme.typography.overline,
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
