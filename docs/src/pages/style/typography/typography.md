@@ -44,6 +44,10 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 
 {{"demo": "pages/style/typography/Types.js"}}
 
+### Deprecated variants
+
+{{"demo": "pages/style/typography/DeprecatedTypes.js"}}
+
 ## Theme
 
 In some situations you might not be able to use the `Typography` component.
