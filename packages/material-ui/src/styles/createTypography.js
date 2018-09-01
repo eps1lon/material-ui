@@ -29,7 +29,7 @@ export default function createTypography(palette, typography) {
         textTransform: 'uppercase',
       },
     },
-    useNewVariants = false,
+    useNextVariants = false,
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
@@ -88,10 +88,10 @@ export default function createTypography(palette, typography) {
     headline6:  propertiesForCategory(fontWeightMedium,  20, caseSentence,  0.15),
     subtitle1:  propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.15),
     subtitle2:  propertiesForCategory(fontWeightMedium,  14, caseSentence,  0.1),
-    body1New:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.5),
-    body2New:   propertiesForCategory(fontWeightRegular, 14, caseSentence,  0.35),
-    buttonNew:  propertiesForCategory(fontWeightMedium,  14, caseAllCaps,   0.75),
-    captionNew: propertiesForCategory(fontWeightRegular, 12, caseSentence,  0.5),
+    body1Next:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.5),
+    body2Next:   propertiesForCategory(fontWeightRegular, 14, caseSentence,  0.35),
+    buttonNext:  propertiesForCategory(fontWeightMedium,  14, caseAllCaps,   0.75),
+    captionNext: propertiesForCategory(fontWeightRegular, 12, caseSentence,  0.5),
     overline:   propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
   };
   /* eslint-enable key-spacing, no-multi-spaces */
@@ -192,12 +192,12 @@ export default function createTypography(palette, typography) {
     },
   };
 
-  const overwriteVariants = useNewVariants
+  const overwriteVariants = useNextVariants
     ? {
-        body1: newVariants.body1New,
-        body2: newVariants.body2New,
-        button: newVariants.buttonNew,
-        caption: newVariants.captionNew,
+        body1: newVariants.body1Next,
+        body2: newVariants.body2Next,
+        button: newVariants.buttonNext,
+        caption: newVariants.captionNext,
       }
     : {};
 

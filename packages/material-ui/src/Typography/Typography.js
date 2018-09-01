@@ -50,14 +50,14 @@ export const styles = theme => ({
   subtitle1: theme.typography.subtitle1,
   /* Styles applied to the root element if `variant="subtitle2"`. */
   subtitle2: theme.typography.subtitle2,
-  /* Styles applied to the root element if `variant="body2" && useNewVariants`. */
-  body2New: theme.typography.body2New,
-  /* Styles applied to the root element if `variant="body1" && useNewVariants`. */
-  body1New: theme.typography.body1New,
-  /* Styles applied to the root element if `variant="caption" && useNewVariants`. */
-  captionNew: theme.typography.captionNew,
-  /* Styles applied to the root element if `variant="button" && useNewVariants`. */
-  buttonNew: theme.typography.buttonNew,
+  /* Styles applied to the root element if `variant="body2" && useNextVariants`. */
+  body2Next: theme.typography.body2Next,
+  /* Styles applied to the root element if `variant="body1" && useNextVariants`. */
+  body1Next: theme.typography.body1Next,
+  /* Styles applied to the root element if `variant="caption" && useNextVariants`. */
+  captionNext: theme.typography.captionNext,
+  /* Styles applied to the root element if `variant="button" && useNextVariants`. */
+  buttonNext: theme.typography.buttonNext,
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -128,7 +128,7 @@ function Typography(props) {
     paragraph,
     theme,
     variant,
-    useNewVariants,
+    useNextVariants,
     ...other
   } = props;
 
@@ -139,7 +139,7 @@ function Typography(props) {
   );
 
   warning(
-    !internalUsage && restyledVariants.includes(variant) && !useNewVariants,
+    !internalUsage && restyledVariants.includes(variant) && !useNextVariants,
     'Deprecation Warning: Material-UI: You are using a typography' +
       'variant that will be restyled in the next major release. Check the migration guide',
   );
@@ -224,7 +224,7 @@ Typography.propTypes = {
    * if `true` all variants marked for restyle in the next major
    * will use the new style
    */
-  useNewVariants: PropTypes.bool,
+  useNextVariants: PropTypes.bool,
   /**
    * Applies the theme typography styles.
    */
@@ -273,7 +273,7 @@ Typography.defaultProps = {
   noWrap: false,
   paragraph: false,
   variant: 'body1',
-  useNewVariants: false,
+  useNextVariants: false,
 };
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);
