@@ -254,8 +254,19 @@ Typography.propTypes = {
     'subtitle1',
     'subtitle2',
     'overline',
-    ...restyledVariants,
-    ...deprecatedVariants,
+    // restyled
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    // deprecated
+    'display4',
+    'display3',
+    'display2',
+    'display1',
+    'headline',
+    'title',
+    'subheading',
   ]),
 };
 
