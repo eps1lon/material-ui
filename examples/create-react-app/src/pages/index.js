@@ -54,7 +54,7 @@ class Index extends React.Component {
         <Typography variant="display1" gutterBottom>
           Material-UI
         </Typography>
-        <Typography variant="subheading" gutterBottom>
+        <Typography variant="subtitle1" gutterBottom>
           example project
         </Typography>
         <Button variant="contained" color="secondary" onClick={this.handleClick}>
