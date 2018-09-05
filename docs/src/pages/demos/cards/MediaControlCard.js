@@ -44,8 +44,8 @@ function MediaControlCard(props) {
     <Card className={classes.card}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography variant="headline">Live From Space</Typography>
-          <Typography variant="subheading" color="textSecondary">
+          <Typography variant="headline5">Live From Space</Typography>
+          <Typography variant="subtitle1" color="textSecondary">
             Mac Miller
           </Typography>
         </CardContent>

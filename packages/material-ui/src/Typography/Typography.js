@@ -143,7 +143,7 @@ function Typography(props) {
     );
 
     warning(
-      !restyledVariants.includes(variantProp),
+      !restyledVariants.includes(variantProp) || useNextVariants,
       'Deprecation Warning: Material-UI: You are using the typography variant ' +
         `${variantProp} that will be restyled in the next major release. Check the migration guide`,
     );

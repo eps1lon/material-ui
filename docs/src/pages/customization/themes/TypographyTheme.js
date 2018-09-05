@@ -44,7 +44,7 @@ function TypographyTheme(props) {
   const children = (
     <div>
       <Typography>body1</Typography>
-      <Typography variant="subheading">subheading</Typography>
+      <Typography variant="subtitle1">subheading</Typography>
       <Button>Button</Button>
     </div>
   );

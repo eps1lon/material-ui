@@ -15,25 +15,25 @@ function Types(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="display4" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="headline1" gutterBottom suppressDeprecationWarnings>
         Display 4
       </Typography>
-      <Typography variant="display3" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="headline2" gutterBottom suppressDeprecationWarnings>
         Display 3
       </Typography>
-      <Typography variant="display2" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="headline3" gutterBottom suppressDeprecationWarnings>
         Display 2
       </Typography>
-      <Typography variant="display1" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="headline4" gutterBottom suppressDeprecationWarnings>
         Display 1
       </Typography>
-      <Typography variant="headline" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="headline5" gutterBottom suppressDeprecationWarnings>
         Headline
       </Typography>
-      <Typography variant="title" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="headline6" gutterBottom suppressDeprecationWarnings>
         Title
       </Typography>
-      <Typography variant="subheading" gutterBottom suppressDeprecationWarnings>
+      <Typography variant="subtitle1" gutterBottom suppressDeprecationWarnings>
         Subheading
       </Typography>
       <Typography variant="body2" gutterBottom suppressDeprecationWarnings>

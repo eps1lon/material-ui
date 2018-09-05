@@ -243,7 +243,7 @@ class AnchorPlayground extends React.Component {
         </div>
         <Grid container spacing={16}>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom variant="title">
+            <Typography gutterBottom variant="headline6">
               Appearance
             </Typography>
             <div>
@@ -282,7 +282,7 @@ class AnchorPlayground extends React.Component {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography gutterBottom variant="title">
+            <Typography gutterBottom variant="headline6">
               Modifiers (options from Popper.js)
             </Typography>
             <div>

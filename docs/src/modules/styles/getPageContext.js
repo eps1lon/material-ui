@@ -14,6 +14,14 @@ function getTheme(uiTheme) {
       color: uiTheme.paletteType === 'light' ? '#000' : '#fff',
     },
     palette: { ...uiTheme.paletteColors, type: uiTheme.paletteType },
+    props: {
+      MuiTypography: {
+        useNextVariants: true,
+      },
+    },
+    typography: {
+      useNextVariants: true,
+    },
   });
 
   // Expose the theme as a global variable so people can play with it.
