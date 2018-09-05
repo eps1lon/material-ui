@@ -12,7 +12,16 @@ export type TextStyle =
   | 'subheading'
   | 'body1'
   | 'body2'
-  | 'caption';
+  | 'caption'
+  | 'headline1'
+  | 'headline2'
+  | 'headline3'
+  | 'headline4'
+  | 'headline5'
+  | 'headline6'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'overline';
 
 export type Style = TextStyle | 'button';
 
@@ -28,6 +37,9 @@ export interface FontStyle
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
   allVariants?: CSSProperties;
+  caseAllCaps?: CSSProperties;
+  caseSentence?: CSSProperties;
+  useNextVariants?: boolean;
 }
 
 export type TypographyStyle = Required<
