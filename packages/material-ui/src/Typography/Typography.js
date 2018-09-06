@@ -187,7 +187,7 @@ function Typography(props) {
     classNameProp,
   );
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variant]) || 'span';
+  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variantProp]) || 'span';
 
   return <Component className={className} {...other} />;
 }

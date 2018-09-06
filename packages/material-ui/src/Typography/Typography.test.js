@@ -196,6 +196,13 @@ describe('<Typography />', () => {
         testMount(<Typography useNextVariants variant="body1" />, false);
         testMount(<Typography internal useNextVariants variant="body1" />, false);
       });
+
+      it('respects headlineMapping', () => {
+        const wrapper = shallow(
+          <Typography headlineMapping={{ body1: 'div' }} internal useNextVariants />,
+        );
+        assert.strictEqual(wrapper.name(), 'div');
+      });
     });
 
     describe('theme.typography.useNextVariants', () => {
