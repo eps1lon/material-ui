@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
-import { deprecatedVariants, restyledVariants } from '../styles/typographyMigration';
+import {
+  deprecatedVariants,
+  nextVariantMapping,
+  restyledVariants,
+} from '../styles/typographyMigration';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
@@ -116,6 +120,16 @@ export const styles = theme => ({
   },
 });
 
+function getVariant(variantProp, useNextVariants) {
+  if (useNextVariants && restyledVariants.includes(variantProp)) {
+    return `${variantProp}Next`;
+  }
+  if (useNextVariants) {
+    return nextVariantMapping(variantProp);
+  }
+  return variantProp;
+}
+
 function Typography(props) {
   const {
     align,
@@ -135,7 +149,7 @@ function Typography(props) {
     ...other
   } = props;
 
-  if (!suppressDeprecationWarnings) {
+  if (!suppressDeprecationWarnings || !useNextVariants) {
     warning(
       !deprecatedVariants.includes(variantProp),
       'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
@@ -143,7 +157,7 @@ function Typography(props) {
     );
 
     warning(
-      !restyledVariants.includes(variantProp) || useNextVariants,
+      !restyledVariants.includes(variantProp),
       'Deprecation Warning: Material-UI: You are using the typography variant ' +
         `${variantProp} that will be restyled in the next major release. Check the migration guide`,
     );
@@ -156,8 +170,7 @@ function Typography(props) {
       `Use 'variant="${variantProp.slice(-4)}" useNextVariants' instead`,
   );
 
-  const variant =
-    useNextVariants && restyledVariants.includes(variantProp) ? `${variantProp}Next` : variantProp;
+  const variant = getVariant(variantProp);
 
   const className = classNames(
     classes.root,
