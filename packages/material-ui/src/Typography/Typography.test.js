@@ -148,6 +148,7 @@ describe('<Typography />', () => {
           assert.fail('got no error', `expected a warning to match '${expectedWarning}'`);
         }
       } catch (e) {
+        assert.isTrue(expectDeprecation);
         assert.isTrue(warning.calledOnce);
         assert.include(warning.firstCall.args[0], expectedWarning);
       }
@@ -166,6 +167,7 @@ describe('<Typography />', () => {
 
     describe('prop: useNextVariants', () => {
       it('can use the new style of existing variants', () => {
+        testMount(<Typography useNextVariants />, false);
         testMount(<Typography useNextVariants variant="body1" />, false);
         testMount(<Typography internal useNextVariants variant="body1" />, false);
       });

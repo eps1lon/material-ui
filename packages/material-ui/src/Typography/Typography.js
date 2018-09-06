@@ -164,7 +164,7 @@ function Typography(props) {
     const isRestyledVariant = restyledVariants.includes(variantProp);
     if (isRestyledVariant) {
       warning(
-        internal && (useNextVariants || globalUseNextVariants),
+        globalUseNextVariants || useNextVariants,
         'Deprecation Warning: Material-UI: You are using the typography variant ' +
           `${variantProp} which will be restyled in the next major release.` +
           'Check the migration guide',
