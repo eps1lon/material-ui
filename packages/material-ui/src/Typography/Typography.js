@@ -120,12 +120,12 @@ export const styles = theme => ({
   },
 });
 
-function getVariant(variantProp, useNextVariants) {
-  if (useNextVariants && restyledVariants.includes(variantProp)) {
-    return `${variantProp}Next`;
-  }
-  if (useNextVariants) {
+function getVariant(variantProp, localUseNextVariants, globalUseNextVariants) {
+  if (globalUseNextVariants) {
     return nextVariantMapping(variantProp);
+  }
+  if (localUseNextVariants && restyledVariants.includes(variantProp)) {
+    return `${variantProp}Next`;
   }
   return variantProp;
 }
@@ -139,38 +139,40 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
-    internalUsage,
+    internal,
     noWrap,
     paragraph,
-    suppressDeprecationWarnings,
     theme,
     useNextVariants,
     variant: variantProp,
     ...other
   } = props;
 
-  if (!suppressDeprecationWarnings || !useNextVariants) {
-    warning(
-      !deprecatedVariants.includes(variantProp),
-      'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
-        `${variantProp} that will be removed in the next major release. Check the migration guide.`,
-    );
+  if (process.env.NODE_ENV !== 'production') {
+    const globalUseNextVariants = theme.typography.useNextVariants;
 
-    warning(
-      !restyledVariants.includes(variantProp),
-      'Deprecation Warning: Material-UI: You are using the typography variant ' +
-        `${variantProp} that will be restyled in the next major release. Check the migration guide`,
-    );
+    const isDeprecatedVariant = deprecatedVariants.includes(variantProp);
+    if (isDeprecatedVariant) {
+      warning(
+        internal && globalUseNextVariants,
+        'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
+          `${variantProp} that will be removed in the next major release. ` +
+          'Check the migration guide.',
+      );
+    }
+
+    const isRestyledVariant = restyledVariants.includes(variantProp);
+    if (isRestyledVariant) {
+      warning(
+        internal && (useNextVariants || globalUseNextVariants),
+        'Deprecation Warning: Material-UI: You are using the typography variant ' +
+          `${variantProp} which will be restyled in the next major release.` +
+          'Check the migration guide',
+      );
+    }
   }
 
-  warning(
-    !variantProp.endsWith('Next'),
-    "Material-UI: Avoid using the new variants with the 'Next' suffix." +
-      'They will be removed in the next major release.' +
-      `Use 'variant="${variantProp.slice(-4)}" useNextVariants' instead`,
-  );
-
-  const variant = getVariant(variantProp);
+  const variant = getVariant(variantProp, useNextVariants, theme.typography.useNextVariants);
 
   const className = classNames(
     classes.root,
@@ -237,6 +239,11 @@ Typography.propTypes = {
    */
   headlineMapping: PropTypes.object,
   /**
+   * @internal
+   * indicating this Component was used internally by Mui
+   */
+  internal: PropTypes.bool,
+  /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
   noWrap: PropTypes.bool,
@@ -244,10 +251,6 @@ Typography.propTypes = {
    * If `true`, the text will have a bottom margin.
    */
   paragraph: PropTypes.bool,
-  /**
-   * Suppresses deprecation warnings that are triggered by deprecated variants
-   */
-  suppressDeprecationWarnings: PropTypes.bool,
   /**
    * if `true` all variants marked for restyle in the next major
    * will use the new style
@@ -315,4 +318,4 @@ Typography.defaultProps = {
   useNextVariants: false,
 };
 
-export default withStyles(styles, { name: 'MuiTypography' })(Typography);
+export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

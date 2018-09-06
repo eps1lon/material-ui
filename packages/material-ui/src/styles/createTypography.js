@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
-import { dangerousVariants } from './typographyMigration';
+import { deprecatedVariants, nextVariantMapping, restyledVariants } from './typographyMigration';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -36,9 +36,16 @@ export default function createTypography(palette, typography) {
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   warning(
-    !Object.keys(other).some(variant => dangerousVariants.includes(variant)),
-    'Deprecation Warning: Material-UI: Your are passing a deprecated variant ' +
-      'or a variant that will be restyled in the next major release to createTypography. ' +
+    !Object.keys(other).some(variant => deprecatedVariants.includes(variant)),
+    'Deprecation Warning: Material-UI: Your are passing a deprecated variant to createTypography.' +
+      ' Please read the migration guide.',
+  );
+
+  warning(
+    useNextVariants || !Object.keys(other).some(variant => restyledVariants.includes(variant)),
+    'Deprecation Warning: Material-UI: Your are passing a variant to createTypography ' +
+      'that will be restyled in the next major release ' +
+      'without indicating that you are using typography v2 (set `useNextVariants` to true. ' +
       'Please read the migration guide.',
   );
 
@@ -52,6 +59,15 @@ export default function createTypography(palette, typography) {
     return `${(size / htmlFontSize) * coef}rem`;
   };
 
+  const getVariant = (variant, localUseNextVariants = useNextVariants) => {
+    if (localUseNextVariants) {
+      return nextVariantMapping(variant);
+    }
+    return variant;
+  };
+
+  const utils = { getVariant, letterSpacingToEm, pxToRem };
+
   const propertiesForCategory = (weight, size, casing, letterSpacing) => {
     return {
       color: palette.text.primary,
@@ -64,11 +80,9 @@ export default function createTypography(palette, typography) {
     };
   };
 
-  const utils = { letterSpacingToEm, pxToRem };
-
   /* eslint-disable key-spacing, no-multi-spaces */
   // prettier-ignore
-  const newVariants = {
+  const nextVariants = {
     headline1:   propertiesForCategory(fontWeightLight,   96, caseSentence, -1.5),
     headline2:   propertiesForCategory(fontWeightLight,   60, caseSentence, -0.5),
     headline3:   propertiesForCategory(fontWeightRegular, 48, caseSentence,  0),
@@ -77,11 +91,15 @@ export default function createTypography(palette, typography) {
     headline6:   propertiesForCategory(fontWeightMedium,  20, caseSentence,  0.15),
     subtitle1:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.15),
     subtitle2:   propertiesForCategory(fontWeightMedium,  14, caseSentence,  0.1),
+    overline:    propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
+  };
+
+  // prettier-ignore
+  const nextRestyledVariants = {
     body1Next:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.5),
     body2Next:   propertiesForCategory(fontWeightRegular, 14, caseSentence,  0.25),
     buttonNext:  propertiesForCategory(fontWeightMedium,  14, caseAllCaps,   0.75),
     captionNext: propertiesForCategory(fontWeightRegular, 12, caseSentence,  0.4),
-    overline:    propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
   };
   /* eslint-enable key-spacing, no-multi-spaces */
 
@@ -183,10 +201,10 @@ export default function createTypography(palette, typography) {
 
   const overwriteVariants = useNextVariants
     ? {
-        body1: newVariants.body1Next,
-        body2: newVariants.body2Next,
-        button: newVariants.buttonNext,
-        caption: newVariants.captionNext,
+        body1: nextVariants.body1Next,
+        body2: nextVariants.body2Next,
+        button: nextVariants.buttonNext,
+        caption: nextVariants.captionNext,
       }
     : {};
 
@@ -199,8 +217,10 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       ...oldVariants,
-      ...newVariants,
+      ...nextVariants,
+      ...nextRestyledVariants,
       ...overwriteVariants,
+      useNextVariants,
     },
     utils,
     other,

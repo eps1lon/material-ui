@@ -1,15 +1,26 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { mock } from 'sinon';
+import createMuiTheme from '../styles/createMuiTheme';
+import { createMount, createShallow, getClasses } from '../test-utils';
 import Typography from './Typography';
+import { before } from 'mocha';
 
 describe('<Typography />', () => {
   let shallow;
   let classes;
+  let v2Classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Typography>Hello</Typography>);
+    v2Classes = getClasses(
+      <Typography
+        theme={createMuiTheme({ typography: { useNextVariants: true } })}
+        internal
+        variant="display4"
+      />,
+    );
   });
 
   it('should render the text', () => {
@@ -102,6 +113,84 @@ describe('<Typography />', () => {
     it('should render a h1', () => {
       const wrapper = shallow(<Typography component="h1">Hello</Typography>);
       assert.strictEqual(wrapper.name(), 'h1');
+    });
+  });
+
+  describe('v2 migration', () => {
+    const mount = createMount();
+    const v2Theme = createMuiTheme({
+      typography: {
+        useNextVariants: true,
+      },
+    });
+    let warning;
+
+    beforeEach(() => {
+      warning = mock(console).expects('error');
+    });
+
+    afterEach(() => {
+      warning.restore();
+    });
+
+    /**
+     * tests if a warning is issued from the `warning` module when mounting {component}
+     */
+    const testMount = (component, expectDeprecation) => {
+      const expectedWarning = expectDeprecation ? 'Deprecation Warning: Material-UI:' : undefined;
+      warning.resetHistory();
+
+      try {
+        const wrapper = mount(component);
+        wrapper.unmount();
+
+        if (expectedWarning) {
+          assert.fail('got no error', `expected a warning to match '${expectedWarning}'`);
+        }
+      } catch (e) {
+        assert.isTrue(warning.calledOnce);
+        assert.include(warning.firstCall.args[0], expectedWarning);
+      }
+    };
+
+    it('should warn on deprecated variant usage', () => {
+      testMount(<Typography variant="display4" />, true);
+      testMount(<Typography internal variant="display4" />, true);
+      testMount(<Typography internal useNextVariants variant="display4" />, true);
+    });
+
+    it('warns on restyle variant usage', () => {
+      testMount(<Typography variant="body1" />, true);
+      testMount(<Typography internal variant="body1" />, true);
+    });
+
+    describe('prop: useNextVariants', () => {
+      it('can use the new style of existing variants', () => {
+        testMount(<Typography useNextVariants variant="body1" />, false);
+        testMount(<Typography internal useNextVariants variant="body1" />, false);
+      });
+    });
+
+    describe('theme.typography.useNextVariants', () => {
+      it('maps internal deprecated variants', () => {
+        testMount(<Typography theme={v2Theme} internal variant="display4" />, false);
+        testMount(
+          <Typography theme={v2Theme} internal useNextVariants variant="display4" />,
+          false,
+        );
+
+        const v2Typography = <Typography theme={v2Theme} internal variant="display4" />;
+        const wrapper = shallow(v2Typography);
+        assert.isTrue(wrapper.hasClass(v2Classes.headline1));
+      });
+
+      it('will still warn if you use them in your app', () => {
+        testMount(<Typography theme={v2Theme} variant="display4" />, true);
+      });
+
+      it('suppresses warnings for restyled variants', () => {
+        testMount(<Typography theme={v2Theme} variant="body1" />, false);
+      });
     });
   });
 });
