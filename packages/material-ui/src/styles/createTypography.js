@@ -91,15 +91,11 @@ export default function createTypography(palette, typography) {
     headline6:   propertiesForCategory(fontWeightMedium,  20, caseSentence,  0.15),
     subtitle1:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.15),
     subtitle2:   propertiesForCategory(fontWeightMedium,  14, caseSentence,  0.1),
-    overline:    propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
-  };
-
-  // prettier-ignore
-  const nextRestyledVariants = {
     body1Next:   propertiesForCategory(fontWeightRegular, 16, caseSentence,  0.5),
     body2Next:   propertiesForCategory(fontWeightRegular, 14, caseSentence,  0.25),
     buttonNext:  propertiesForCategory(fontWeightMedium,  14, caseAllCaps,   0.75),
     captionNext: propertiesForCategory(fontWeightRegular, 12, caseSentence,  0.4),
+    overline:    propertiesForCategory(fontWeightRegular, 10, caseAllCaps,   1.5),
   };
   /* eslint-enable key-spacing, no-multi-spaces */
 
@@ -210,6 +206,7 @@ export default function createTypography(palette, typography) {
 
   return deepmerge(
     {
+      ...utils,
       round,
       fontFamily,
       fontSize,
@@ -218,11 +215,9 @@ export default function createTypography(palette, typography) {
       fontWeightMedium,
       ...oldVariants,
       ...nextVariants,
-      ...nextRestyledVariants,
       ...overwriteVariants,
       useNextVariants,
     },
-    utils,
     other,
     {
       clone: false, // No need to clone deep
