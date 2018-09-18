@@ -60,7 +60,7 @@ export default function createTypography(palette, typography) {
   };
 
   const getVariant = (variant, localUseNextVariants) => {
-    const ignoreDeprecationWarnings = process.env.SUPPRESS_DEPRECATION_WARNINGS;
+    const ignoreDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS;
 
     warning(
       ignoreDeprecationWarnings || !deprecatedVariants.includes(variant),

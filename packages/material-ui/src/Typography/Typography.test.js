@@ -216,7 +216,7 @@ describe('<Typography />', () => {
     });
 
     describe('theme.typography.useNextVariants', () => {
-      describe('with SUPPRESS_DEPRACATION_WARNINGS', () => {
+      describe('with MUI_SUPPRESS_DEPRECATION_WARNINGS', () => {
         let restoreEnv = () => {};
 
         before(() => {

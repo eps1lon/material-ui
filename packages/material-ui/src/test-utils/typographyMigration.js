@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 
 export function setSuppressWarnings(value) {
-  const orig = process.env.SUPPRESS_DEPRECATION_WARNINGS;
-  process.env.SUPPRESS_DEPRECATION_WARNINGS = value;
+  const orig = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS;
+  process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS = value;
 
   // restore function
   return () => {
-    process.env.SUPPRESS_DEPRECATION_WARNINGS = orig;
+    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS = orig;
   };
 }
 
