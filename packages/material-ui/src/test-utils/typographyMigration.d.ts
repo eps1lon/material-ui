@@ -1,3 +1,5 @@
-export function setSuppressWarnings(value: boolean): () => void;
-export function disableWarnings(): () => void;
-export function enableWarnings(): () => void;
+import { ThemeOptions } from '../styles/createMuiTheme';
+
+export function withWarningsSetTo(options: ThemeOptions, value: boolean): Theme;
+export function withDisabledWarnings(options?: ThemeOptions): Theme;
+export function withEnabledWarnings(options?: ThemeOptions): Theme;

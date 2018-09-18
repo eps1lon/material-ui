@@ -1,13 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
 import { mock } from 'sinon';
-import createMuiTheme from '../styles/createMuiTheme';
+import MuiThemeProvider from '../styles/MuiThemeProvider';
 import {
   createMount,
   createShallow,
   getClasses,
-  enableWarnings,
-  disableWarnings,
+  withEnabledWarnings,
+  withDisabledWarnings,
 } from '../test-utils';
 import Typography from './Typography';
 import { before } from 'mocha';
@@ -19,7 +19,7 @@ describe('<Typography />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    v2Theme = createMuiTheme({
+    v2Theme = withEnabledWarnings({
       typography: {
         useNextVariants: true,
       },
@@ -155,15 +155,6 @@ describe('<Typography />', () => {
   describe('v2 migration', () => {
     const mount = createMount();
     let warning;
-    let restoreSuppressWarningEnv = () => {};
-
-    before(() => {
-      restoreSuppressWarningEnv = enableWarnings();
-    });
-
-    after(() => {
-      restoreSuppressWarningEnv();
-    });
 
     beforeEach(() => {
       warning = mock(console).expects('error');
@@ -181,7 +172,8 @@ describe('<Typography />', () => {
       warning.resetHistory();
 
       try {
-        const wrapper = mount(component);
+        const theme = withEnabledWarnings();
+        const wrapper = mount(<MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>);
         wrapper.unmount();
 
         if (expectedWarning) {
@@ -216,27 +208,11 @@ describe('<Typography />', () => {
     });
 
     describe('theme.typography.useNextVariants', () => {
-      describe('with MUI_SUPPRESS_DEPRECATION_WARNINGS', () => {
-        let restoreEnv = () => {};
-
-        before(() => {
-          restoreEnv = disableWarnings();
-        });
-
-        after(() => {
-          restoreEnv();
-        });
-
-        it('causes mui to not log deprecation warnings', () => {
-          testMount(<Typography theme={v2Theme} variant="display4" />, false);
-          testMount(<Typography theme={v2Theme} useNextVariants variant="display4" />, false);
-        });
-
-        it('maps internal deprecated variants', () => {
-          const v2Typography = <Typography theme={v2Theme} variant="display4" />;
-          const wrapper = shallow(v2Typography);
-          assert.isTrue(wrapper.hasClass(classes.headline1));
-        });
+      it('maps internal deprecated variants', () => {
+        const theme = withDisabledWarnings({ typography: { useNextVariants: true } });
+        const v2Typography = <Typography theme={theme} variant="display4" />;
+        const wrapper = shallow(v2Typography);
+        assert.isTrue(wrapper.hasClass(classes.headline1));
       });
 
       it('will still warn if you use them in your app', () => {
@@ -245,6 +221,19 @@ describe('<Typography />', () => {
 
       it('suppresses warnings for restyled variants', () => {
         testMount(<Typography theme={v2Theme} variant="body1" />, false);
+      });
+    });
+
+    describe('with MUI_SUPPRESS_DEPRECATION_WARNINGS', () => {
+      let theme;
+
+      before(() => {
+        theme = withDisabledWarnings({ useNextVariants: true });
+      });
+
+      it('causes mui to not log deprecation warnings', () => {
+        testMount(<Typography theme={theme} variant="display4" />, false);
+        testMount(<Typography theme={theme} useNextVariants variant="display4" />, false);
       });
     });
   });

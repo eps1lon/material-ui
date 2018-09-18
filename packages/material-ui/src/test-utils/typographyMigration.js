@@ -1,21 +1,20 @@
 /* eslint-disable import/prefer-default-export */
+import createMuiTheme from '../styles/createMuiTheme';
 
-export function setSuppressWarnings(value) {
-  const orig = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS;
-  process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS = value;
-
-  // restore function
-  return () => {
-    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS = orig;
-  };
+export function withWarningsSetTo(options, showDeprecationWarnings) {
+  return createMuiTheme({
+    ...options,
+    typography: {
+      ...options.typography,
+      ignoreDeprecationWarnings: !showDeprecationWarnings,
+    },
+  });
 }
 
-export function disableWarnings() {
-  return setSuppressWarnings(true);
+export function withDisabledWarnings(options = {}) {
+  return withWarningsSetTo(options, false);
 }
 
-export function enableWarnings() {
-  // falsy value, setting boolean literal false will convert it to 'false'
-  // in the env variable which is true
-  return setSuppressWarnings('');
+export function withEnabledWarnings(options = {}) {
+  return withWarningsSetTo(options, true);
 }
