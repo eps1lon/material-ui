@@ -53,7 +53,7 @@ class Index extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <Typography variant="display1" gutterBottom>
+        <Typography variant="headline4" gutterBottom>
           Material-UI
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
