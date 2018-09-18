@@ -58,6 +58,13 @@ export const styles = theme => ({
   buttonNext: theme.typography.buttonNext,
   /* Styles applied to the root element if `variant="overline"`. */
   overline: theme.typography.overline,
+  /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
+  srOnly: {
+    position: 'absolute',
+    height: 1,
+    width: 1,
+    overflow: 'hidden',
+  },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -134,8 +141,8 @@ function Typography(props) {
   const variant = theme.typography.getVariant(variantProp, useNextVariants);
   const className = classNames(
     classes.root,
-    classes[variant],
     {
+      [classes[variant]]: variant !== 'inherit',
       [classes[`color${capitalize(color)}`]]: color !== 'default',
       [classes.noWrap]: noWrap,
       [classes.gutterBottom]: gutterBottom,
@@ -236,6 +243,8 @@ Typography.propTypes = {
     'headline',
     'title',
     'subheading',
+    // non-spec
+    'srOnly',
   ]),
 };
 

@@ -1,9 +1,157 @@
-Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
+### [Versions](https://material-ui.com/versions)
 
-#### Release Schedule
+## 3.1.0
+###### *Sep 16, 2018*
 
-- Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
-- Major version release is not included in this schedule for breaking change and new features.
+Big thanks to the 24 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 💅 Add outlined and filled text field variants (#12076) @enagy27.
+- ♿️ Document how to make the icons accessible (#12822).
+- 🐛 Fix a class name generation regression (#12844).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.1.0`
+
+- [Checkbox] Add indeterminateIcon type definition (#12815) @cvanem
+- [Popover] Change to offsetWidth and offsetHeight (#12816) @akaxiaok
+- [styles] Use the same class name generator (#12818) @oliviertassinari
+- [styles] Revert packageId as default option (#12823) @oliviertassinari
+- [withStyles] Fix JSS issues in IE11 in development (#12826) @novascreen
+- [autocomplete] Fix incorrect input font in react-select autocomplete demo (#12828) @wijwoj
+- [withWidth] Prevent Rerendering (#12825) @junhyukee
+- [SvgIcon] Improve accessibility (#12822) @oliviertassinari
+- [CircularProgress] Update missing type definitions (#12835) @gsalisi
+- [styles] Remove the packageId (#12844) @oliviertassinari
+- [Typography] Add inherit and screen reader only (#12837) @oliviertassinari
+- [Select] Test if child passed to onChange handler (#12852) @akaxiaok
+- [TableSortLabel] Remove sort icon when not active (#12874) @markselby9
+- [icons] Add `fontSize` small and large (#12865) @JoshuaLicense
+- [Chip] Add an icon property (#12881) @aretheregods
+- [TextField] Add outlined and filled variants (#12076) @enagy27
+
+### `@material-ui/lab@v3.0.0-alpha.16`
+
+- [Slider] Don't pass component props down to root div (#12842) @mbrookes
+- [Slider] Faster transitions (#12843) @mbrookes
+- [SpeedDial] Fix ARIA & fix duplicate id in docs example (#12846) @mbrookes
+- [SpeedDial] Remove redundant aria-labelledby (#12847) @mbrookes
+- [SpeedDial] Fix not opening on first tap in mobile (#12771) @hashwin
+- [Slider] Feature Custom Icon (#12600) @adeelibr
+
+### Docs
+
+- [docs] Fix the gatsby example (#12817) @oliviertassinari
+- [docs] Fix Typo in Pricing.js (#12821) @enducker
+- [docs] Fix Typo in Checkout.js (#12820) @enducker
+- [docs] Fix typo in popover.md (#12832) @amacleay
+- [docs] Add documentation for css-to-mui-loader (#12841) @mcdougal
+- [docs] Fix ToggleButtons example typography variant (#12845) @mbrookes
+- [docs] Fix very minor typo (Docs - page layout examples) (#12849) @bcapinski
+- [SvgIcon] Fix minor typo in docs (#12848) @iamhosseindhv
+- [docs] Fix typo in blog page layout README (#12868) @sethduncan
+- [docs] Update comparison.md (#12877) @GideonShils
+- [docs] Split test ad networks (#12878) @mbrookes
+- [docs] Customize LinearProgress color (#12883) @mbrn
+
+### Core
+
+- [typescript] Update createGenerateClassName.d.ts (#12824) @Qeneke
+- [github] Make issue templates version agnostic (#12839) @mbrookes
+- [typescript] Fix with* injectors ignoring defaultProps (#12673) @eps1lon
+- [core] Set required yarn version (#12864) @eps1lon
+- [core] Upgrade dev dependencies (#12884) @oliviertassinari
+
+## 3.0.3
+###### *Sep 9, 2018*
+
+Big thanks to the 13 contributors who made this release possible!
+
+### `@material-ui/core@v3.0.3`
+
+- [typescript] Fix ModalClasses prop type on popover (#12761) @YuriiOstapchuk
+- [AppBar] Add position="relative" (#12790) @jgoux
+- [Checkbox] Revert input indeterminate support (#12803) @eps1lon
+- [Checkbox] Indeterminate CSS & DOM helpers (#12804) @oliviertassinari
+- [Chip] Add verticalAlign: 'middle' (#12809) @akaxiaok
+- [autocomplete] Fix delete chip not working on mobile (#12813) @aretheregods
+- [styles] Support multiple withStyles instances (#12814) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.15`
+
+- [SpeedDialAction] Update tooltipPlacement propTypes (#12758) @Primajin
+- [ToggleButtons] normalize onChange api (#12549) @eps1lon
+
+### Docs
+
+- [docs] Remove function call from onChange handler (#12785) @snikobonyadrad
+- [docs] Unescapes character in markdown (#12778) @schalkventer
+- [docs] Enable service worker by default as the latest CRA (#12775) @sharils
+- [docs] New DataTable component (#12799) @mbrn
+- [docs] Add AppBar demos with exapandable & primary search fields (#12695) @adeelibr
+- [docs] Simpler AppBar search demos (#12806) @oliviertassinari
+- [docs] Document the shrink status input limitation (#12769) @racingrebel
+
+### Core
+
+- [test] Use yarn offline mirror (#12763) @eps1lon
+- [core] Small changes investigating issues (#12812) @oliviertassinari
+
+## 3.0.2
+###### *Sep 3, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+- A documented release strategy (#12752).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.0.2`
+
+- [Tab] Ability change font size of tab (#12706) @adeelibr
+- [typescript] Set default for withStyles' Options generic (#12698) @nmchaves
+- [Dialog] Remove dialog margin when fullScreen=true and scroll=body (#12718) @akaxiaok
+- [Table] Improved sorting in table for demo EnhancedTable (#12736) @adeelibr
+- [Snackbar] Add `ClickAwayListenerProps` property (#12735) @tendermario
+- [IconButton] Fix border radius cutting of badges on IE11 (#12743) @novascreen
+- [Select] Pass child to onChange handler (#12747) @akaxiaok
+- [Input] Fix Input passing inputRef to intrinsic elements (#12719) @eps1lon
+- [withStyles] Better theme.props support (#12750) @oliviertassinari
+- [SwipeableDrawer] Add hysteresis and velocity property (#12722) @jniclas
+
+### `@material-ui/lab@v3.0.0-alpha.14`
+
+#### Breaking changes
+
+- [ToggleButton] Fix ToggleButtonGroup exports (#12733) @mbrookes
+
+```diff
+-import { ToggleButtonGroup } from '@material-ui/lab/ToggleButton';
++import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+```
+
+#### Component Fixes / Enhancements
+
+- [SpeedDialAction] Update tooltipPlacement propTypes (#12730) @Primajin
+- [Slider] Add missing packages (#12745) @GermanBluefox
+- [SpeedDial] Allow tooltip to always be displayed (#12590) @hashwin
+
+### Docs
+
+- [docs] Fix typo in Overrides chapter (#12705) @sanderpost
+- [docs] Improve the Downshift demo (#12703) @oliviertassinari
+- [examples] Fix typing of `withRoot` to accept props (#12712) @mattmccutchen
+- [docs] Fix class name in overrides example (#12717) @manuelkiessling
+- [examples] Fix withRoot accepting any props (#12713) @eps1lon
+- [typescript] Illustrate issue with ambiguous css class names (#12724) @eps1lon
+- [docs] Fix Typo in Page Layout Examples (#12734) @mblodorn
+- [docs] Explain how to pass props down to overridden components (#12716) @manuelkiessling
+- [docs] Generate import examples in API docs (#12720) @jedwards1211
+- [docs] More transparency around the release strategy (#12752) @oliviertassinari
+
+### Core
+
+N/A
 
 ## 3.0.1
 ###### *Aug 28, 2018*
@@ -95,7 +243,7 @@ We use the same strategy for Chrome.
 - [docs] Add "Insights" by justaskusers.com to the list of showcases (#12620) @mattes3
 - [docs] Use public api of jss instead of private vars (#12629) @eps1lon
 - [docs] Improve Autocomplete filtering suggestions (#12641) @jorgegorka
-- [docs] Fix IE 11 support (#12650) @
+- [docs] Fix IE 11 support (#12650) @oliviertassinari
 - [docs] Fix typos (#12652) @dandv
 - [docs] Use the event.target.checked API systematically (#12644) @chellem
 - [docs] Correct `by and enum` typo in api.md (#12663) @G-Rath
@@ -113,7 +261,7 @@ We use the same strategy for Chrome.
 - [typescript] Use interfaces for typography types (#12616) @pelotom
 - [ci] Consider only files changed on the built branch (#12627) @eps1lon
 - [test] Lint typescript definitions (#12637) @eps1lon
-- [core] Upgrade dev dependencies (#12658) @
+- [core] Upgrade dev dependencies (#12658) @oliviertassinari
 
 #### Lab
 

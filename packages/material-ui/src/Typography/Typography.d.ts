@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { Style, TextStyle } from '../styles/createTypography';
+import { ThemeStyle } from '../styles/createTypography';
+
+type Style = ThemeStyle | 'srOnly';
 
 export interface TypographyProps
   extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
@@ -8,11 +10,11 @@ export interface TypographyProps
   color?: PropTypes.Color | 'textPrimary' | 'textSecondary' | 'error';
   component?: React.ReactType<TypographyProps>;
   gutterBottom?: boolean;
-  headlineMapping?: { [type in TextStyle]: string };
+  headlineMapping?: { [type in Style]: string };
   noWrap?: boolean;
   paragraph?: boolean;
   useNextVariants?: boolean;
-  variant?: Style;
+  variant?: Style | 'inherit';
 }
 
 export type TypographyClassKey =
@@ -28,6 +30,7 @@ export type TypographyClassKey =
   | 'body1'
   | 'caption'
   | 'button'
+  | 'srOnly'
   | 'alignLeft'
   | 'alignCenter'
   | 'alignRight'

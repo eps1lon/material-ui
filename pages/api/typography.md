@@ -9,6 +9,10 @@ title: Typography API
 
 <p class="description">The API documentation of the Typography React component.</p>
 
+```js
+import Typography from '@material-ui/core/Typography';
+```
+
 
 
 ## Props
@@ -25,7 +29,7 @@ title: Typography API
 | <span class="prop-name">noWrap</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
 | <span class="prop-name">paragraph</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
 | <span class="prop-name">useNextVariants</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if `true` all variants marked for restyle in the next major will use the new style |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;"headline1", 'headline2', 'headline3', 'headline4', 'headline5', 'headline6', 'subtitle1', 'subtitle2', 'overline', "body1", 'body2', 'caption', 'button', "display4", 'display3', 'display2', 'display1', 'headline', 'title', 'subheading'<br> | <span class="prop-default">'body1'</span> | Applies the theme typography styles. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;"headline1", 'headline2', 'headline3', 'headline4', 'headline5', 'headline6', 'subtitle1', 'subtitle2', 'overline', "body1", 'body2', 'caption', 'button', "display4", 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', "srOnly"<br> | <span class="prop-default">'body1'</span> | Applies the theme typography styles. |
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -62,6 +66,7 @@ This property accepts the following keys:
 | <span class="prop-name">captionNext</span> | Styles applied to the root element if `variant="caption" useNextVariants`.
 | <span class="prop-name">buttonNext</span> | Styles applied to the root element if `variant="button" useNextVariants`.
 | <span class="prop-name">overline</span> | Styles applied to the root element if `variant="overline"`.
+| <span class="prop-name">srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
 | <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.
 | <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
 | <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
