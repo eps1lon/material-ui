@@ -2,7 +2,13 @@ import React from 'react';
 import { assert } from 'chai';
 import { mock } from 'sinon';
 import createMuiTheme from '../styles/createMuiTheme';
-import { createMount, createShallow, getClasses } from '../test-utils';
+import {
+  createMount,
+  createShallow,
+  getClasses,
+  enableWarnings,
+  disableWarnings,
+} from '../test-utils';
 import Typography from './Typography';
 import { before } from 'mocha';
 
@@ -149,6 +155,15 @@ describe('<Typography />', () => {
   describe('v2 migration', () => {
     const mount = createMount();
     let warning;
+    let restoreSuppressWarningEnv = () => {};
+
+    before(() => {
+      restoreSuppressWarningEnv = enableWarnings();
+    });
+
+    after(() => {
+      restoreSuppressWarningEnv();
+    });
 
     beforeEach(() => {
       warning = mock(console).expects('error');
@@ -173,49 +188,55 @@ describe('<Typography />', () => {
           assert.fail('got no error', `expected a warning to match '${expectedWarning}'`);
         }
       } catch (e) {
-        assert.isTrue(expectDeprecation);
-        assert.isTrue(warning.calledOnce);
+        assert.isTrue(expectDeprecation, 'expected no deprecation but got a warning anyway');
+        assert.isTrue(warning.calledOnce, 'expected deprecation warning but got none');
         assert.include(warning.firstCall.args[0], expectedWarning);
       }
     };
 
     it('should warn on deprecated variant usage', () => {
       testMount(<Typography variant="display4" />, true);
-      testMount(<Typography internal variant="display4" />, true);
-      testMount(<Typography internal useNextVariants variant="display4" />, true);
+      testMount(<Typography useNextVariants variant="display4" />, true);
     });
 
     it('warns on restyle variant usage', () => {
       testMount(<Typography variant="body1" />, true);
-      testMount(<Typography internal variant="body1" />, true);
     });
 
     describe('prop: useNextVariants', () => {
       it('can use the new style of existing variants', () => {
         testMount(<Typography useNextVariants />, false);
         testMount(<Typography useNextVariants variant="body1" />, false);
-        testMount(<Typography internal useNextVariants variant="body1" />, false);
       });
 
       it('respects headlineMapping', () => {
-        const wrapper = shallow(
-          <Typography headlineMapping={{ body1: 'div' }} internal useNextVariants />,
-        );
+        const wrapper = shallow(<Typography headlineMapping={{ body1: 'div' }} useNextVariants />);
         assert.strictEqual(wrapper.name(), 'div');
       });
     });
 
     describe('theme.typography.useNextVariants', () => {
-      it('maps internal deprecated variants', () => {
-        testMount(<Typography theme={v2Theme} internal variant="display4" />, false);
-        testMount(
-          <Typography theme={v2Theme} internal useNextVariants variant="display4" />,
-          false,
-        );
+      describe('with SUPPRESS_DEPRACATION_WARNINGS', () => {
+        let restoreEnv = () => {};
 
-        const v2Typography = <Typography theme={v2Theme} internal variant="display4" />;
-        const wrapper = shallow(v2Typography);
-        assert.isTrue(wrapper.hasClass(classes.headline1));
+        before(() => {
+          restoreEnv = disableWarnings();
+        });
+
+        after(() => {
+          restoreEnv();
+        });
+
+        it('causes mui to not log deprecation warnings', () => {
+          testMount(<Typography theme={v2Theme} variant="display4" />, false);
+          testMount(<Typography theme={v2Theme} useNextVariants variant="display4" />, false);
+        });
+
+        it('maps internal deprecated variants', () => {
+          const v2Typography = <Typography theme={v2Theme} variant="display4" />;
+          const wrapper = shallow(v2Typography);
+          assert.isTrue(wrapper.hasClass(classes.headline1));
+        });
       });
 
       it('will still warn if you use them in your app', () => {

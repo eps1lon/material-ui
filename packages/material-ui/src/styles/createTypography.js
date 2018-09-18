@@ -59,10 +59,40 @@ export default function createTypography(palette, typography) {
     return `${(size / htmlFontSize) * coef}rem`;
   };
 
-  const getVariant = (variant, localUseNextVariants = useNextVariants) => {
-    if (localUseNextVariants) {
-      return nextVariantMapping(variant);
+  const getVariant = (variant, localUseNextVariants) => {
+    const ignoreDeprecationWarnings = process.env.SUPPRESS_DEPRECATION_WARNINGS;
+
+    warning(
+      ignoreDeprecationWarnings || !deprecatedVariants.includes(variant),
+      'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
+        `${variant} that will be removed in the next major release. ` +
+        'Check the migration guide.',
+    );
+
+    const nextVariant = nextVariantMapping(variant);
+
+    // complete v2 switch
+    if (useNextVariants) {
+      return nextVariant;
     }
+
+    const isRestyledVariant = restyledVariants.includes(variant);
+    // global v1, local v2
+    if (localUseNextVariants) {
+      if (isRestyledVariant) {
+        return `${nextVariant}Next`;
+      }
+      return nextVariant;
+    }
+
+    // v1 => restyle warnings
+    warning(
+      ignoreDeprecationWarnings || !isRestyledVariant,
+      'Deprecation Warning: Material-UI: You are using the typography variant ' +
+        `${variant} which will be restyled in the next major release.` +
+        'Check the migration guide',
+    );
+
     return variant;
   };
 

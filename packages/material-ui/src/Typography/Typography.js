@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
-import {
-  deprecatedVariants,
-  nextVariantMapping,
-  restyledVariants,
-} from '../styles/typographyMigration';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
@@ -120,16 +114,6 @@ export const styles = theme => ({
   },
 });
 
-function getVariant(variantProp, localUseNextVariants, globalUseNextVariants) {
-  if (globalUseNextVariants) {
-    return nextVariantMapping(variantProp);
-  }
-  if (localUseNextVariants && restyledVariants.includes(variantProp)) {
-    return `${variantProp}Next`;
-  }
-  return variantProp;
-}
-
 function Typography(props) {
   const {
     align,
@@ -139,7 +123,6 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
-    internal,
     noWrap,
     paragraph,
     theme,
@@ -148,32 +131,7 @@ function Typography(props) {
     ...other
   } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
-    const globalUseNextVariants = theme.typography.useNextVariants;
-
-    const isDeprecatedVariant = deprecatedVariants.includes(variantProp);
-    if (isDeprecatedVariant) {
-      warning(
-        internal && globalUseNextVariants,
-        'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
-          `${variantProp} that will be removed in the next major release. ` +
-          'Check the migration guide.',
-      );
-    }
-
-    const isRestyledVariant = restyledVariants.includes(variantProp);
-    if (isRestyledVariant) {
-      warning(
-        globalUseNextVariants || useNextVariants,
-        'Deprecation Warning: Material-UI: You are using the typography variant ' +
-          `${variantProp} which will be restyled in the next major release.` +
-          'Check the migration guide',
-      );
-    }
-  }
-
-  const variant = getVariant(variantProp, useNextVariants, theme.typography.useNextVariants);
-
+  const variant = theme.typography.getVariant(variantProp, useNextVariants);
   const className = classNames(
     classes.root,
     classes[variant],
@@ -238,11 +196,6 @@ Typography.propTypes = {
    * Alternatively, you can use the `component` property.
    */
   headlineMapping: PropTypes.object,
-  /**
-   * @internal
-   * indicating this Component was used internally by Mui
-   */
-  internal: PropTypes.bool,
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
