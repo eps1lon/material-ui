@@ -1,6 +1,11 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
-import { deprecatedVariants, nextVariantMapping, restyledVariants } from './typographyMigration';
+import {
+  deprecatedVariants,
+  migrationGuideMessage,
+  nextVariantMapping,
+  restyledVariants,
+} from './typographyMigration';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -38,16 +43,15 @@ export default function createTypography(palette, typography) {
 
   warning(
     !Object.keys(other).some(variant => deprecatedVariants.includes(variant)),
-    'Deprecation Warning: Material-UI: Your are passing a deprecated variant to createTypography.' +
-      ' Please read the migration guide.',
+    'Deprecation Warning: Material-UI: Your are passing a deprecated variant to ' +
+      `createTypography. ${migrationGuideMessage}`,
   );
 
   warning(
     useNextVariants || !Object.keys(other).some(variant => restyledVariants.includes(variant)),
     'Deprecation Warning: Material-UI: Your are passing a variant to createTypography ' +
-      'that will be restyled in the next major release ' +
-      'without indicating that you are using typography v2 (set `useNextVariants` to true. ' +
-      'Please read the migration guide.',
+      'that will be restyled in the next major release without indicating that you ' +
+      `are using typography v2 (set \`useNextVariants\` to true. ${migrationGuideMessage}`,
   );
 
   const coef = fontSize / 14;
@@ -64,8 +68,7 @@ export default function createTypography(palette, typography) {
     warning(
       ignoreDeprecationWarnings || !deprecatedVariants.includes(variant),
       'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
-        `${variant} that will be removed in the next major release. ` +
-        'Check the migration guide.',
+        `${variant} that will be removed in the next major release. ${migrationGuideMessage}`,
     );
 
     const nextVariant = nextVariantMapping(variant);
@@ -88,8 +91,7 @@ export default function createTypography(palette, typography) {
     warning(
       ignoreDeprecationWarnings || !isRestyledVariant,
       'Deprecation Warning: Material-UI: You are using the typography variant ' +
-        `${variant} which will be restyled in the next major release.` +
-        'Check the migration guide',
+        `${variant} which will be restyled in the next major release. ${migrationGuideMessage}`,
     );
 
     return variant;

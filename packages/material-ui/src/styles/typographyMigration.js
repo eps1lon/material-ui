@@ -40,3 +40,6 @@ export function nextVariantMapping(variant) {
   }
   return nextVariant;
 }
+
+export const migrationGuideMessage =
+  '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2';
