@@ -1,4 +1,4 @@
-import { ThemeOptions } from '../styles/createMuiTheme';
+import { ThemeOptions, Theme } from '../styles/createMuiTheme';
 
 export function withWarningsSetTo(options: ThemeOptions, value: boolean): Theme;
 export function withDisabledWarnings(options?: ThemeOptions): Theme;
