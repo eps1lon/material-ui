@@ -65,7 +65,7 @@ function Types(props) {
           numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
         </TypographyVariant>
         <TypographyVariant classes={classes} variant="body2" useNextVariants>
-          Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+          Body 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
           unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate
           numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
         </TypographyVariant>
