@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import createTypography from '@material-ui/core/styles/createTypography';
 
 const styles = {
   root: {
@@ -11,55 +12,65 @@ const styles = {
 };
 
 function Types(props) {
-  const { classes } = props;
+  const { classes, theme } = props;
+  const typographyV1Theme = {
+    ...theme,
+    typography: createTypography(theme.palette, {
+      ignoreDeprecationWarnings: true,
+      useNextVariants: false,
+    }),
+  };
 
   return (
-    <div className={classes.root}>
-      <Typography variant="headline1" gutterBottom suppressDeprecationWarnings>
-        Display 4
-      </Typography>
-      <Typography variant="headline2" gutterBottom suppressDeprecationWarnings>
-        Display 3
-      </Typography>
-      <Typography variant="headline3" gutterBottom suppressDeprecationWarnings>
-        Display 2
-      </Typography>
-      <Typography variant="headline4" gutterBottom suppressDeprecationWarnings>
-        Display 1
-      </Typography>
-      <Typography variant="headline5" gutterBottom suppressDeprecationWarnings>
-        Headline
-      </Typography>
-      <Typography variant="headline6" gutterBottom suppressDeprecationWarnings>
-        Title
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom suppressDeprecationWarnings>
-        Subheading
-      </Typography>
-      <Typography variant="body2" gutterBottom suppressDeprecationWarnings>
-        Body 2
-      </Typography>
-      <Typography variant="body1" gutterBottom align="right" suppressDeprecationWarnings>
-        Body 1
-      </Typography>
-      <Typography variant="caption" gutterBottom align="center" suppressDeprecationWarnings>
-        Caption
-      </Typography>
-      <Typography gutterBottom noWrap suppressDeprecationWarnings>
-        {`
+    <MuiThemeProvider theme={typographyV1Theme}>
+      <div className={classes.root}>
+        <Typography variant="display4" gutterBottom>
+          Display 4
+        </Typography>
+        <Typography variant="display3" gutterBottom>
+          Display 3
+        </Typography>
+        <Typography variant="display2" gutterBottom>
+          Display 2
+        </Typography>
+        <Typography variant="display1" gutterBottom>
+          Display 1
+        </Typography>
+        <Typography variant="headline" gutterBottom>
+          Headline
+        </Typography>
+        <Typography variant="title" gutterBottom>
+          Title
+        </Typography>
+        <Typography variant="subheading" gutterBottom>
+          Subheading
+        </Typography>
+        <Typography variant="body2" gutterBottom>
+          Body 2
+        </Typography>
+        <Typography variant="body1" gutterBottom align="right">
+          Body 1
+        </Typography>
+        <Typography variant="caption" gutterBottom align="center">
+          Caption
+        </Typography>
+        <Typography gutterBottom noWrap>
+          {`
           Lorem ipsum dolor sit amet, consectetur adipisicing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         `}
-      </Typography>
-      <Typography variant="button" gutterBottom suppressDeprecationWarnings>
-        Button
-      </Typography>
-    </div>
+        </Typography>
+        <Typography variant="button" gutterBottom>
+          Button
+        </Typography>
+      </div>
+    </MuiThemeProvider>
   );
 }
 
 Types.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Types);
+export default withStyles(styles, { withTheme: true })(Types);
