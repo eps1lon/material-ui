@@ -6,7 +6,7 @@ export function withWarningsSetTo(options, showDeprecationWarnings) {
     ...options,
     typography: {
       ...options.typography,
-      ignoreDeprecationWarnings: !showDeprecationWarnings,
+      suppressDeprecationWarnings: !showDeprecationWarnings,
     },
   });
 }

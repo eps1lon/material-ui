@@ -38,7 +38,7 @@ export interface FontStyleOptions extends Partial<FontStyle> {
   allVariants?: CSSProperties;
   caseAllCaps?: CSSProperties;
   caseSentence?: CSSProperties;
-  ignoreDeprecationWarnings?: boolean;
+  suppressDeprecationWarnings?: boolean;
   useNextVariants?: boolean;
 }
 

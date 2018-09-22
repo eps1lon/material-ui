@@ -114,5 +114,5 @@ Deprecation warnings are logged when:
 
 In some cases the deprecation warnings can break your test suite which might be inconvenient.
 In those cases you can set the environment variable `MUI_SUPPRESS_DEPRECATION_WARNINGS` to
-a truthy value. Passing `ignoreDeprecationWarnings: true` to the typography options in
+a truthy value. Passing `suppressDeprecationWarnings: true` to the typography options in
 `createMuiTheme` is equivalent.

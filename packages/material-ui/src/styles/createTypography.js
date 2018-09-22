@@ -34,7 +34,7 @@ export default function createTypography(palette, typography) {
         textTransform: 'uppercase',
       },
     },
-    ignoreDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
+    suppressDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
     useNextVariants = false,
     // Apply the CSS properties to all the variants.
     allVariants,
@@ -66,7 +66,7 @@ export default function createTypography(palette, typography) {
 
   const getVariant = variant => {
     warning(
-      ignoreDeprecationWarnings || !deprecatedVariants.includes(variant),
+      suppressDeprecationWarnings || !deprecatedVariants.includes(variant),
       'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
         `${variant} that will be removed in the next major release. ${migrationGuideMessage}`,
     );
@@ -79,7 +79,7 @@ export default function createTypography(palette, typography) {
     const isRestyledVariant = restyledVariants.includes(variant);
     // v1 => restyle warnings
     warning(
-      ignoreDeprecationWarnings || !isRestyledVariant,
+      suppressDeprecationWarnings || !isRestyledVariant,
       'Deprecation Warning: Material-UI: You are using the typography variant ' +
         `${variant} which will be restyled in the next major release. ${migrationGuideMessage}`,
     );
@@ -237,7 +237,7 @@ export default function createTypography(palette, typography) {
       fontWeightMedium,
       ...oldVariants,
       ...nextVariantsOverwrite,
-      ignoreDeprecationWarnings,
+      suppressDeprecationWarnings,
       useNextVariants,
     },
     other,

@@ -16,7 +16,7 @@ function Types(props) {
   const typographyV1Theme = {
     ...theme,
     typography: createTypography(theme.palette, {
-      ignoreDeprecationWarnings: true,
+      suppressDeprecationWarnings: true,
       useNextVariants: false,
     }),
   };
