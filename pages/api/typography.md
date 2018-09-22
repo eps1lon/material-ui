@@ -28,7 +28,6 @@ import Typography from '@material-ui/core/Typography';
 | <span class="prop-name">headlineMapping</span> | <span class="prop-type">object | <span class="prop-default">{  // deprecated  display4: 'h1',  display3: 'h1',  display2: 'h1',  display1: 'h1',  headline: 'h1',  title: 'h2',  subheading: 'h3',  // restyled  body2: 'aside',  body1: 'p',  // new  headline1: 'h1',  headline2: 'h2',  headline3: 'h3',  headline4: 'h4',  headline5: 'h5',  headline6: 'h6',  subtitle1: 'h6',  subtitle2: 'h6',}</span> | We are empirically mapping the variant property to a range of different DOM element types. For instance, h1 to h6. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` property. |
 | <span class="prop-name">noWrap</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
 | <span class="prop-name">paragraph</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
-| <span class="prop-name">useNextVariants</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | if `true` all variants marked for restyle in the next major will use the new style |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;"headline1", 'headline2', 'headline3', 'headline4', 'headline5', 'headline6', 'subtitle1', 'subtitle2', 'overline', "body1", 'body2', 'caption', 'button', "display4", 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', "srOnly"<br> | <span class="prop-default">'body1'</span> | Applies the theme typography styles. |
 
 Any other properties supplied will be spread to the root element (native element).
@@ -61,10 +60,6 @@ This property accepts the following keys:
 | <span class="prop-name">headline6</span> | Styles applied to the root element if `variant="headline6"`.
 | <span class="prop-name">subtitle1</span> | Styles applied to the root element if `variant="subtitle1"`.
 | <span class="prop-name">subtitle2</span> | Styles applied to the root element if `variant="subtitle2"`.
-| <span class="prop-name">body2Next</span> | Styles applied to the root element if `variant="body2" useNextVariants`.
-| <span class="prop-name">body1Next</span> | Styles applied to the root element if `variant="body1" useNextVariants`.
-| <span class="prop-name">captionNext</span> | Styles applied to the root element if `variant="caption" useNextVariants`.
-| <span class="prop-name">buttonNext</span> | Styles applied to the root element if `variant="button" useNextVariants`.
 | <span class="prop-name">overline</span> | Styles applied to the root element if `variant="overline"`.
 | <span class="prop-name">srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
 | <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.

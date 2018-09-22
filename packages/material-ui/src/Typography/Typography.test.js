@@ -15,10 +15,12 @@ import { before } from 'mocha';
 describe('<Typography />', () => {
   let shallow;
   let classes;
+  let v1ThemeWithoutWarnings;
   let v2Theme;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    v1ThemeWithoutWarnings = withDisabledWarnings();
     v2Theme = withEnabledWarnings({
       typography: {
         useNextVariants: true,
@@ -28,13 +30,13 @@ describe('<Typography />', () => {
   });
 
   it('should render the text', () => {
-    const wrapper = shallow(<Typography useNextVariants>Hello</Typography>);
+    const wrapper = shallow(<Typography theme={v1ThemeWithoutWarnings}>Hello</Typography>);
     assert.strictEqual(wrapper.childAt(0).equals('Hello'), true);
   });
 
   it('should spread props', () => {
     const wrapper = shallow(
-      <Typography data-test="hello" useNextVariants>
+      <Typography data-test="hello" theme={v1ThemeWithoutWarnings}>
         Hello
       </Typography>,
     );
@@ -59,7 +61,7 @@ describe('<Typography />', () => {
 
   it('should center text', () => {
     const wrapper = shallow(
-      <Typography align="center" className="woofTypography" useNextVariants>
+      <Typography align="center" className="woofTypography" theme={v1ThemeWithoutWarnings}>
         Hello
       </Typography>,
     );
@@ -80,7 +82,7 @@ describe('<Typography />', () => {
   ].forEach(variant => {
     it(`should render ${variant} text`, () => {
       const wrapper = shallow(
-        <Typography theme={v2Theme} variant={variant} useNextVariants>
+        <Typography theme={v2Theme} variant={variant}>
           Hello
         </Typography>,
       );
@@ -98,7 +100,7 @@ describe('<Typography />', () => {
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
       const wrapper = shallow(
-        <Typography color={color} useNextVariants>
+        <Typography color={color} theme={v1ThemeWithoutWarnings}>
           Hello
         </Typography>,
       );
@@ -110,7 +112,7 @@ describe('<Typography />', () => {
   describe('prop: color', () => {
     it('should inherit the color', () => {
       const wrapper = shallow(
-        <Typography color="inherit" useNextVariants>
+        <Typography color="inherit" theme={v1ThemeWithoutWarnings}>
           Hello
         </Typography>,
       );
@@ -121,7 +123,7 @@ describe('<Typography />', () => {
   describe('headline', () => {
     it('should render a span by default', () => {
       const wrapper = shallow(
-        <Typography variant="button" useNextVariants>
+        <Typography variant="button" theme={v1ThemeWithoutWarnings}>
           Hello
         </Typography>,
       );
@@ -130,7 +132,7 @@ describe('<Typography />', () => {
 
     it('should render a p with a paragraph', () => {
       const wrapper = shallow(
-        <Typography paragraph useNextVariants>
+        <Typography paragraph theme={v1ThemeWithoutWarnings}>
           Hello
         </Typography>,
       );
@@ -143,11 +145,7 @@ describe('<Typography />', () => {
     });
 
     it('should render a h1', () => {
-      const wrapper = shallow(
-        <Typography component="h1" useNextVariants>
-          Hello
-        </Typography>,
-      );
+      const wrapper = shallow(<Typography component="h1">Hello</Typography>);
       assert.strictEqual(wrapper.name(), 'h1');
     });
   });
@@ -188,23 +186,10 @@ describe('<Typography />', () => {
 
     it('should warn on deprecated variant usage', () => {
       testMount(<Typography variant="display4" />, true);
-      testMount(<Typography useNextVariants variant="display4" />, true);
     });
 
     it('warns on restyle variant usage', () => {
       testMount(<Typography variant="body1" />, true);
-    });
-
-    describe('prop: useNextVariants', () => {
-      it('can use the new style of existing variants', () => {
-        testMount(<Typography useNextVariants />, false);
-        testMount(<Typography useNextVariants variant="body1" />, false);
-      });
-
-      it('respects headlineMapping', () => {
-        const wrapper = shallow(<Typography headlineMapping={{ body1: 'div' }} useNextVariants />);
-        assert.strictEqual(wrapper.name(), 'div');
-      });
     });
 
     describe('theme.typography.useNextVariants', () => {
@@ -233,7 +218,6 @@ describe('<Typography />', () => {
 
       it('causes mui to not log deprecation warnings', () => {
         testMount(<Typography theme={theme} variant="display4" />, false);
-        testMount(<Typography theme={theme} useNextVariants variant="display4" />, false);
       });
     });
   });

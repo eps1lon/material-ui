@@ -64,29 +64,19 @@ export default function createTypography(palette, typography) {
     return `${(size / htmlFontSize) * coef}rem`;
   };
 
-  const getVariant = (variant, localUseNextVariants) => {
+  const getVariant = variant => {
     warning(
       ignoreDeprecationWarnings || !deprecatedVariants.includes(variant),
       'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
         `${variant} that will be removed in the next major release. ${migrationGuideMessage}`,
     );
 
-    const nextVariant = nextVariantMapping(variant);
-
     // complete v2 switch
     if (useNextVariants) {
-      return nextVariant;
+      return nextVariantMapping(variant);
     }
 
     const isRestyledVariant = restyledVariants.includes(variant);
-    // global v1, local v2
-    if (localUseNextVariants) {
-      if (isRestyledVariant) {
-        return `${nextVariant}Next`;
-      }
-      return nextVariant;
-    }
-
     // v1 => restyle warnings
     warning(
       ignoreDeprecationWarnings || !isRestyledVariant,
@@ -226,14 +216,15 @@ export default function createTypography(palette, typography) {
     },
   };
 
-  const overwriteVariants = useNextVariants
+  const nextVariantsOverwrite = useNextVariants
     ? {
+        ...nextVariants,
         body1: nextVariants.body1Next,
         body2: nextVariants.body2Next,
         button: nextVariants.buttonNext,
         caption: nextVariants.captionNext,
       }
-    : {};
+    : nextVariants;
 
   return deepmerge(
     {
@@ -245,8 +236,7 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       ...oldVariants,
-      ...nextVariants,
-      ...overwriteVariants,
+      ...nextVariantsOverwrite,
       ignoreDeprecationWarnings,
       useNextVariants,
     },

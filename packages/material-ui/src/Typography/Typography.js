@@ -48,14 +48,6 @@ export const styles = theme => ({
   subtitle1: theme.typography.subtitle1,
   /* Styles applied to the root element if `variant="subtitle2"`. */
   subtitle2: theme.typography.subtitle2,
-  /* Styles applied to the root element if `variant="body2" useNextVariants`. */
-  body2Next: theme.typography.body2Next,
-  /* Styles applied to the root element if `variant="body1" useNextVariants`. */
-  body1Next: theme.typography.body1Next,
-  /* Styles applied to the root element if `variant="caption" useNextVariants`. */
-  captionNext: theme.typography.captionNext,
-  /* Styles applied to the root element if `variant="button" useNextVariants`. */
-  buttonNext: theme.typography.buttonNext,
   /* Styles applied to the root element if `variant="overline"`. */
   overline: theme.typography.overline,
   /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
@@ -133,12 +125,11 @@ function Typography(props) {
     noWrap,
     paragraph,
     theme,
-    useNextVariants,
     variant: variantProp,
     ...other
   } = props;
 
-  const variant = theme.typography.getVariant(variantProp, useNextVariants);
+  const variant = theme.typography.getVariant(variantProp);
   const className = classNames(
     classes.root,
     {
@@ -212,11 +203,6 @@ Typography.propTypes = {
    */
   paragraph: PropTypes.bool,
   /**
-   * if `true` all variants marked for restyle in the next major
-   * will use the new style
-   */
-  useNextVariants: PropTypes.bool,
-  /**
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
@@ -277,7 +263,6 @@ Typography.defaultProps = {
   noWrap: false,
   paragraph: false,
   variant: 'body1',
-  useNextVariants: false,
 };
 
 export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

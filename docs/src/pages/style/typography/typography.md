@@ -90,9 +90,6 @@ for the next major release.
 
 See [Themes](/customization/themes/) for more information about how to use a global theme.
 
-You can also pass a `useNextVariant` to the `Typography` component to get the exact behavior as 
-described above but only for that particular instance.
-
 ### Deprecation warnings
 Deprecation warnings are logged when:
 - `NODE_ENV` is not strictly equal to `production`

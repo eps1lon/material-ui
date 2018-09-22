@@ -13,7 +13,6 @@ export interface TypographyProps
   headlineMapping?: { [type in Style]: string };
   noWrap?: boolean;
   paragraph?: boolean;
-  useNextVariants?: boolean;
   variant?: Style | 'inherit';
 }
 
