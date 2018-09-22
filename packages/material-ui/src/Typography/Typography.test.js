@@ -178,8 +178,12 @@ describe('<Typography />', () => {
           assert.fail('got no error', `expected a warning to match '${expectedWarning}'`);
         }
       } catch (e) {
-        assert.isTrue(expectDeprecation, 'expected no deprecation but got a warning anyway');
-        assert.isTrue(warning.calledOnce, 'expected deprecation warning but got none');
+        assert.strictEqual(
+          expectDeprecation,
+          true,
+          'expected no deprecation but got a warning anyway',
+        );
+        assert.strictEqual(warning.calledOnce, true, 'expected deprecation warning but got none');
         assert.include(warning.firstCall.args[0], expectedWarning);
       }
     };
