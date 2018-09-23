@@ -239,7 +239,6 @@ Typography.defaultProps = {
   color: 'default',
   gutterBottom: false,
   headlineMapping: {
-    // deprecated
     display4: 'h1',
     display3: 'h1',
     display2: 'h1',
@@ -247,10 +246,8 @@ Typography.defaultProps = {
     headline: 'h1',
     title: 'h2',
     subheading: 'h3',
-    // restyled
     body2: 'aside',
     body1: 'p',
-    // new
     headline1: 'h1',
     headline2: 'h2',
     headline3: 'h3',
