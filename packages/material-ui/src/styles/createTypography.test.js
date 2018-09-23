@@ -66,6 +66,11 @@ describe('createTypography', () => {
     });
   });
 
+  it('only defines letter-spacing if the font-family is not overwritten', () => {
+    assert.isDefined(createTypography(palette, {}).headline1.letterSpacing);
+    assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).headline1.letterSpacing);
+  });
+
   describe('typography v2 migration', () => {
     let warning;
 

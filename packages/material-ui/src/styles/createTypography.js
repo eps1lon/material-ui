@@ -16,8 +16,9 @@ function round(value) {
  * @see @link{https://material.io/design/typography/understanding-typography.html}
  */
 export default function createTypography(palette, typography) {
+  const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
   const {
-    fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: fontFamilyOption,
     // The default font size of the Material Specification.
     fontSize = 14, // px
     fontWeightLight = 300,
@@ -40,6 +41,8 @@ export default function createTypography(palette, typography) {
     allVariants,
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
+
+  const fontFamily = fontFamilyOption || defaultFontFamiliy;
 
   warning(
     !Object.keys(other).some(variant => deprecatedVariants.includes(variant)),
@@ -90,12 +93,18 @@ export default function createTypography(palette, typography) {
   const utils = { getVariant, letterSpacingToEm, pxToRem };
 
   const propertiesForCategory = (weight, size, casing, letterSpacing) => {
+    // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
+    // across font-families can cause issues with the kerning.
+    const robotoStyles = !fontFamilyOption
+      ? { letterSpacing: letterSpacingToEm(letterSpacing, size) }
+      : {};
+
     return {
       color: palette.text.primary,
       fontFamily,
       fontSize: pxToRem(size),
       fontWeight: weight,
-      letterSpacing: letterSpacingToEm(letterSpacing, size),
+      ...robotoStyles,
       ...casing,
       ...allVariants,
     };
