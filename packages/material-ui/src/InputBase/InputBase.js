@@ -68,7 +68,6 @@ export const styles = theme => {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
       border: 0,
       boxSizing: 'content-box',
-      verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
       // Remove grey highlight
@@ -148,6 +147,11 @@ export function formControlState({ props, states, context }) {
   }, {});
 }
 
+/**
+ * `InputBase` contains as few styles as possible.
+ * It aims to be a simple building block for creating an input.
+ * It contains a load of style reset and some state logic.
+ */
 class InputBase extends React.Component {
   isControlled = null;
 
