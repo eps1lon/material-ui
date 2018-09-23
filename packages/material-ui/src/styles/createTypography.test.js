@@ -66,9 +66,31 @@ describe('createTypography', () => {
     });
   });
 
-  it('only defines letter-spacing if the font-family is not overwritten', () => {
-    assert.isDefined(createTypography(palette, {}).headline1.letterSpacing);
-    assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).headline1.letterSpacing);
+  describe('letter-spacing', () => {
+    const assertDefinedLetterSpacing = (options, isDefined) => {
+      const {
+        headline1: { letterSpacing },
+      } = createTypography(palette, options);
+
+      if (isDefined) {
+        assert.isDefined(letterSpacing);
+      } else {
+        assert.isUndefined(letterSpacing);
+      }
+    };
+
+    it('is defined by default', () => {
+      assertDefinedLetterSpacing({}, true);
+    });
+
+    it('is undefined if a font-family is configured', () => {
+      assertDefinedLetterSpacing({ fontFamily: 'Gotham' }, false);
+    });
+
+    it('can be configured', () => {
+      assertDefinedLetterSpacing({ useRobotoLetterSpacing: false }, false);
+      assertDefinedLetterSpacing({ fontFamily: 'Roboto', useRobotoLetterSpacing: true }, true);
+    });
   });
 
   describe('typography v2 migration', () => {

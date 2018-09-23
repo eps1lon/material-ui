@@ -40,6 +40,7 @@ export interface FontStyleOptions extends Partial<FontStyle> {
   caseSentence?: CSSProperties;
   suppressDeprecationWarnings?: boolean;
   useNextVariants?: boolean;
+  useRobotoLetterSpacing?: boolean;
 }
 
 export type TypographyStyle = Required<

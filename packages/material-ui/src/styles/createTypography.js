@@ -37,6 +37,7 @@ export default function createTypography(palette, typography) {
     },
     suppressDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
     useNextVariants = false,
+    useRobotoLetterSpacing,
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
@@ -95,7 +96,10 @@ export default function createTypography(palette, typography) {
   const propertiesForCategory = (weight, size, casing, letterSpacing) => {
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
-    const robotoStyles = !fontFamilyOption
+    const useLetterSpacing =
+      useRobotoLetterSpacing !== false &&
+      (fontFamilyOption === undefined || useRobotoLetterSpacing === true);
+    const robotoStyles = useLetterSpacing
       ? { letterSpacing: letterSpacingToEm(letterSpacing, size) }
       : {};
 
