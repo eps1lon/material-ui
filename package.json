@@ -48,8 +48,13 @@
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage MUI_SUPPRESS_DEPRECATION_WARNINGS=true nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report -r lcovonly",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage MUI_SUPPRESS_DEPRECATION_WARNINGS=true nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
-    "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
+    "test:regressions": "yarn test:regressions:build && yarn test:regressions:clean && yarn test:regressions:run",
+    "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
+    "test:regressions:clean": "rimraf test/regressions/screenshots/chrome/*",
+    "test:regressions:dev": "webpack-dev-server --config test/regressions/webpack.config.js",
+    "test:regressions:run": "vrtest run --config test/vrtest.config.js --record",
     "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
+    "vrtest": "vrtest",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
   },
   "peerDependencies": {
@@ -162,6 +167,7 @@
     "webpack": "4.20.2",
     "webpack-bundle-analyzer": "^3.0.0",
     "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.9",
     "workbox-build": "^3.0.1"
   },
   "sideEffects": false,
