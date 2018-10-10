@@ -14,6 +14,15 @@ export interface NamedMuiElement {
 export function isMuiElement(element: any, muiNames: string[]): element is NamedMuiElement;
 
 /**
+ * like React.cloneElement but appends the className
+ */
+export function cloneElementWithClassName(
+  component: React.ComponentType,
+  className?: string,
+  props?: object,
+): React.ComponentType;
+
+/**
  * passes {value} to {ref}
  *
  * useful if you want to expose the ref of an inner component to the public api

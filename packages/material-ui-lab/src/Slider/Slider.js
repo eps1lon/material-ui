@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { cloneElementWithClassName } from '@material-ui/core/utils/reactHelpers';
 import clamp from '../utils/clamp';
 
 export const styles = theme => {
@@ -444,12 +445,7 @@ class Slider extends React.Component {
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
     /** Start Thumb Icon Logic Here */
-    const ThumbIcon = thumbIcon
-      ? React.cloneElement(thumbIcon, {
-          ...thumbIcon.props,
-          className: classNames(thumbIcon.props.className, classes.thumbIcon),
-        })
-      : null;
+    const ThumbIcon = thumbIcon ? cloneElementWithClassName(thumbIcon, classes.thumbIcon) : null;
     /** End Thumb Icon Logic Here */
 
     const thumbClasses = classNames(

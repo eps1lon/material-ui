@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { cloneElementWithClassName } from '@material-ui/core/utils/reactHelpers';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '../internal/svg-icons/Add';
 
@@ -50,7 +51,7 @@ function SpeedDialIcon(props) {
 
   function formatIcon(icon, className) {
     if (React.isValidElement(icon)) {
-      return React.cloneElement(icon, { className });
+      return cloneElementWithClassName(icon, className);
     }
 
     return icon;

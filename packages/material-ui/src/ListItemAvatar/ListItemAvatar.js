@@ -1,8 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
+import { cloneElementWithClassName } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -35,18 +35,17 @@ function ListItemAvatar(props, context) {
     return props.children;
   }
 
-  return React.cloneElement(children, {
-    className: classNames(
-      { [classes.root]: context.dense },
-      classNameProp,
-      children.props.className,
-    ),
-    childrenClassName: classNames(
-      { [classes.icon]: context.dense },
-      children.props.childrenClassName,
-    ),
-    ...other,
-  });
+  return cloneElementWithClassName(
+    children,
+    classNames({ [classes.root]: context.dense }, classNameProp),
+    {
+      childrenClassName: classNames(
+        { [classes.icon]: context.dense },
+        children.props.childrenClassName,
+      ),
+      ...other,
+    },
+  );
 }
 
 ListItemAvatar.propTypes = {

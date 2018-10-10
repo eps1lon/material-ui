@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { cloneElementWithClassName } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -40,7 +41,7 @@ function Avatar(props) {
   const {
     alt,
     children: childrenProp,
-    childrenClassName: childrenClassNameProp,
+    childrenClassName,
     classes,
     className: classNameProp,
     component: Component,
@@ -71,9 +72,8 @@ function Avatar(props) {
         {...imgProps}
       />
     );
-  } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
-    const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-    children = React.cloneElement(childrenProp, { className: childrenClassName });
+  } else if (childrenClassName && React.isValidElement(childrenProp)) {
+    children = cloneElementWithClassName(childrenProp, childrenClassName);
   } else {
     children = childrenProp;
   }

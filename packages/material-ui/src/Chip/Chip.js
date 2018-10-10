@@ -8,6 +8,7 @@ import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
+import { cloneElementWithClassName } from '../utils/reactHelpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -317,41 +318,39 @@ class Chip extends React.Component {
           color !== 'default' && variant === 'outlined',
       };
 
-      deleteIcon =
-        deleteIconProp && React.isValidElement(deleteIconProp) ? (
-          React.cloneElement(deleteIconProp, {
-            className: classNames(
-              deleteIconProp.props.className,
-              classes.deleteIcon,
-              customClasses,
-            ),
-            onClick: this.handleDeleteIconClick,
-          })
-        ) : (
-          <CancelIcon
-            className={classNames(classes.deleteIcon, customClasses)}
-            onClick={this.handleDeleteIconClick}
-          />
-        );
+      deleteIcon = React.isValidElement(deleteIconProp) ? (
+        cloneElementWithClassName(deleteIconProp, classNames(classes.deleteIcon, customClasses), {
+          onClick: this.handleDeleteIconClick,
+        })
+      ) : (
+        <CancelIcon
+          className={classNames(classes.deleteIcon, customClasses)}
+          onClick={this.handleDeleteIconClick}
+        />
+      );
     }
 
     let avatar = null;
-    if (avatarProp && React.isValidElement(avatarProp)) {
-      avatar = React.cloneElement(avatarProp, {
-        className: classNames(classes.avatar, avatarProp.props.className, {
+    if (React.isValidElement(avatarProp)) {
+      avatar = cloneElementWithClassName(
+        avatarProp,
+        classNames(classes.avatar, {
           [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
         }),
-        childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
-      });
+        {
+          childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
+        },
+      );
     }
 
     let icon = null;
-    if (iconProp && React.isValidElement(iconProp)) {
-      icon = React.cloneElement(iconProp, {
-        className: classNames(classes.icon, iconProp.props.className, {
+    if (React.isValidElement(iconProp)) {
+      icon = cloneElementWithClassName(
+        iconProp,
+        classNames(classes.icon, {
           [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
         }),
-      });
+      );
     }
 
     let tabIndex = tabIndexProp;

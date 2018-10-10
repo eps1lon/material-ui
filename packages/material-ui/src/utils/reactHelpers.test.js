@@ -1,10 +1,58 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { isMuiElement, setRef } from './reactHelpers';
+import { cloneElementWithClassName, isMuiElement, setRef } from './reactHelpers';
+import { createShallow } from '../test-utils';
 import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '..';
 
 describe('utils/reactHelpers.js', () => {
+  describe('cloneElementWithClassName', () => {
+    let shallow;
+
+    before(() => {
+      shallow = createShallow();
+    });
+
+    it('adds an empty className with no arg', () => {
+      const element = <div id="my-element" />;
+      const cloned = cloneElementWithClassName(element);
+
+      assert.deepEqual(
+        {
+          ...shallow(element).props(),
+          className: '',
+        },
+        shallow(cloned).props(),
+      );
+    });
+
+    it('appends the className to the existing className', () => {
+      const element = <div id="my-element" className="first second" />;
+      const cloned = cloneElementWithClassName(element, 'third');
+
+      const props = shallow(element).props();
+      const clonedProps = shallow(cloned).props();
+
+      assert.strictEqual(props.id, clonedProps.id);
+      assert.strictEqual(clonedProps.className, 'first second third');
+    });
+
+    it('can merge additional props', () => {
+      const element = <div id="my-element" className="first second" data-test="fail" />;
+      const cloned = cloneElementWithClassName(element, 'third', {
+        'data-test': 'pass',
+        className: 'overridden',
+      });
+
+      const props = shallow(element).props();
+      const clonedProps = shallow(cloned).props();
+
+      assert.strictEqual(props.id, clonedProps.id);
+      assert.strictEqual(clonedProps.className, 'first second third');
+      assert.strictEqual(clonedProps['data-test'], 'pass');
+    });
+  });
+
   describe('isMuiElement', () => {
     it('should match static muiName property', () => {
       const Component = () => null;
