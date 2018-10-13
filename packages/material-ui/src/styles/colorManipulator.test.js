@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
+  additiveMix,
   recomposeColor,
   convertHexToRGB,
   rgbToHex,
@@ -306,6 +307,21 @@ describe('utils/colorManipulator', () => {
 
     it("doesn't modify hsl colors when `l` is 100%", () => {
       assert.strictEqual(lighten('hsl(0, 50%, 100%)', 0.5), 'hsl(0, 50%, 100%)');
+    });
+  });
+
+  describe('additiveMix', () => {
+    const fixtures = [
+      ['#ffffff', '#00ff00', 'rgba(0, 255, 0, 1)'],
+      ['#00ff00', '#ffffff', 'rgba(255, 255, 255, 1)'],
+      ['rgba(255, 0, 87, 0.42)', 'rgba(70, 217, 98, 0.6)', 'rgba(110, 169, 95, 0.768)'],
+    ];
+
+    fixtures.forEach(([colorA, colorB, colorResult]) => {
+      it(`mixes ${colorA} + ${colorB} to ${colorResult} `, () => {
+        const result = additiveMix(colorA, colorB);
+        assert.strictEqual(recomposeColor(result), colorResult);
+      });
     });
   });
 });

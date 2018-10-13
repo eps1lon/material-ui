@@ -249,3 +249,30 @@ export function lighten(color, coefficient) {
 
   return recomposeColor(color);
 }
+
+export function additiveMix(a, b) {
+  const {
+    values: [redA, greenA, blueA, alphaA = 1],
+  } = decomposeColor(a);
+  const {
+    values: [redB, greenB, blueB, alphaB = 1],
+  } = decomposeColor(b);
+
+  const alphaResult = alphaA + alphaB * (1 - alphaA);
+  if (alphaResult === 0) {
+    return { type: 'rgba', values: [0, 0, 0, 0] };
+  }
+
+  /* eslint-disable no-multi-spaces */
+  // prettier-ignore
+  return {
+    type: 'rgba',
+    values: [
+      (redA   * alphaA * (1 - alphaB) + redB   * alphaB) / alphaResult,
+      (greenA * alphaA * (1 - alphaB) + greenB * alphaB) / alphaResult,
+      (blueA  * alphaA * (1 - alphaB) + blueB  * alphaB) / alphaResult,
+      alphaResult,
+    ],
+  };
+  /* eslint-enable no-multi-spaces */
+}
