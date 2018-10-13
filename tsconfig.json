@@ -10,11 +10,14 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": "./packages",
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@material-ui/core": ["./material-ui/src"],
       "@material-ui/core/*": ["./material-ui/src/*"],
       "@material-ui/lab": ["./material-ui-lab/src"],
-      "@material-ui/lab/*": ["./material-ui-lab/src/*"]
+      "@material-ui/lab/*": ["./material-ui-lab/src/*"],
+      "@material-ui/icons": ["./material-ui-icons/src"],
+      "@material-ui/icons/*": ["./material-ui-icons/src/*"]
     }
   }
 }
