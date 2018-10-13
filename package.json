@@ -32,7 +32,7 @@
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "docs:deploy": "git push material-ui-docs master:latest",
-    "docs:typescript": "cross-env NODE_ENV=development babel docs-ts/src --config-file ./docs-ts/babel.config.js --extensions .tsx --out-dir docs-ts/lib",
+    "docs:typescript": "cross-env NODE_ENV=development babel docs/src --config-file ./docs/babel.config.ts.js --extensions .tsx --out-dir docs/src",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
@@ -51,7 +51,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage MUI_SUPPRESS_DEPRECATION_WARNINGS=true nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
+    "typescript": "tslint -p tsconfig.lint.json",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
   },
   "peerDependencies": {
