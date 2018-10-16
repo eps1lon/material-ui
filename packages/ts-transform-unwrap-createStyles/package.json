@@ -1,0 +1,13 @@
+{
+  "name": "ts-transform-unwrap-createStyles",
+  "version": "0.0.1",
+  "description": "unwraps createStyles essentially striping it from production code",
+  "main": "src/index.js",
+  "author": "MUI Team",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "",
+    "test": "ts-mocha -t 5000 -p tsconfig.json src/**/__tests__/*.test.ts"
+  }
+}
