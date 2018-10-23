@@ -1,6 +1,6 @@
 {
     "defaultSeverity": "error",
-    "extends": ["dtslint/dtslint.json"],
+    "extends": ["dtslint/dtslint.json", "tslint-no-circular-imports"],
     "jsRules": {},
     "rules": {
         "file-name-casing": false,
