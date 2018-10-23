@@ -1,7 +1,8 @@
 import { StyleSheet } from 'jss';
 import * as React from 'react';
 import { Theme } from './createMuiTheme';
-import { StyleRules, StylesCreator } from './withStyles';
+import { StylesCreator } from './withStyles';
+import { StyleRules } from "./StyleRules";
 
 interface SheetManagerTheme {
   refs: number;

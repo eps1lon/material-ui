@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '..';
+import { Omit } from '../Omit';
 import { StandardProps } from '../StandardProps';
 import { Breakpoint } from '../styles/createBreakpoints';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '..';
+import { Omit } from '../Omit';
 import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 

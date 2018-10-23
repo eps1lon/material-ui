@@ -1,4 +1,5 @@
-import { Color, PaletteType } from '..';
+import { PaletteType } from '../PaletteType';
+import { Color } from '../Color';
 import { CommonColors } from '../colors/common';
 
 export interface TypeText {

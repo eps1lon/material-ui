@@ -81,7 +81,7 @@ class ToggleButtons extends React.Component {
               <ToggleButton value="underlined">
                 <FormatUnderlinedIcon />
               </ToggleButton>
-              <ToggleButton disabled value="color">
+              <ToggleButton disabled value='../Color'>
                 <FormatColorFillIcon />
                 <ArrowDropDownIcon />
               </ToggleButton>

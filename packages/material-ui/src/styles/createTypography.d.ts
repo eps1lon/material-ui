@@ -1,6 +1,5 @@
 import { Palette } from './createPalette';
-import { Overwrite, Omit } from '..';
-import { CSSProperties } from './withStyles';
+import { CSSProperties } from "./CSSProperties";
 
 export type ThemeStyle =
   | 'h1'

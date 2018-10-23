@@ -69,7 +69,6 @@ import { StepIconProps } from '../StepIcon';
 import { StepLabelProps } from '../StepLabel';
 import { StepperProps } from '../Stepper';
 import { StepProps } from '../Step';
-import { StyleRules } from './withStyles';
 import { SvgIconProps } from '../SvgIcon';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchProps } from '../Switch';
@@ -84,6 +83,7 @@ import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
+import { StyleRules } from "./StyleRules";
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>

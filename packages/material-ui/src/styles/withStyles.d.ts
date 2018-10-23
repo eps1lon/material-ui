@@ -1,26 +1,16 @@
 import * as React from 'react';
-import { Omit, PropInjector, PropsOf } from '..';
+import { PropsOf } from '../PropsOf';
+import { Omit } from '../Omit';
+import { PropInjector } from '../PropInjector';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
+import { StyleRules } from './StyleRules';
+import { StyleRulesCallback } from './StyleRulesCallback';
+import { StyledComponentProps } from './StyledComponentProps';
+import { ClassNameMap } from './ClassNameMap';
 
-export interface CSSProperties extends CSS.Properties<number | string> {
-  // Allow pseudo selectors and media queries
-  [k: string]: CSS.Properties<number | string>[keyof CSS.Properties] | CSSProperties;
-}
-
-/**
- * This is basically the API of JSS. It defines a Map<string, CSS>,
- * where
- *
- * - the `keys` are the class (names) that will be created
- * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
- */
-export type StyleRules<ClassKey extends string = string> = Record<ClassKey, CSSProperties>;
-
-export type StyleRulesCallback<ClassKey extends string = string> = (
-  theme: Theme,
-) => StyleRules<ClassKey>;
+export { StyleRules, StyleRulesCallback };
 
 export interface StylesCreator {
   create(theme: Theme, name: string): StyleRules;
@@ -35,8 +25,6 @@ export interface WithStylesOptions<ClassKey extends string = string>
   name?: string;
 }
 
-export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
-
 export type WithStyles<
   T extends string | StyleRules | StyleRulesCallback = string,
   IncludeTheme extends boolean | undefined = false
@@ -48,11 +36,6 @@ export type WithStyles<
   >;
   innerRef?: React.Ref<any> | React.RefObject<any>;
 };
-
-export interface StyledComponentProps<ClassKey extends string = string> {
-  classes?: Partial<ClassNameMap<ClassKey>>;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
-}
 
 export default function withStyles<
   ClassKey extends string,

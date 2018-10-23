@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { PropInjector } from '..';
+import { PropInjector } from '../PropInjector';
 
 export interface WithWidthOptions {
   resizeInterval: number;

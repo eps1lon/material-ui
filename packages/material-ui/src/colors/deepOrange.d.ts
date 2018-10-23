@@ -1,4 +1,4 @@
-import { Color } from '..';
+import { Color } from '../Color';
 
 declare const color: Color;
 

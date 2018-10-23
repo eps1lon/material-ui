@@ -3,11 +3,8 @@ export { default as createMuiTheme, Theme, Direction } from './createMuiTheme';
 export { default as jssPreset } from './jssPreset';
 export { default as MuiThemeProvider } from './MuiThemeProvider';
 export { default as createStyles } from './createStyles';
-export {
-  default as withStyles,
-  WithStyles,
-  StyleRules,
-  StyleRulesCallback,
-  StyledComponentProps,
-} from './withStyles';
+export { default as withStyles, WithStyles } from './withStyles';
+export { StyledComponentProps } from './StyledComponentProps';
+export { StyleRules } from './StyleRules';
+export { StyleRulesCallback } from './StyleRulesCallback';
 export { default as withTheme, WithTheme } from './withTheme';

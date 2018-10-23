@@ -3,7 +3,6 @@ import { StandardProps } from '../StandardProps';
 import { ModalProps } from '../Modal';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DrawerProps
@@ -19,7 +18,6 @@ export interface DrawerProps
   open?: boolean;
   PaperProps?: Partial<PaperProps>;
   SlideProps?: Partial<SlideProps>;
-  theme?: Theme;
   transitionDuration?: TransitionProps['timeout'];
   variant?: 'permanent' | 'persistent' | 'temporary';
 }

@@ -1,4 +1,5 @@
-import { CSSProperties, StyleRules } from './withStyles';
+import { CSSProperties } from "./CSSProperties";
+import { StyleRules } from "./StyleRules";
 
 /**
  * This function doesn't really "do anything" at runtime, it's just the identity

@@ -72,7 +72,7 @@ import { StepContentClasskey } from '../StepContent';
 import { StepIconClasskey } from '../StepIcon';
 import { StepLabelClasskey } from '../StepLabel';
 import { StepperClasskey } from '../Stepper';
-import { StyleRules } from './withStyles';
+import { StyleRules } from "./StyleRules";
 import { SvgIconClassKey } from '../SvgIcon';
 import { SwitchBaseClassKey } from '../internal/SwitchBase';
 import { SwitchClassKey } from '../Switch';

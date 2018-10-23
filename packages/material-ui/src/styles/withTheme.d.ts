@@ -1,5 +1,5 @@
 import { Theme } from './createMuiTheme';
-import { PropInjector } from '..';
+import { PropInjector } from '../PropInjector';
 
 export interface WithTheme {
   theme: Theme;

@@ -6,17 +6,12 @@ import {
   MuiThemeProvider,
   Theme,
   withTheme,
-  StyleRules,
   StyleRulesCallback,
-  StyledComponentProps,
   WithStyles,
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button/Button';
 import blue from '@material-ui/core/colors/blue';
 import { WithTheme } from '@material-ui/core/styles/withTheme';
-import { PropsOf } from '@material-ui/core';
-import { StandardProps } from "@material-ui/core/StandardProps";
-import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -38,12 +33,12 @@ const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({ classes, text }) => (
+const Component: React.SFC<ComponentProps> = ({ classes, text }) => (
   <div className={classes.root}>{text}</div>
 );
 
-const StyledExampleTwo = withStyles(styles)(Component);
-<StyledExampleTwo text="I am styled!" />;
+/* const StyledExampleTwo = withStyles(styles)(Component);
+<StyledExampleTwo text="I am styled!" />; */
 
 // Example 3
 const styleRule = createStyles({
@@ -59,8 +54,8 @@ const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({ classes, 
   <div className={classes.root}>{children}</div>
 );
 
-const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
-<StyledExampleThree />;
+/* const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
+<StyledExampleThree />; */
 
 // Also works with a plain object
 const stylesAsPojo = {
