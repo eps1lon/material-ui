@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps } from "@material-ui/core/StandardProps";
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, SpeedDialIconClassKey> {

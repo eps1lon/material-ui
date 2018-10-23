@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { StandardProps, PropTypes } from '../StandardProps';
 import { ThemeStyle } from '../styles/createTypography';
 
 type Style = ThemeStyle | 'srOnly';

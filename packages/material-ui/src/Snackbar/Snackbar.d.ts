@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClickAwayListenerProps } from '../ClickAwayListener';

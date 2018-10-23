@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 

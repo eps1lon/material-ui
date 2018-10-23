@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { PaperProps } from '../Paper';
 import { ButtonProps } from '../Button';
 import { LinearProgressProps } from '../LinearProgress';

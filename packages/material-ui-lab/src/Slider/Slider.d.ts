@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps } from "@material-ui/core/StandardProps";
 import { ButtonProps } from '@material-ui/core/Button';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';

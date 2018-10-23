@@ -1,4 +1,4 @@
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 
 export interface ListItemSecondaryActionProps
   extends StandardProps<{}, ListItemSecondaryActionClassKey> {}

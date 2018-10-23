@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StandardProps, ModalManager } from '..';
+import { ModalManager } from '..';
+import { StandardProps } from '../StandardProps';
 import { BackdropProps } from '../Backdrop';
 import { PortalProps } from '../Portal';
 

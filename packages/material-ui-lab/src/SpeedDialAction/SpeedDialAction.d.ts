@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps } from "@material-ui/core/StandardProps";
 import { ButtonProps } from '@material-ui/core/Button';
 import { TooltipProps } from '@material-ui/core/Tooltip';
 

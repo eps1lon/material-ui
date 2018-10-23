@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { PaperProps } from '../Paper';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface MenuProps

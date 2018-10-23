@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { Orientation } from '../Stepper';
 import { StepButtonIcon } from '../StepButton';
 import { StepIconProps } from '../StepIcon';

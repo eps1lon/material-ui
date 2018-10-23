@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { ButtonBaseProps } from '../ButtonBase';
 
 export interface BottomNavigationActionProps

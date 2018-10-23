@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { ModalProps } from '../Modal';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';

@@ -1,4 +1,4 @@
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
 
 export interface TabScrollButtonProps

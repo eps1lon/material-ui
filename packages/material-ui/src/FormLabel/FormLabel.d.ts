@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 
 export interface FormLabelProps extends StandardProps<FormLabelBaseProps, FormLabelClassKey> {
   component?: React.ReactType<FormLabelBaseProps>;

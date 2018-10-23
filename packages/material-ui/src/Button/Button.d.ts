@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { StandardProps, PropTypes } from '../StandardProps';
 import { ButtonBaseProps } from '../ButtonBase';
 
 export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {

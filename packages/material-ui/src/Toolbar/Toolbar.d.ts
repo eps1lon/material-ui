@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 
 export interface ToolbarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ToolbarClassKey> {

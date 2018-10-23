@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
-import { StandardProps } from '..';
+import { StandardProps } from '../StandardProps';
 
 export type TouchRippleProps = StandardProps<
   TransitionGroup.TransitionGroupProps,

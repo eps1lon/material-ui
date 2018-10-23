@@ -14,7 +14,8 @@ import {
 import Button from '@material-ui/core/Button/Button';
 import blue from '@material-ui/core/colors/blue';
 import { WithTheme } from '@material-ui/core/styles/withTheme';
-import { PropsOf, StandardProps } from '@material-ui/core';
+import { PropsOf } from '@material-ui/core';
+import { StandardProps } from "@material-ui/core/StandardProps";
 import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
