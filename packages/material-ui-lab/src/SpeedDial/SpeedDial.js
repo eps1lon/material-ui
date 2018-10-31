@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -102,6 +103,16 @@ class SpeedDial extends React.Component {
 
   state = SpeedDial.initialNavigationState;
 
+  componentDidUpdate(prevProps) {
+    const didClose = !this.props.open && prevProps.open;
+    if (didClose) {
+      const fabNode = ReactDOM.findDOMNode(this.actions[0]);
+      if (document.activeElement !== fabNode) {
+        fabNode.focus();
+      }
+    }
+  }
+
   handleKeyboardNavigation = event => {
     const key = keycode(event);
     const { direction, onKeyDown } = this.props;
@@ -145,7 +156,7 @@ class SpeedDial extends React.Component {
   closeActions(event, key) {
     const { onClose } = this.props;
 
-    this.actions[0].focus();
+    ReactDOM.findDOMNode(this.actions[0]).focus();
     this.setState(SpeedDial.initialNavigationState);
 
     if (onClose) {
