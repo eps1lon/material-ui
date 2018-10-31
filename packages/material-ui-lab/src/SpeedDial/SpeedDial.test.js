@@ -280,6 +280,16 @@ describe('<SpeedDial />', () => {
       assert.strictEqual(wrapper.props().open, true);
     });
 
+    it('returns focus to the dial button after close', done => {
+      // https://github.com/mui-org/material-ui/issues/12862
+      resetDialToOpen();
+      getDialButton().simulate('keydown', { keyCode: keycodes.up });
+      wrapper.setProps({ open: false }, () => {
+        assert.strictEqual(isActionFocused(-1), true);
+        done();
+      });
+    });
+
     describe('first item selection', () => {
       const createShouldAssertFirst = assertFn => (dialDirection, arrowKey) => {
         resetDialToOpen(dialDirection);
