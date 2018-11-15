@@ -34,15 +34,12 @@ function makeStyles(stylesOrCreator, options = {}) {
       ...stylesOptions2,
     };
 
-    let firstRender = false;
-
-    const [state] = React.useState(() => {
-      firstRender = true;
-      return {
-        // Helper to debug
-        // id: id++,
-      };
+    const firstRender = React.useRef(true);
+    React.useEffect(() => {
+      firstRender.current = false;
     });
+
+    const { current: state } = React.useRef({});
 
     // Execute synchronously everytime the theme changes.
     React.useMemo(
@@ -60,7 +57,7 @@ function makeStyles(stylesOrCreator, options = {}) {
     );
 
     React.useEffect(() => {
-      if (!firstRender) {
+      if (!firstRender.current) {
         update({
           props,
           state,
