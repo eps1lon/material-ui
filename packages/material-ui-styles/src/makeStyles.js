@@ -37,7 +37,7 @@ function makeStyles(stylesOrCreator, options = {}) {
     const firstRender = React.useRef(true);
     React.useEffect(() => {
       firstRender.current = false;
-    });
+    }, []);
 
     const { current: state } = React.useRef({});
 
