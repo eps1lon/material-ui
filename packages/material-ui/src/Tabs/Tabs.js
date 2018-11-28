@@ -249,12 +249,12 @@ class Tabs extends React.Component {
       const showRightScroll =
         theme.direction === 'rtl' ? scrollLeft > 0 : scrollWidth > clientWidth + scrollLeft;
 
-      if (
-        showLeftScroll !== this.state.showLeftScroll ||
-        showRightScroll !== this.state.showRightScroll
-      ) {
-        this.setState({ showLeftScroll, showRightScroll });
-      }
+      this.setState(state => {
+        if (showLeftScroll !== state.showLeftScroll || showRightScroll !== state.showRightScroll) {
+          return { showLeftScroll, showRightScroll };
+        }
+        return null;
+      });
     }
   };
 
@@ -278,13 +278,16 @@ class Tabs extends React.Component {
       width: tabMeta ? Math.round(tabMeta.width) : 0,
     };
 
-    if (
-      (indicatorStyle.left !== this.state.indicatorStyle.left ||
-        indicatorStyle.width !== this.state.indicatorStyle.width) &&
-      !isNaN(indicatorStyle.left) &&
-      !isNaN(indicatorStyle.width)
-    ) {
-      this.setState({ indicatorStyle });
+    if (!isNaN(indicatorStyle.left) && !isNaN(indicatorStyle.width)) {
+      this.setState(state => {
+        if (
+          indicatorStyle.left !== state.indicatorStyle.left ||
+          indicatorStyle.width !== state.indicatorStyle.width
+        ) {
+          return { indicatorStyle };
+        }
+        return null;
+      });
     }
   }
 
