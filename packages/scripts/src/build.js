@@ -1,4 +1,5 @@
 const childProcess = require('child_process');
+const fse = require('fs-extra');
 const path = require('path');
 const rimraf = require('rimraf');
 const { promisify } = require('util');
@@ -69,19 +70,41 @@ function build(target) {
   return babelBuild(options);
 }
 
+async function buildRollup(configFilePath) {
+  const configExists = await fse.exists(configFilePath);
+  if (!configExists) {
+    throw new Error(`Rollup config not found at ${configFilePath}`);
+  }
+
+  const command = `rollup -c ${configFilePath}`;
+
+  return exec(command, {
+    env: { BABEL_ENV: 'production-umd', NODE_ENV: 'production', PATH: process.env.PATH },
+  });
+}
+
 /**
  * complete build pipeline (targets + copy-files)
  */
-async function buildFull(targets) {
+async function buildFull(targets, options = {}) {
+  const { rollupConfig } = options;
+  function rollupBuild() {
+    if (rollupConfig == null) {
+      return Promise.resolve();
+    }
+    return buildRollup(rollupConfig);
+  }
+
   console.log('Clean build');
   await rimrafPromised('build');
 
-  const builds = await Promise.all(
-    targets.map(target => {
+  const builds = await Promise.all([
+    ...targets.map(target => {
       console.log(`Building ${target}...`);
       return build(target).then(() => console.log(`Built ${target}`));
     }),
-  );
+    rollupBuild(),
+  ]);
 
   console.log(`Built ${builds.length} targets`);
 
@@ -89,4 +112,4 @@ async function buildFull(targets) {
   await copyFiles();
 }
 
-module.exports = { build, buildFull };
+module.exports = { build, buildFull, buildRollup };
