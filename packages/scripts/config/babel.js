@@ -10,7 +10,7 @@ if (process.env.BABEL_ENV === 'es') {
     [
       '@babel/preset-env',
       {
-        modules: ['modules', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
+        modules: ['esm', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],
   ];
@@ -77,8 +77,6 @@ module.exports = {
           },
         ],
       ],
-      // It's most likely a babel bug.
-      // We are using this ignore option in the CLI command but that has no effect.
       ignore: ['**/*.test.js'],
     },
     production: {
@@ -93,8 +91,6 @@ module.exports = {
           },
         ],
       ],
-      // It's most likely a babel bug.
-      // We are using this ignore option in the CLI command but that has no effect.
       ignore: ['**/*.test.js'],
     },
     'production-umd': {
