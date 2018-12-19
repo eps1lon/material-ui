@@ -52,7 +52,7 @@ async function addLicense(packageData, { workspacePath }) {
     ['./build/index.js', './build/index.esm.js', ...umdFiles].map(file => {
       const filePath = path.resolve(workspacePath, file);
       return {
-        title: `Adding license to ${file}`,
+        title: `Add license to ${file}`,
         skip: () => fse.exists(filePath).then(exists => !exists),
         task: task =>
           prepend(filePath, license).then(() => {
@@ -103,7 +103,7 @@ function copyFiles() {
   return new Listr(
     [
       {
-        title: 'Copying text files',
+        title: 'Copy text files',
         task: () => copyTextFiles(context),
       },
       {
