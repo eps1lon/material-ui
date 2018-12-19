@@ -31,7 +31,7 @@ function fullBuild(targets, options = {}) {
       },
       { title: 'copy files', task: () => copyFiles() },
     ],
-    { collaps: false },
+    { collapse: false },
   );
 }
 
