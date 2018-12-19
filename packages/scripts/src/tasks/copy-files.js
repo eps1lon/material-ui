@@ -50,14 +50,17 @@ async function addLicense(packageData, { workspacePath }) {
 
   return new Listr(
     ['./build/index.js', './build/index.esm.js', ...umdFiles].map(file => {
+      const filePath = path.resolve(workspacePath, file);
       return {
         title: `Adding license to ${file}`,
+        skip: () => fse.exists(filePath).then(exists => !exists),
         task: task =>
-          prepend(path.resolve(workspacePath, file), license).then(() => {
+          prepend(filePath, license).then(() => {
             task.title = `Added license text to ${file}`;
           }),
       };
     }),
+    { collapse: false },
   );
 }
 
