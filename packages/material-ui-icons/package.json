@@ -26,7 +26,7 @@
     "src:download": "cd ../../ && babel-node --config-file ../../babel.config.js packages/material-ui-icons/scripts/download.js",
     "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ../../babel.config.js packages/material-ui-icons/builder.js --output-dir packages/material-ui-icons/src --svg-dir packages/material-ui-icons/material-io-tools-icons --renameFilter ./renameFilters/material-design-icons.js",
     "prebuild": "rimraf material-design-icons",
-    "build": "mui-build --full --targets cjs,esm,es",
+    "build": "mui-build package --targets cjs,esm,es",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {

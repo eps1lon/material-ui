@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-utils",
   "scripts": {
-    "build": "mui-build --full --targets cjs,esm,es",
+    "build": "mui-build package --targets cjs,esm,es",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-utils/**/*.test.js'"
   },

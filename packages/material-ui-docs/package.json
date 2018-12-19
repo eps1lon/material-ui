@@ -23,7 +23,7 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
     "test": "exit 0",
-    "build": "mui-build --full --targets cjs,esm",
+    "build": "mui-build package --targets cjs,esm",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
