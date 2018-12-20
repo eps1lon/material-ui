@@ -17,7 +17,7 @@ program
   .command('package')
   .option('-t, --targets <targets>', 'Targets', arg => arg.split(','))
   .option('-r, --rollup <configPath>', 'Executes rollup with the given config')
-  .action((cmd) => {
+  .action(cmd => {
     if (!cmd.targets || !cmd.targets.length) {
       task = rejectTask(() => '`--targets` cannot be empty');
     } else {
