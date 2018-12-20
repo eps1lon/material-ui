@@ -46,9 +46,9 @@ const targetOptions = {
    * production build targeted at "evergreen" browsers
    */
   es: {
-    babelEnv: 'src',
+    babelEnv: 'es',
     input: './src',
-    output: '--out-dir ./build/src',
+    output: '--out-dir ./build/es',
   },
 };
 
