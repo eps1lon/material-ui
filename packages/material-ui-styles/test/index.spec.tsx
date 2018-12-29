@@ -36,10 +36,8 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
 
   const MyComponent = (props: MyComponentProps) => {
     const { color, message } = props;
-    // Expected 1 argument, but got 0
-    const emptyClasses = useMyStyles(); // $ExpectError
+    const emptyClasses = useMyStyles();
     const classes = useMyStyles(props);
-    // $ExpectError
     const invalidClasses = useMyStyles({ colourTypo: 'red' });
     // $ExpectError
     const undefinedClassName = classes.toot;

@@ -6,7 +6,7 @@ import { IsEmptyInterface } from '@material-ui/styles/makeStyles';
 // $ExpectType true
 type EmptyInterfaceIsValid = IsEmptyInterface<{}>;
 
-// $ExpectType false
+// $ExpectType true
 type ObjectIsValid = IsEmptyInterface<object>;
 
 // $ExpectType false
@@ -24,7 +24,7 @@ type SymbolIsValid = IsEmptyInterface<symbol>;
 // $ExpectType false
 type NeverIsValid = IsEmptyInterface<never>;
 
-// $ExpectType false
+// $ExpectType true
 type UnknownIsValid = IsEmptyInterface<unknown>;
 
 const noop = () => {};
