@@ -53,6 +53,4 @@ export type TypographyClassKey =
   | 'title'
   | 'subheading';
 
-declare const Typography: React.ComponentType<TypographyProps>;
-
-export default Typography;
+export default class Typography extends React.Component<TypographyProps> {}
