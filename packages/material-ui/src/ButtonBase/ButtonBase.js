@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import keycode from 'keycode';
+import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
+import NoSsr from '../NoSsr';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
@@ -87,6 +88,8 @@ class ButtonBase extends React.Component {
 
   handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
 
+  handleContextMenu = createRippleHandler(this, 'ContextMenu', 'stop');
+
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     clearTimeout(this.focusVisibleTimeout);
     if (this.state.focusVisible) {
@@ -160,10 +163,15 @@ class ButtonBase extends React.Component {
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
-    const key = keycode(event);
 
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !this.keyDown && this.state.focusVisible && this.ripple && key === 'space') {
+    if (
+      focusRipple &&
+      !this.keyDown &&
+      this.state.focusVisible &&
+      this.ripple &&
+      event.key === ' '
+    ) {
       this.keyDown = true;
       event.persist();
       this.ripple.stop(event, () => {
@@ -180,7 +188,7 @@ class ButtonBase extends React.Component {
       event.target === event.currentTarget &&
       component &&
       component !== 'button' &&
-      (key === 'space' || key === 'enter') &&
+      (event.key === ' ' || event.key === 'Enter') &&
       !(this.button.tagName === 'A' && this.button.href)
     ) {
       event.preventDefault();
@@ -191,12 +199,7 @@ class ButtonBase extends React.Component {
   };
 
   handleKeyUp = event => {
-    if (
-      this.props.focusRipple &&
-      keycode(event) === 'space' &&
-      this.ripple &&
-      this.state.focusVisible
-    ) {
+    if (this.props.focusRipple && event.key === ' ' && this.ripple && this.state.focusVisible) {
       this.keyDown = false;
       event.persist();
       this.ripple.stop(event, () => {
@@ -269,14 +272,13 @@ class ButtonBase extends React.Component {
       classNameProp,
     );
 
-    const buttonProps = {};
-
     let ComponentProp = component;
 
     if (ComponentProp === 'button' && other.href) {
       ComponentProp = 'a';
     }
 
+    const buttonProps = {};
     if (ComponentProp === 'button') {
       buttonProps.type = type || 'button';
       buttonProps.disabled = disabled;
@@ -286,6 +288,7 @@ class ButtonBase extends React.Component {
 
     return (
       <ComponentProp
+        className={className}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onKeyDown={this.handleKeyDown}
@@ -296,15 +299,18 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        tabIndex={disabled ? '-1' : tabIndex}
-        className={className}
+        onContextMenu={this.handleContextMenu}
         ref={buttonRef}
+        tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
         {...other}
       >
         {children}
         {!disableRipple && !disabled ? (
-          <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
+          <NoSsr>
+            {/* TouchRipple is only needed client side, x2 boost on the server. */}
+            <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
+          </NoSsr>
         ) : null}
       </ComponentProp>
     );
@@ -347,7 +353,7 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the base button will be disabled.
    */
@@ -368,8 +374,10 @@ ButtonBase.propTypes = {
   /**
    * This property can help a person know which element has the keyboard focus.
    * The class name will be applied when the element gain the focus through a keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
    */
   focusVisibleClassName: PropTypes.string,
   /**

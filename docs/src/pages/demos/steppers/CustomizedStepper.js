@@ -20,16 +20,23 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
   },
   connectorActive: {
-    '& $line': {
+    '& $connectorLine': {
       borderColor: theme.palette.secondary.main,
     },
   },
   connectorCompleted: {
-    '& $line': {
+    '& $connectorLine': {
       borderColor: theme.palette.primary.main,
     },
   },
-  line: {},
+  connectorDisabled: {
+    '& $connectorLine': {
+      borderColor: theme.palette.grey[100],
+    },
+  },
+  connectorLine: {
+    transition: theme.transitions.create('border-color'),
+  },
 });
 
 function getSteps() {
@@ -76,21 +83,27 @@ class CustomizedStepper extends React.Component {
     const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = getSteps();
+    const connector = (
+      <StepConnector
+        classes={{
+          active: classes.connectorActive,
+          completed: classes.connectorCompleted,
+          disabled: classes.connectorDisabled,
+          line: classes.connectorLine,
+        }}
+      />
+    );
 
     return (
       <div className={classes.root}>
-        <Stepper
-          activeStep={activeStep}
-          connector={
-            <StepConnector
-              classes={{
-                active: classes.connectorActive,
-                completed: classes.connectorCompleted,
-                line: classes.line,
-              }}
-            />
-          }
-        >
+        <Stepper activeStep={activeStep} connector={connector}>
+          {steps.map(label => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Stepper alternativeLabel activeStep={activeStep} connector={connector}>
           {steps.map(label => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -101,7 +114,7 @@ class CustomizedStepper extends React.Component {
           {activeStep === steps.length ? (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
+                All steps completed - you&apos;re finished
               </Typography>
               <Button onClick={this.handleReset} className={classes.button}>
                 Reset

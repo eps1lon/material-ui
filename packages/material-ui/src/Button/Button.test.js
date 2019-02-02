@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createRender, getClasses } from '../test-utils';
+import { createShallow, createRender, getClasses } from '@material-ui/core/test-utils';
 import Button from './Button';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
@@ -27,6 +28,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.flat), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
     assert.strictEqual(wrapper.hasClass(classes.flatPrimary), false);
@@ -74,6 +76,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
   });
@@ -87,6 +90,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
     assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
   });
@@ -100,64 +104,152 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
   });
 
-  it('should render a raised button', () => {
-    const wrapper = shallow(<Button variant="raised">Hello World</Button>);
+  it('should render a small button', () => {
+    const wrapper = shallow(<Button size="small">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.raised), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), true);
+    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
+    assert.strictEqual(wrapper.hasClass(classes.sizeLarge), false);
   });
 
-  it('should render a raised primary button', () => {
-    const wrapper = shallow(
-      <Button variant="raised" color="primary">
-        Hello World
-      </Button>,
-    );
+  it('should render a large button', () => {
+    const wrapper = shallow(<Button size="large">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.raised), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), true);
+    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
+    assert.strictEqual(wrapper.hasClass(classes.sizeLarge), true);
   });
 
-  it('should render a raised secondary button', () => {
-    const wrapper = shallow(
-      <Button variant="raised" color="secondary">
-        Hello World
-      </Button>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.raised), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
-    assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), true);
+  describe('raised legacy', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should render a raised button', () => {
+      const wrapper = shallow(<Button variant="raised">Hello World</Button>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.raised), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), false);
+      assert.strictEqual(wrapper.hasClass(classes.text), false);
+      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
+      assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
+    });
+
+    it('should render a raised primary button', () => {
+      const wrapper = shallow(
+        <Button variant="raised" color="primary">
+          Hello World
+        </Button>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.raised), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), false);
+      assert.strictEqual(wrapper.hasClass(classes.text), false);
+      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
+      assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
+    });
+
+    it('should render a flat secondary button', () => {
+      const wrapper = shallow(
+        <Button variant="flat" color="secondary">
+          Hello World
+        </Button>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.text), true);
+      assert.strictEqual(wrapper.hasClass(classes.flat), true);
+      assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.flatSecondary), true);
+    });
+
+    it('should render a floating action button', () => {
+      const wrapper = shallow(<Button variant="fab">Hello World</Button>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), true);
+      assert.strictEqual(wrapper.hasClass(classes.extendedFab), false);
+      assert.strictEqual(wrapper.hasClass(classes.flat), false);
+      assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
+    });
+
+    it('should render an extended floating action button', () => {
+      const wrapper = shallow(<Button variant="extendedFab">Hello World</Button>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), true);
+      assert.strictEqual(wrapper.hasClass(classes.extendedFab), true);
+      assert.strictEqual(wrapper.hasClass(classes.flat), false);
+      assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
+    });
+
+    it('should render a mini floating action button', () => {
+      const wrapper = shallow(
+        <Button variant="fab" mini>
+          Hello World
+        </Button>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), true);
+      assert.strictEqual(wrapper.hasClass(classes.mini), true);
+      assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
+    });
+
+    it('should render a primary floating action button', () => {
+      const wrapper = shallow(
+        <Button variant="fab" color="primary">
+          Hello World
+        </Button>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), true);
+      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
+    });
+
+    it('should render an secondary floating action button', () => {
+      const wrapper = shallow(
+        <Button variant="fab" color="secondary">
+          Hello World
+        </Button>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.contained), true);
+      assert.strictEqual(wrapper.hasClass(classes.fab), true);
+      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
+    });
   });
 
   it('should render an outlined button', () => {
     const wrapper = shallow(<Button variant="outlined">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true);
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       false,
       'should not have the contained class',
     );
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.raised), false);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
   });
@@ -169,9 +261,10 @@ describe('<Button />', () => {
       </Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlinedPrimary), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
+    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.contained), false);
     assert.strictEqual(wrapper.hasClass(classes.raised), false);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
@@ -184,74 +277,29 @@ describe('<Button />', () => {
       </Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlinedSecondary), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
+    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
     assert.strictEqual(wrapper.hasClass(classes.contained), false);
     assert.strictEqual(wrapper.hasClass(classes.raised), false);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
   });
 
-  it('should render a floating action button', () => {
-    const wrapper = shallow(<Button variant="fab">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), true);
-    assert.strictEqual(wrapper.hasClass(classes.extendedFab), false);
-    assert.strictEqual(wrapper.hasClass(classes.flat), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-  });
-
-  it('should render an extended floating action button', () => {
-    const wrapper = shallow(<Button variant="extendedFab">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), true);
-    assert.strictEqual(wrapper.hasClass(classes.extendedFab), true);
-    assert.strictEqual(wrapper.hasClass(classes.flat), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-  });
-
-  it('should render a mini floating action button', () => {
+  it('should render a inherit outlined button', () => {
     const wrapper = shallow(
-      <Button variant="fab" mini>
+      <Button variant="outlined" color="inherit">
         Hello World
       </Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), true);
-    assert.strictEqual(wrapper.hasClass(classes.mini), true);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
+    assert.strictEqual(wrapper.hasClass(classes.outlined), true);
+    assert.strictEqual(wrapper.hasClass(classes.colorInherit), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-  });
-
-  it('should render a primary floating action button', () => {
-    const wrapper = shallow(
-      <Button variant="fab" color="primary">
-        Hello World
-      </Button>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), true);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-  });
-
-  it('should render an secondary floating action button', () => {
-    const wrapper = shallow(
-      <Button variant="fab" color="secondary">
-        Hello World
-      </Button>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), true);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
+    assert.strictEqual(wrapper.hasClass(classes.contained), false);
+    assert.strictEqual(wrapper.hasClass(classes.raised), false);
+    assert.strictEqual(wrapper.hasClass(classes.fab), false);
   });
 
   it('should have a ripple by default', () => {
@@ -277,20 +325,20 @@ describe('<Button />', () => {
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon className={childClassName} />;
-    const wrapper = shallow(<Button variant="fab">{iconChild}</Button>);
+    const wrapper = shallow(<Button>{iconChild}</Button>);
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
     assert.strictEqual(renderedIconChild.type(), Icon);
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    it('should server side render', () => {
+    it('should server-side render', () => {
       const markup = render(<Button>Hello World</Button>);
       assert.strictEqual(markup.text(), 'Hello World');
     });

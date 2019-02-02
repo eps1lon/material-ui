@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import CardHeader from './CardHeader';
 import Typography from '../Typography';
 
@@ -93,7 +93,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(container.childAt(0).equals(avatar), true);
     });
 
-    it('should render the title as body2 text inside the second child', () => {
+    it('should render the title text inside the second child', () => {
       const container = wrapper.childAt(1);
       assert.strictEqual(
         container.hasClass(classes.content),
@@ -105,7 +105,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(title.props().variant, 'body2');
     });
 
-    it('should render the subeader as body2 secondary text inside the second child', () => {
+    it('should render the subheader as body2 secondary text inside the second child', () => {
       const container = wrapper.childAt(1);
       assert.strictEqual(
         container.hasClass(classes.content),

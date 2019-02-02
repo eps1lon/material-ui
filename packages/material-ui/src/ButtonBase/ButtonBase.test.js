@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import keycode from 'keycode';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 
@@ -153,7 +152,7 @@ describe('<ButtonBase />', () => {
       );
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 1', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -167,7 +166,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 2', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -181,7 +180,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 3', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -239,7 +238,10 @@ describe('<ButtonBase />', () => {
 
     it('should stop pulsate and start a ripple when the space button is pressed', () => {
       wrapper.instance().ripple = { stop: spy((event, cb) => cb()), start: spy() };
-      wrapper.simulate('keyDown', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
+      wrapper.simulate('keyDown', {
+        key: ' ',
+        persist: () => {},
+      });
 
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
       assert.strictEqual(wrapper.instance().ripple.start.callCount, 1);
@@ -247,10 +249,12 @@ describe('<ButtonBase />', () => {
 
     it('should stop and re-pulsate when space bar is released', () => {
       wrapper.instance().ripple = { stop: spy((event, cb) => cb()), pulsate: spy() };
-      wrapper.simulate('keyUp', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
+      wrapper.simulate('keyUp', {
+        key: ' ',
+        persist: () => {},
+      });
 
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
-
       assert.strictEqual(wrapper.instance().ripple.pulsate.callCount, 1);
     });
 
@@ -260,6 +264,65 @@ describe('<ButtonBase />', () => {
 
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
       assert.strictEqual(wrapper.state().focusVisible, false);
+    });
+  });
+
+  describe('focus inside shadowRoot', () => {
+    // Only run on HeadlessChrome which has native shadowRoot support.
+    // And jsdom which has limited support for shadowRoot (^12.0.0).
+    if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
+
+    let wrapper;
+    let instance;
+    let button;
+    let clock;
+    let rootElement;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+      rootElement = document.createElement('div');
+      rootElement.tabIndex = 0;
+      document.body.appendChild(rootElement);
+      rootElement.attachShadow({ mode: 'open' });
+      wrapper = mount(
+        <ButtonBaseNaked theme={{}} classes={{}} id="test-button">
+          Hello
+        </ButtonBaseNaked>,
+        { attachTo: rootElement.shadowRoot },
+      );
+      instance = wrapper.instance();
+      button = rootElement.shadowRoot.getElementById('test-button');
+      if (!button) {
+        throw new Error('missing button');
+      }
+
+      button.focus();
+
+      if (document.activeElement !== rootElement) {
+        // Mock activeElement value and simulate host-retargeting in shadow root for
+        // jsdom@12.0.0 (https://github.com/jsdom/jsdom/issues/2343)
+        rootElement.focus();
+        rootElement.shadowRoot.activeElement = button;
+        wrapper.simulate('focus');
+      }
+
+      const event = new window.Event('keyup');
+      event.keyCode = 9; // Tab
+      window.dispatchEvent(event);
+    });
+
+    afterEach(() => {
+      clock.restore();
+      ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
+      document.body.removeChild(rootElement);
+    });
+
+    it('should set focus state for shadowRoot children', () => {
+      assert.strictEqual(wrapper.state().focusVisible, false);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
+      assert.strictEqual(wrapper.state().focusVisible, true);
     });
   });
 
@@ -284,7 +347,7 @@ describe('<ButtonBase />', () => {
       button.focus();
 
       const event = new window.Event('keyup');
-      event.which = keycode('tab');
+      event.keyCode = 9; // Tab
       window.dispatchEvent(event);
     });
 
@@ -383,7 +446,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
 
-    it('onFocusVisibleHandler() should propogate call to onFocusVisible prop', () => {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const eventMock = 'woofButtonBase';
       const onFocusVisibleSpy = spy();
       const wrapper = mount(
@@ -402,7 +465,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(onFocusVisibleSpy.calledWith(eventMock), true);
     });
 
-    it('should work with a functionnal component', () => {
+    it('should work with a functional component', () => {
       const MyLink = props => (
         <a href="/foo" {...props}>
           bar
@@ -434,7 +497,7 @@ describe('<ButtonBase />', () => {
         wrapper.setState({ focusVisible: true });
 
         const eventPersistSpy = spy();
-        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+        event = { persist: eventPersistSpy, key: ' ' };
 
         instance = wrapper.instance();
         instance.keyDown = false;
@@ -457,7 +520,7 @@ describe('<ButtonBase />', () => {
         );
 
         const eventPersistSpy = spy();
-        event = { persist: eventPersistSpy, keyCode: undefined };
+        event = { persist: eventPersistSpy, key: undefined };
 
         instance = wrapper.instance();
         instance.keyDown = false;
@@ -481,7 +544,7 @@ describe('<ButtonBase />', () => {
 
         event = {
           preventDefault: spy(),
-          keyCode: keycode('space'),
+          key: ' ',
           target: 'target',
           currentTarget: 'target',
         };
@@ -496,7 +559,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(onClickSpy.calledWith(event), true);
       });
 
-      it('should hanlde the link with no href', () => {
+      it('should handle a link with no href', () => {
         const onClickSpy = spy();
         wrapper = mount(
           <ButtonBaseNaked theme={{}} classes={{}} component="a" onClick={onClickSpy}>
@@ -505,7 +568,7 @@ describe('<ButtonBase />', () => {
         );
         event = {
           preventDefault: spy(),
-          keyCode: keycode('enter'),
+          key: 'Enter',
           target: 'target',
           currentTarget: 'target',
         };
@@ -524,7 +587,7 @@ describe('<ButtonBase />', () => {
         );
         event = {
           preventDefault: spy(),
-          keyCode: keycode('enter'),
+          key: 'Enter',
           target: 'target',
           currentTarget: 'target',
         };
@@ -565,7 +628,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(wrapper.find(TouchRipple).length, 0);
 
         const eventPersistSpy = spy();
-        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+        event = { persist: eventPersistSpy, key: ' ' };
 
         instance = wrapper.instance();
         instance.keyDown = false;
@@ -633,7 +696,10 @@ describe('<ButtonBase />', () => {
       wrapper.setProps({
         children: 'bar',
       });
-      assert.strictEqual(rerender.updates.length, 1);
+      assert.strictEqual(
+        rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
+        1,
+      );
     });
   });
 });

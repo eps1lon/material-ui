@@ -1,12 +1,14 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { spy } from 'sinon';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Fade from '../Fade';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
 describe('<Dialog />', () => {
+  let mount;
   let shallow;
   let classes;
   const defaultProps = {
@@ -14,8 +16,13 @@ describe('<Dialog />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Modal', () => {
@@ -77,14 +84,17 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.hasClass('woofDialog'), true);
   });
 
-  it('should render Fade > Paper > children inside the Modal', () => {
+  it('should render Fade > div > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
     const wrapper = shallow(<Dialog {...defaultProps}>{children}</Dialog>);
 
     const fade = wrapper.childAt(0);
     assert.strictEqual(fade.type(), Fade);
 
-    const paper = fade.childAt(0);
+    const div = fade.childAt(0);
+    assert.strictEqual(div.type(), 'div');
+
+    const paper = div.childAt(0);
     assert.strictEqual(paper.length === 1 && paper.type(), Paper);
 
     assert.strictEqual(paper.hasClass(classes.paper), true);
@@ -105,6 +115,95 @@ describe('<Dialog />', () => {
   it('should fade down and make the transition appear on first mount', () => {
     const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
     assert.strictEqual(wrapper.find(Fade).props().appear, true);
+  });
+
+  describe('backdrop', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Dialog open>foo</Dialog>);
+    });
+
+    it('should attach a handler to the backdrop that fires onClose', () => {
+      const onClose = spy();
+      wrapper.setProps({ onClose });
+
+      const handler = wrapper.instance().handleBackdropClick;
+      const backdrop = wrapper.find('[role="document"]');
+      assert.strictEqual(backdrop.props().onClick, handler);
+
+      handler({});
+      assert.strictEqual(onClose.callCount, 1);
+    });
+
+    it('should let the user disable backdrop click triggering onClose', () => {
+      const onClose = spy();
+      wrapper.setProps({ onClose, disableBackdropClick: true });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({});
+      assert.strictEqual(onClose.callCount, 0);
+    });
+
+    it('should call through to the user specified onBackdropClick callback', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({});
+      assert.strictEqual(onBackdropClick.callCount, 1);
+    });
+
+    it('should ignore the backdrop click if the event did not come from the backdrop', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({
+        target: {
+          /* a dom node */
+        },
+        currentTarget: {
+          /* another dom node */
+        },
+      });
+      assert.strictEqual(onBackdropClick.callCount, 0);
+    });
+
+    it('should store the click target on mousedown', () => {
+      const mouseDownTarget = 'clicked element';
+      const backdrop = wrapper.find('[role="document"]');
+      backdrop.simulate('mousedown', { target: mouseDownTarget });
+      assert.strictEqual(wrapper.instance().mouseDownTarget, mouseDownTarget);
+    });
+
+    it('should clear click target on successful backdrop click', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const mouseDownTarget = 'backdrop';
+
+      const backdrop = wrapper.find('[role="document"]');
+      backdrop.simulate('mousedown', { target: mouseDownTarget });
+      assert.strictEqual(wrapper.instance().mouseDownTarget, mouseDownTarget);
+      backdrop.simulate('click', { target: mouseDownTarget, currentTarget: mouseDownTarget });
+      assert.strictEqual(onBackdropClick.callCount, 1);
+      assert.strictEqual(wrapper.instance().mouseDownTarget, null);
+    });
+
+    it('should not close if the target changes between the mousedown and the click', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const backdrop = wrapper.find('[role="document"]');
+
+      backdrop.simulate('mousedown', { target: 'backdrop' });
+      backdrop.simulate('click', { target: 'dialog', currentTarget: 'dialog' });
+      assert.strictEqual(onBackdropClick.callCount, 0);
+    });
   });
 
   describe('prop: classes', () => {
@@ -163,6 +262,19 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
       assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+    });
+  });
+
+  describe('prop: PaperProps.className', () => {
+    it('should merge the className', () => {
+      const wrapper = mount(
+        <Dialog open PaperProps={{ className: 'custom-paper-class' }}>
+          foo
+        </Dialog>,
+      );
+
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paper), true);
+      assert.strictEqual(wrapper.find(Paper).hasClass('custom-paper-class'), true);
     });
   });
 });

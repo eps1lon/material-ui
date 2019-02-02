@@ -43,6 +43,9 @@ const theme = createMuiTheme({
       dark: colors.green[700],
     },
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 const styles = theme => ({
@@ -97,7 +100,7 @@ class Index extends React.Component {
           <Typography variant="subtitle1" gutterBottom>
             example project
           </Typography>
-          <Button variant="raised" color="secondary" onClick={this.handleClick}>
+          <Button variant="contained" color="secondary" onClick={this.handleClick}>
             <Icon className={classes.icon}>fingerprint</Icon>
             Super Secret Password
           </Button>
