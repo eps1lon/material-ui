@@ -5,5 +5,5 @@ workflow "New workflow" {
 
 action "GitHub Action for npm" {
   uses = "nuxt/actions-yarn@master"
-  runs = "workspace @material-ui/core build"
+  args = "workspace @material-ui/core build"
 }
