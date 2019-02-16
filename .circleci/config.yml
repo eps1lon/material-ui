@@ -22,7 +22,7 @@ restore_yarn_cache: &restore_yarn_cache
 restore_yarn_offline_mirror: &restore_yarn_offline_mirror
   restore_cache:
     key: v2-npm-packages-offline-cache
-version: 2
+version: 2.1
 jobs:
   checkout:
     <<: *defaults
