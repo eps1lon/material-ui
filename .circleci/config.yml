@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:8.15
+    - image: circleci/openjdk:8-jdk-node-browsers
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -152,10 +152,6 @@ jobs:
             fi
   test_build:
     <<: *defaults
-    # This isn't user facing code.
-    # Let's take advantage of the most up to date node version.
-    docker:
-      - image: circleci/node:8.15
     steps:
       - checkout
       - *restore_yarn_offline_mirror
@@ -220,7 +216,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:8.15
+      - image: circleci/openjdk:8-jdk-node-browsers
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
