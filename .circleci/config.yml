@@ -23,6 +23,11 @@ restore_yarn_offline_mirror: &restore_yarn_offline_mirror
   restore_cache:
     key: v2-npm-packages-offline-cache
 version: 2
+workspace_root: &workspace_root
+    /tmp/workspace
+attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
 jobs:
   checkout:
     <<: *defaults
@@ -179,13 +184,6 @@ jobs:
       - run:
           name: Can we generate the @material-ui/system build?
           command: cd packages/material-ui-system && yarn build
-      # Netlify already do it for us but we need to check the size.
-      - run:
-          name: Can we build the docs?
-          command: yarn docs:build
-      - run:
-          name: Create a size snapshot for danger.js
-          command: yarn size:snapshot
       - run:
           name: Install dependencies for Chrome Headless
           # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
@@ -195,8 +193,10 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
-      - store_artifacts:
-          path: ./size-snapshot.json
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+              - packages/*/build
   test_browser:
     <<: *defaults
     steps:
@@ -234,6 +234,28 @@ jobs:
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
+  size_snapshot:
+    <<: *defaults
+    steps:
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
+      - *attach_workspace
+      - run:
+          name: Restore build
+          command: |
+            mkdir -p /tmp/workspace/packages
+            rsync -a /tmp/workspace/packages ./
+      # Netlify already do it for us but we need to check the size.
+      - run:
+          name: Can we build the docs?
+          command: yarn docs:build
+      - run:
+          name: Create a size snapshot
+          command: yarn size:snapshot
+      # For debugging/working on a PR
+      - store_artifacts:
+          - path: ./size-snapshot.json
 workflows:
   version: 2
   pipeline:
@@ -259,4 +281,7 @@ workflows:
             - test_material-ui-x
             - test_unit
             - test_browser
+            - test_build
+      - size_snapshot:
+          requires:
             - test_build
