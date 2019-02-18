@@ -23,11 +23,6 @@ restore_yarn_offline_mirror: &restore_yarn_offline_mirror
   restore_cache:
     key: v2-npm-packages-offline-cache
 version: 2
-workspace_root: &workspace_root
-    /tmp/workspace
-attach_workspace: &attach_workspace
-    attach_workspace:
-      at: *workspace_root
 jobs:
   checkout:
     <<: *defaults
@@ -194,7 +189,7 @@ jobs:
           name: Test umd release
           command: yarn test:umd
       - persist_to_workspace:
-          root: *workspace_root
+          root: /tmp/workspace
           paths:
               - packages/*/build
   test_browser:
@@ -240,7 +235,8 @@ jobs:
       - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
-      - *attach_workspace
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Restore build
           command: |
