@@ -190,8 +190,7 @@ jobs:
           command: yarn test:umd
       - persist_to_workspace:
           root: /tmp/workspace
-          paths:
-              - packages/*/build
+          paths: packages
   test_browser:
     <<: *defaults
     steps:
