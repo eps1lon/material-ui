@@ -51,12 +51,6 @@ jobs:
           key: v2-npm-packages-offline-cache
           paths:
             - ~/.cache/npm-packages-offline-cache/v1
-      - run:
-          name: Prepare workspace
-          command: mkdir -p /tmp/workspace
-      - persist_to_workspace:
-          root: packages
-          paths: material-ui/build
   test_unit:
     <<: *defaults
     steps:
@@ -194,6 +188,9 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
+      - persist_to_workspace:
+          root: packages
+          paths: material-ui/build
   test_browser:
     <<: *defaults
     steps:
