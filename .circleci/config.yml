@@ -179,9 +179,18 @@ jobs:
       - run:
           name: Can we generate the @material-ui/system build?
           command: cd packages/material-ui-system && yarn build
+      # Netlify already do it for us but we need to check the size.
+      - run:
+          name: Can we build the docs?
+          command: yarn docs:build
+      - run:
+          name: Create a size snapshot
+          command: yarn size:snapshot
+      # For debugging/working on a PR
+      - store_artifacts:
+          path: size-snapshot.json
       - persist_to_workspace:
-          root: packages
-          paths: material-ui/build
+          paths: size-snapshot.json
   test_browser:
     <<: *defaults
     steps:
@@ -227,23 +236,11 @@ jobs:
       - *restore_yarn_cache
       - *install_js
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp/material-ui
       - run:
-          name: Restore build
-          command: |
-            sudo apt install -y rsync
-            mkdir -p /tmp/workspace/packages
-            rsync -a /tmp/workspace/packages ./
-      # Netlify already do it for us but we need to check the size.
-      - run:
-          name: Can we build the docs?
-          command: yarn docs:build
-      - run:
-          name: Create a size snapshot
-          command: yarn size:snapshot
-      # For debugging/working on a PR
-      - store_artifacts:
-          path: size-snapshot.json
+          name: Inspect
+          command: ls -la
+      
 workflows:
   version: 2
   pipeline:
