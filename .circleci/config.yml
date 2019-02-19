@@ -56,7 +56,7 @@ jobs:
           command: mkdir -p /tmp/workspace
       - persist_to_workspace:
           root: /tmp/workspace
-          paths: packages
+          paths: /tmp/material-ui/packages
   test_unit:
     <<: *defaults
     steps:
