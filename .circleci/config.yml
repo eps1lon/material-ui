@@ -230,11 +230,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: inspect
-          command: |
-            ls /tmp/workspace -la
-            ls /tmp/workspace/packages -la
-            ls /tmp/workspace/packages/material-ui -la
-            ls /tmp/workspace/packages/material-ui/build -la
+          command: du -a .
       - run:
           name: Restore build
           command: |
