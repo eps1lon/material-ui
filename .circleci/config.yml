@@ -238,8 +238,8 @@ jobs:
             mkdir -p /tmp/workspace/packages
             rsync -a /tmp/workspace/packages ./packages
       - run:
-        name: Inspect
-        command: du -a packages/
+          name: Inspect
+          command: du -a packages/
       # Netlify already do it for us but we need to check the size.
       - run:
           name: Can we build the docs?
