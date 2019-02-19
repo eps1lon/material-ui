@@ -230,7 +230,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: inspect
-          command: du -a .
+          command: du -a /tmp/workspace
       - run:
           name: Restore build
           command: |
