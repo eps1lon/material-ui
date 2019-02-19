@@ -237,10 +237,11 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
+          name: Prepare restore build
+          command: mkdir -p /tmp/workspace/packages
+      - run:
           name: Restore build
-          command: |
-            mkdir -p /tmp/workspace/packages
-            rsync -a /tmp/workspace/packages ./
+          command: rsync -a /tmp/workspace/packages ./
       # Netlify already do it for us but we need to check the size.
       - run:
           name: Can we build the docs?
