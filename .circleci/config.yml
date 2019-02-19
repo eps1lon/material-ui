@@ -55,8 +55,8 @@ jobs:
           name: Prepare workspace
           command: mkdir -p /tmp/workspace
       - persist_to_workspace:
-          root: /tmp/workspace
-          paths: /tmp/material-ui/packages
+          root: packages
+          paths: material-ui/build
   test_unit:
     <<: *defaults
     steps:
