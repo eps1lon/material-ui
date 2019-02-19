@@ -190,6 +190,7 @@ jobs:
       - store_artifacts:
           path: size-snapshot.json
       - persist_to_workspace:
+          root: .
           paths: size-snapshot.json
   test_browser:
     <<: *defaults
