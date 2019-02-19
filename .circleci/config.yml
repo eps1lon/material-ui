@@ -229,7 +229,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: inspect
+          name: Inspect
           command: du -a /tmp/workspace
       - run:
           name: Restore build
@@ -238,7 +238,7 @@ jobs:
             mkdir -p /tmp/workspace/packages
             rsync -a /tmp/workspace/packages ./packages
       - run:
-        name: inspect sync
+        name: Inspect
         command: du -a packages/
       # Netlify already do it for us but we need to check the size.
       - run:
