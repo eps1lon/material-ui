@@ -231,10 +231,10 @@ jobs:
       - run:
           name: inspect
           command: |
-          ls /tmp/workspace -la
-          ls /tmp/workspace/packages -la
-          ls /tmp/workspace/packages/material-ui -la
-          ls /tmp/workspace/packages/material-ui/build -la
+            ls /tmp/workspace -la
+            ls /tmp/workspace/packages -la
+            ls /tmp/workspace/packages/material-ui -la
+            ls /tmp/workspace/packages/material-ui/build -la
       - run:
           name: Restore build
           command: |
