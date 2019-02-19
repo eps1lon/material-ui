@@ -222,6 +222,7 @@ jobs:
   size_snapshot:
     <<: *defaults
     steps:
+      - checkout
       - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
