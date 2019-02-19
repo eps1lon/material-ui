@@ -180,8 +180,8 @@ jobs:
           name: Can we generate the @material-ui/system build?
           command: cd packages/material-ui-system && yarn build
       - persist_to_workspace:
-          root: packages
-          paths: material-ui/build
+          root: .
+          paths: packages/*/build
   test_browser:
     <<: *defaults
     steps:
@@ -236,7 +236,10 @@ jobs:
           command: |
             sudo apt install -y rsync
             mkdir -p /tmp/workspace/packages
-            rsync -a /tmp/workspace/packages ./
+            rsync -a /tmp/workspace/packages ./packages
+      - run:
+        name: inspect sync
+        command: du -a packages/
       # Netlify already do it for us but we need to check the size.
       - run:
           name: Can we build the docs?
