@@ -235,8 +235,7 @@ jobs:
           name: Restore build
           command: |
             sudo apt install -y rsync
-            mkdir -p /tmp/workspace/packages
-            rsync -a /tmp/workspace/packages ./packages
+            rsync -a /tmp/workspace/ .
       - run:
           name: Inspect
           command: du -a packages/
