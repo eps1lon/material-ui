@@ -23,7 +23,6 @@ export const styles = theme => ({
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -31,6 +30,17 @@ export const styles = theme => ({
       '&$disabled': {
         backgroundColor: 'transparent',
       },
+    },
+    '&:hover:after': {
+      background: 'rgba(0, 0, 0, 0.04)',
+      borderRadius: theme.shape.borderRadius,
+      content: "' '",
+      display: 'block',
+      height: '100%',
+      left: 0,
+      position: 'absolute',
+      right: 0,
+      top: 0,
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -50,24 +60,10 @@ export const styles = theme => ({
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
   },
   /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
   textSecondary: {
     color: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
   },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
@@ -83,27 +79,11 @@ export const styles = theme => ({
   outlinedPrimary: {
     color: theme.palette.primary.main,
     border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
-    '&:hover': {
-      border: `1px solid ${theme.palette.primary.main}`,
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
     color: theme.palette.secondary.main,
     border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
-    '&:hover': {
-      border: `1px solid ${theme.palette.secondary.main}`,
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
     '&$disabled': {
       border: `1px solid ${theme.palette.action.disabled}`,
     },
@@ -124,40 +104,16 @@ export const styles = theme => ({
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
     },
-    '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.grey[300],
-      },
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
-      },
-    },
   },
   /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.primary.main,
-      },
-    },
   },
   /* Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.main,
-      },
-    },
   },
   /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
