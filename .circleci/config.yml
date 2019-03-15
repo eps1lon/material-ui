@@ -237,15 +237,16 @@ jobs:
       - store_artifacts:
           path: scripts/sizeSnapshot/build/stats.json
       - run:
-          name: Possibly persist size snapshot
+          name: Prepare packtracker.io
           command: |
-            if [ -z "$CI_PULL_REQUEST" ]; then
-              echo "no pull request; lets persist the size snapshot"
-              curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM
-            else
-              echo "pull request; let's run dangerJS"
-              yarn danger ci
-            fi
+            # full list https://github.com/packtracker/webpack-plugin#options
+            echo 'export PT_FAIL_BUILD="true"' >> $BASH_ENV
+            echo 'export PT_BRANCH="$CIRCLE_BRANCH"' >> $BASH_ENV
+            echo 'export PT_COMMIT="$CIRCLE_SHA1"' >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: Upload to packtracker.io
+          command: packtracker-upload --stats=scripts/sizeSnapshot/build/stats.json
 workflows:
   version: 2
   pipeline:
