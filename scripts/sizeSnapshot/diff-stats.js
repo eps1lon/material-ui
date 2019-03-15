@@ -15,6 +15,11 @@ function collectModules(stats) {
     .reduce((acc, modules) => acc.concat(modules));
 }
 
+/**
+ * 
+ * @param {K = keyof T} key 
+ * @returns Array<T> => Map<K, T>
+ */
 function toMap(key) {
   return list => new Map(list.map(item => [item[key], item]));
 }
@@ -24,11 +29,12 @@ function consoleModuleTable(modules) {
 }
 
 async function run() {
-  const [leftModules, rightModules] = await Promise.all(
+  const [leftStats, rightStats] = await Promise.all(
     [leftStatsPath, rightStatsPath].map(statsPath =>
       fse.readJSON(path.resolve(process.cwd(), statsPath)),
     ),
-  ).then(stats => stats.map(collectModules));
+  );
+  const [leftModules, rightModules] = [leftStats, rightStats].map(collectModules)
   const [leftModulesMap, rightModulesMap] = [leftModules, rightModules].map(toMap('name'));
 
   console.log(`left: ${leftModules.length} modules`);
