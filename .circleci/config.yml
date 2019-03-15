@@ -246,7 +246,7 @@ jobs:
             source $BASH_ENV
       - run:
           name: Upload to packtracker.io
-          command: packtracker-upload --stats=scripts/sizeSnapshot/build/stats.json
+          command: yarn packtracker-upload --stats=scripts/sizeSnapshot/build/stats.json
 workflows:
   version: 2
   pipeline:
