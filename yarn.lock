@@ -2763,6 +2763,11 @@ babel-plugin-module-resolver@^3.0.0:
     reselect "^3.0.1"
     resolve "^1.4.0"
 
+babel-plugin-optimize-react@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-react/-/babel-plugin-optimize-react-0.0.4.tgz#6326ac8f0f77e3fa3e8195b4d998287d47877c65"
+  integrity sha512-I3o7GW66dIpXraND0ZAYXEDQ/wOiuefUQqn1PZZcub2flREANb2NXejL52iTMUWtKM++lu5OasVtZewn+WvkNg==
+
 babel-plugin-preval@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-preval/-/babel-plugin-preval-2.0.1.tgz#76a552a1670bb21307f80b927b89fbeb37cf205c"
