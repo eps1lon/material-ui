@@ -26,9 +26,11 @@
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
     "build:copy-files": "node ../../scripts/copy-files.js",
+    "link": "cd build && yarn link",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
-    "test": "exit 0"
+    "test": "exit 0",
+    "unlink": "cd build && yarn unlink"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0 || ^4.0.0-alpha",

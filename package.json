@@ -21,6 +21,8 @@
   "homepage": "https://material-ui.com/",
   "scripts": {
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
+    "dev:link": "yarn lerna run link",
+    "dev:unlink": "yarn lerna run unlink",
     "docs:api": "yarn docs:api:core && yarn docs:api:lab",
     "docs:api:core": "rimraf ./pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./pages/api",
     "docs:api:lab": "rimraf ./pages/lab/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/lab/api",
