@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
-import RootRef from '../RootRef';
+import FragmentRef from '../internal/FragmentRef';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -73,6 +73,8 @@ export const styles = theme => ({
 });
 
 class Tooltip extends React.Component {
+  childrenRef = React.createRef();
+
   ignoreNonTouchEvents = false;
 
   constructor(props) {
@@ -89,10 +91,11 @@ class Tooltip extends React.Component {
   }
 
   componentDidMount() {
+    const { current: childNode } = this.childrenRef;
     warning(
-      !this.childrenRef.disabled ||
-        (this.childrenRef.disabled && this.props.title === '') ||
-        this.childrenRef.tagName.toLowerCase() !== 'button',
+      !childNode.disabled ||
+        (childNode.disabled && this.props.title === '') ||
+        childNode.tagName.toLowerCase() !== 'button',
       [
         'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
         'A disabled element does not fire events.',
@@ -121,16 +124,12 @@ class Tooltip extends React.Component {
     clearTimeout(this.touchTimer);
   }
 
-  onRootRef = ref => {
-    this.childrenRef = ref;
-  };
-
   handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
-    if (!this.childrenRef) {
-      this.childrenRef = event.currentTarget;
+    if (!this.childrenRef.current) {
+      this.childrenRef.current = event.currentTarget;
     }
 
     this.handleEnter(event);
@@ -156,7 +155,7 @@ class Tooltip extends React.Component {
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
-    this.childrenRef.setAttribute('title', '');
+    this.childrenRef.current.setAttribute('title', '');
 
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
@@ -334,14 +333,16 @@ class Tooltip extends React.Component {
 
     return (
       <React.Fragment>
-        <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
+        <FragmentRef ref={this.childrenRef}>
+          {React.cloneElement(children, childrenProps)}
+        </FragmentRef>
         <Popper
           className={clsx(classes.popper, {
             [classes.popperInteractive]: interactive,
           })}
           placement={placement}
-          anchorEl={this.childrenRef}
-          open={this.childrenRef ? open : false}
+          anchorEl={this.childrenRef.current}
+          open={this.childrenRef.current ? open : false}
           id={childrenProps['aria-describedby']}
           transition
           {...interactiveWrapperListeners}

@@ -41,7 +41,6 @@ describe('<Tooltip />', () => {
   it('should render the correct structure', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     assert.strictEqual(wrapper.type(), React.Fragment);
-    assert.strictEqual(wrapper.childAt(0).type(), RootRef);
     assert.strictEqual(wrapper.childAt(1).type(), Popper);
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
   });
@@ -91,7 +90,7 @@ describe('<Tooltip />', () => {
 
   it('should respond to external events', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
-    wrapper.instance().childrenRef = document.createElement('div');
+    wrapper.instance().childrenRef.current = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.instance().state.open, false);
     children.simulate('mouseOver', { type: 'mouseover' });
@@ -107,7 +106,7 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(
       <Tooltip {...defaultProps} open onOpen={handleRequestOpen} onClose={handleClose} />,
     );
-    wrapper.instance().childrenRef = document.createElement('div');
+    wrapper.instance().childrenRef.current = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleClose.callCount, 0);
@@ -123,7 +122,7 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     const childrenRef = document.createElement('div');
     childrenRef.tabIndex = 0;
-    wrapper.instance().childrenRef = childrenRef;
+    wrapper.instance().childrenRef.current = childrenRef;
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.instance().state.open, false);
     children.simulate('mouseOver', { type: 'mouseover' });
@@ -142,7 +141,7 @@ describe('<Tooltip />', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
       const childrenRef = document.createElement('div');
       childrenRef.tabIndex = 0;
-      wrapper.instance().childrenRef = childrenRef;
+      wrapper.instance().childrenRef.current = childrenRef;
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('touchEnd', { type: 'touchend', persist });
@@ -155,7 +154,7 @@ describe('<Tooltip />', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
       const childrenRef = document.createElement('div');
       childrenRef.tabIndex = 0;
-      wrapper.instance().childrenRef = childrenRef;
+      wrapper.instance().childrenRef.current = childrenRef;
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       childrenRef.focus();
@@ -200,7 +199,7 @@ describe('<Tooltip />', () => {
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
       const wrapper = mount(<TooltipNaked classes={{}} enterDelay={111} {...defaultProps} />);
-      const childrenRef = wrapper.instance().childrenRef;
+      const childrenRef = wrapper.instance().childrenRef.current;
       childrenRef.tabIndex = 0;
       childrenRef.focus();
       assert.strictEqual(document.activeElement, childrenRef);
@@ -211,7 +210,7 @@ describe('<Tooltip />', () => {
 
     it('should take the leaveDelay into account', () => {
       const wrapper = mount(<TooltipNaked classes={{}} leaveDelay={111} {...defaultProps} />);
-      const childrenRef = wrapper.instance().childrenRef;
+      const childrenRef = wrapper.instance().childrenRef.current;
       childrenRef.tabIndex = 0;
       childrenRef.focus();
       assert.strictEqual(document.activeElement, childrenRef);
@@ -243,7 +242,7 @@ describe('<Tooltip />', () => {
             </button>
           </Tooltip>,
         );
-        wrapper.instance().childrenRef = document.createElement('div');
+        wrapper.instance().childrenRef.current = document.createElement('div');
         const children = wrapper.childAt(0).childAt(0);
         const type = name.slice(2).toLowerCase();
         children.simulate(type, { type, persist });
