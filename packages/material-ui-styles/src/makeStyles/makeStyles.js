@@ -3,7 +3,7 @@ import warning from 'warning';
 import { getDynamicStyles } from 'jss';
 import mergeClasses from '../mergeClasses';
 import multiKeyStore from './multiKeyStore';
-import useTheme from '../useTheme';
+import useActualTheme from '../useTheme';
 import { StylesContext } from '../StylesProvider';
 import { increment } from './indexCounter';
 import getStylesCreator from '../getStylesCreator';
@@ -206,9 +206,10 @@ function makeStyles(stylesOrCreator, options = {}) {
     classNamePrefix,
   };
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string';
+  const useTheme = listenToTheme ? useActualTheme : () => defaultTheme;
 
   return (props = {}) => {
-    const theme = (listenToTheme ? useTheme() : null) || defaultTheme;
+    const theme = useTheme() || defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
       ...stylesOptions2,
