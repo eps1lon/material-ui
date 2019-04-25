@@ -1,6 +1,5 @@
-ie 11
-edge >= 14
-firefox >= 52
-chrome >= 49
+edge >= 18
+firefox >= 53
+chrome >= 51
 safari >= 10
 node 8.0
