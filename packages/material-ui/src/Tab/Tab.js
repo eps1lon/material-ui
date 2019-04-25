@@ -99,7 +99,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
   const {
     classes,
     className,
-    disabled,
+    disabled = false,
     fullWidth,
     icon,
     indicator,
@@ -107,9 +107,9 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     onChange,
     onClick,
     selected,
-    textColor,
+    textColor = 'inherit',
     value,
-    wrapped,
+    wrapped = false,
     ...other
   } = props;
 
@@ -216,12 +216,6 @@ Tab.propTypes = {
    * They can use a second line if needed.
    */
   wrapped: PropTypes.bool,
-};
-
-Tab.defaultProps = {
-  disabled: false,
-  textColor: 'inherit',
-  wrapped: false,
 };
 
 export default withStyles(styles, { name: 'MuiTab' })(Tab);

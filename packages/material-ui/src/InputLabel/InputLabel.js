@@ -87,7 +87,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const {
     classes,
     className,
-    disableAnimation,
+    disableAnimation = false,
     margin,
     muiFormControl,
     shrink: shrinkProp,
@@ -185,10 +185,6 @@ InputLabel.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-InputLabel.defaultProps = {
-  disableAnimation: false,
 };
 
 export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));

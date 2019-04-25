@@ -45,8 +45,8 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     children,
     classes,
     className,
-    collapsedHeight,
-    component: Component,
+    collapsedHeight = '0px',
+    component: Component = 'div',
     in: inProp,
     onEnter,
     onEntered,
@@ -55,7 +55,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     onExiting,
     style,
     theme,
-    timeout,
+    timeout = duration.standard,
     ...other
   } = props;
   const timer = React.useRef();
@@ -79,9 +79,12 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const handleEntering = node => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
-    const { duration: transitionDuration } = getTransitionProps(props, {
-      mode: 'enter',
-    });
+    const { duration: transitionDuration } = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'enter',
+      },
+    );
 
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
@@ -119,9 +122,12 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const handleExiting = node => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
-    const { duration: transitionDuration } = getTransitionProps(props, {
-      mode: 'exit',
-    });
+    const { duration: transitionDuration } = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'exit',
+      },
+    );
 
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
@@ -249,12 +255,6 @@ Collapse.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
-};
-
-Collapse.defaultProps = {
-  collapsedHeight: '0px',
-  component: 'div',
-  timeout: duration.standard,
 };
 
 Collapse.muiSupportAuto = true;

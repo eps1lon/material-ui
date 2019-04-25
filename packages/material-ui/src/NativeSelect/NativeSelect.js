@@ -78,6 +78,7 @@ export const styles = theme => ({
   },
 });
 
+const defaultInput = <Input />;
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
@@ -85,8 +86,8 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
   const {
     children,
     classes,
-    IconComponent,
-    input,
+    IconComponent = ArrowDropDownIcon,
+    input = defaultInput,
     inputProps,
     muiFormControl,
     variant,
@@ -158,11 +159,6 @@ NativeSelect.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-NativeSelect.defaultProps = {
-  IconComponent: ArrowDropDownIcon,
-  input: <Input />,
 };
 
 NativeSelect.muiName = 'Select';

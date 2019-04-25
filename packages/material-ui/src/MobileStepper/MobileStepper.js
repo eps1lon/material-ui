@@ -61,15 +61,15 @@ export const styles = theme => ({
 
 const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
   const {
-    activeStep,
+    activeStep = 0,
     backButton,
     classes,
     className,
     LinearProgressProps,
     nextButton,
-    position,
+    position = 'bottom',
     steps,
-    variant,
+    variant = 'dots',
     ...other
   } = props;
 
@@ -152,12 +152,6 @@ MobileStepper.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['text', 'dots', 'progress']),
-};
-
-MobileStepper.defaultProps = {
-  activeStep: 0,
-  position: 'bottom',
-  variant: 'dots',
 };
 
 export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

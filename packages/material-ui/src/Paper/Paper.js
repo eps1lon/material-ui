@@ -30,9 +30,9 @@ const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
     className: classNameProp,
-    component: Component,
-    square,
-    elevation,
+    component: Component = 'div',
+    square = false,
+    elevation = 1,
     ...other
   } = props;
 
@@ -81,12 +81,6 @@ Paper.propTypes = {
    * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
-};
-
-Paper.defaultProps = {
-  component: 'div',
-  elevation: 1,
-  square: false,
 };
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);
