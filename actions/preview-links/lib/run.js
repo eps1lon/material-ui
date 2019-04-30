@@ -1,4 +1,4 @@
-const request = require('./request')
+const fetch = require('node-fetch');
 const previewLinks = require('./previewLinks')
 
 const { GITHUB_SHA, GITHUB_EVENT_PATH, GITHUB_TOKEN, GITHUB_WORKSPACE } = process.env
@@ -26,7 +26,7 @@ async function createCheck() {
     started_at: new Date()
   }
 
-  const { data } = await request(`https://api.github.com/repos/${owner}/${repo}/check-runs`, {
+  const { data } = await fetch(`https://api.github.com/repos/${owner}/${repo}/check-runs`, {
     method: 'POST',
     headers,
     body
@@ -45,7 +45,7 @@ async function updateCheck(id, conclusion, output) {
     output
   }
 
-  await request(`https://api.github.com/repos/${owner}/${repo}/check-runs/${id}`, {
+  await fetch(`https://api.github.com/repos/${owner}/${repo}/check-runs/${id}`, {
     method: 'PATCH',
     headers,
     body
