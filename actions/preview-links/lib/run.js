@@ -27,14 +27,13 @@ async function createCheck() {
   };
 
   const endpoint = `https://api.github.com/repos/${owner}/${repo}/check-runs`;
-  console.log(body);
-  console.log(headers);
   const response = await fetch(endpoint, {
     method: 'POST',
     headers,
     body,
   });
-  console.log(response);
+  const json = await response.json();
+  console.log(json);
   const { id } = response.data;
   return id;
 }
