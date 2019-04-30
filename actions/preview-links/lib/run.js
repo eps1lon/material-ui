@@ -63,11 +63,22 @@ function exitWithError(err) {
   process.exit(1);
 }
 
+function apiMarkdownSource(componentFilePath) {}
+
 function docPageAffectedBy(filePath) {
+  // demo directly edited
   const pageSourceDir = 'docs/src/pages/';
   if (filePath.startsWith(pageSourceDir)) {
     const dir = path.dirname(filePath.replace(pageSourceDir, ''));
-    console.log(dir);
+    return dir;
+  }
+  // component source changed, let's list the demos associated
+  const markdownSource = apiMarkdownSource(componentFilePath);
+  if (markdownSource !== null) {
+    const demoLinksMatch = markdownSource.match(/a/g);
+    if (demoLinksMatch !== null) {
+      console.log(demoLinksMatch);
+    }
   }
   return 'demos/dialogs';
 }
