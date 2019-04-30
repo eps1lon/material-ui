@@ -9,7 +9,7 @@ const {
 } = repository;
 const { name: repo } = repository;
 
-const checkName = 'Preview-Links';
+const checkName = 'Preview Links';
 
 const headers = {
   'Content-Type': 'application/json',
