@@ -2,6 +2,8 @@
 
 set -e
 
+cd actions/preview-links
+
 yarn
 
-NODE_PATH=node_modules node /action/lib/run.js
+node lib/run.js
