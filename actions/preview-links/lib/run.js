@@ -9,7 +9,7 @@ const {
 } = repository;
 const { name: repo } = repository;
 
-const checkName = 'Preview links';
+const checkName = 'Preview-Links';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -26,12 +26,16 @@ async function createCheck() {
     started_at: new Date(),
   };
 
-  const { data } = await fetch(`https://api.github.com/repos/${owner}/${repo}/check-runs`, {
+  const endpoint = `https://api.github.com/repos/${owner}/${repo}/check-runs`;
+  console.log(body);
+  console.log(headers);
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers,
     body,
   });
-  const { id } = data;
+  console.log(response);
+  const { id } = response.data;
   return id;
 }
 
