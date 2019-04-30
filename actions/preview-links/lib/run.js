@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const { uniq: unique } = require('lodash');
 const listChangedFiles = require('./listChangedFiles');
 
-const { GITHUB_SHA, GITHUB_EVENT_PATH, GITHUB_TOKEN, GITHUB_WORKSPACE } = process.env;
+const { GITHUB_SHA, GITHUB_EVENT_PATH, GITHUB_TOKEN } = process.env;
 const event = require(GITHUB_EVENT_PATH);
 const { repository } = event;
 const {
@@ -63,16 +63,24 @@ function exitWithError(err) {
 }
 
 function docPageAffectedBy(filePath) {
+  console.log(filePath);
   return 'demos/dialogs';
 }
 
 async function run() {
   const id = await createCheck();
-  console.log(GITHUB_WORKSPACE);
   try {
     const changedFiles = await listChangedFiles(event.pull_request);
     const docsPages = unique(changedFiles.map(docPageAffectedBy).filter(Boolean));
-    const text = docsPages.map(page => `https://next.material-ui.com/${page}`).join('');
+
+    const previewLinks = docsPages
+      .sort((a, b) => a.localeCompare(b))
+      .map(page => {
+        return `- [${page}](https://next.material-ui.com/${page})`;
+      })
+      .join('');
+    const text = previewLinks;
+
     const output = {
       title: checkName,
       summary: '',
