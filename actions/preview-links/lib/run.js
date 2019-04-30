@@ -70,7 +70,7 @@ async function run() {
   const id = await createCheck();
   console.log(GITHUB_WORKSPACE);
   try {
-    const changedFiles = await listChangedFiles(event.pullRequest);
+    const changedFiles = await listChangedFiles(event.pull_request);
     const docsPages = unique(changedFiles.map(docPageAffectedBy).filter(Boolean));
     const text = docsPages.map(page => `https://next.material-ui.com/${page}`).join('');
     const output = {
