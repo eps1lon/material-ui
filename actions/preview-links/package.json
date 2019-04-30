@@ -1,0 +1,7 @@
+{
+  "name": "preview-links",
+  "version": "0.0.1",
+  "description": "creates deploy preview links to sites affected by a commit",
+  "main": "index.js",
+  "license": "MIT"
+}
