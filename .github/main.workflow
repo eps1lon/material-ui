@@ -4,6 +4,6 @@ action "create-preview-links" {
 }
 
 workflow "New workflow" {
-  on = "push"
   resolves = ["create-preview-links"]
+  on = "pull_request"
 }
