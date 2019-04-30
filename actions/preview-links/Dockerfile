@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:12-stretch
 
 LABEL com.github.actions.name="Material-UI docs page changes"
 LABEL com.github.actions.description="creates deploy preview links to sites affected by a commit"
