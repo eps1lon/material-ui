@@ -24,6 +24,7 @@ async function execGitCmd(args) {
 }
 
 async function previewLinks(workspace, event) {
+  console.log(event);
   const gitDiff = await execGitCmd(['diff', '--name-only', event.base.sha]);
   const gitLs = await execGitCmd(['ls-files', '--others', '--exclude-standard']);
   const changedFiles = new Set([...gitDiff, ...gitLs]);
