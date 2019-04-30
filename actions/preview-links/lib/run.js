@@ -30,9 +30,9 @@ async function createCheck() {
   const response = await fetch(endpoint, {
     method: 'POST',
     headers,
-    body,
+    body: JSON.stringify(body),
   });
-  const json = await response.text();
+  const json = await response.json();
   console.log(json);
   const { id } = response.data;
   return id;
