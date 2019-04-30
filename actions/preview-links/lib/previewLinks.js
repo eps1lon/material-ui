@@ -2,4 +2,4 @@ function previewLinks() {
   return 'foo';
 }
 
-module.exports = { default: previewLinks };
+module.exports = previewLinks;
