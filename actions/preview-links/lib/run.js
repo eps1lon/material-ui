@@ -32,9 +32,7 @@ async function createCheck() {
     headers,
     body: JSON.stringify(body),
   });
-  const json = await response.json();
-  console.log(json);
-  const { id } = response.data;
+  const { id } = await response.json();
   return id;
 }
 
