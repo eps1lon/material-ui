@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-const previewLinks = require('./previewLinks');
+const { uniq: unique } = require('lodash');
+const listChangedFiles = require('./listChangedFiles');
 
 const { GITHUB_SHA, GITHUB_EVENT_PATH, GITHUB_TOKEN, GITHUB_WORKSPACE } = process.env;
 const event = require(GITHUB_EVENT_PATH);
@@ -61,10 +62,17 @@ function exitWithError(err) {
   process.exit(1);
 }
 
+function docPageAffectedBy(filePath) {
+  return 'demos/dialogs';
+}
+
 async function run() {
   const id = await createCheck();
+  console.log(GITHUB_WORKSPACE);
   try {
-    const text = await previewLinks(GITHUB_WORKSPACE, event);
+    const changedFiles = await listChangedFiles(event.pullRequest);
+    const docsPages = unique(changedFiles.map(docPageAffectedBy).filter(Boolean));
+    const text = docsPages.map(page => `https://next.material-ui.com/${page}`).join('');
     const output = {
       title: checkName,
       summary: '',

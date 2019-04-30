@@ -23,13 +23,11 @@ async function execGitCmd(args) {
     .split('\n');
 }
 
-async function previewLinks(workspace, event) {
-  console.log(event);
-  const gitDiff = await execGitCmd(['diff', '--name-only', event.base.sha]);
+async function listChangedFiles(pullRequest) {
+  const mergeBase = pullRequest.base.sha;
+  const gitDiff = await execGitCmd(['diff', '--name-only', mergeBase]);
   const gitLs = await execGitCmd(['ls-files', '--others', '--exclude-standard']);
-  const changedFiles = new Set([...gitDiff, ...gitLs]);
-
-  return Array.from(changedFiles).join(', ');
+  return new Set([...gitDiff, ...gitLs]);
 }
 
-module.exports = previewLinks;
+module.exports = listChangedFiles;
