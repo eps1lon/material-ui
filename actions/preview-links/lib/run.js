@@ -49,7 +49,7 @@ async function updateCheck(id, conclusion, output) {
   await fetch(`https://api.github.com/repos/${owner}/${repo}/check-runs/${id}`, {
     method: 'PATCH',
     headers,
-    body,
+    body: JSON.stringify(body),
   });
 }
 
