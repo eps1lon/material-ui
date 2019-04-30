@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const { uniq: unique } = require('lodash');
+const path = require('path');
 const listChangedFiles = require('./listChangedFiles');
 
 const { GITHUB_SHA, GITHUB_EVENT_PATH, GITHUB_TOKEN } = process.env;
@@ -63,7 +64,11 @@ function exitWithError(err) {
 }
 
 function docPageAffectedBy(filePath) {
-  console.log(filePath);
+  const pageSourceDir = 'docs/src/pages/';
+  if (filePath.startsWith(pageSourceDir)) {
+    const dir = path.dirname(filePath.replace(pageSourceDir, ''));
+    console.log(dir);
+  }
   return 'demos/dialogs';
 }
 

@@ -21,7 +21,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const messages = [
   {
     id: 1,
-    primary: 'Brunch this week?',
+    primary: 'Brunch this week!',
     secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
     person: '/static/images/avatar/5.jpg',
   },
