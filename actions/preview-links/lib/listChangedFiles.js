@@ -1,5 +1,6 @@
 const util = require('util');
 const childProcess = require('child_process');
+const { uniq: unique } = require('lodash');
 
 const execFileAsync = util.promisify(childProcess.execFile);
 
@@ -27,7 +28,7 @@ async function listChangedFiles(pullRequest) {
   const mergeBase = pullRequest.base.sha;
   const gitDiff = await execGitCmd(['diff', '--name-only', mergeBase]);
   const gitLs = await execGitCmd(['ls-files', '--others', '--exclude-standard']);
-  return new Set([...gitDiff, ...gitLs]);
+  return unique([...gitDiff, ...gitLs]);
 }
 
 module.exports = listChangedFiles;
