@@ -64,7 +64,7 @@ function exitWithError(err) {
 async function run() {
   const id = await createCheck();
   try {
-    const text = previewLinks(GITHUB_WORKSPACE);
+    const text = await previewLinks(GITHUB_WORKSPACE, event);
     const output = {
       title: checkName,
       summary: '',
