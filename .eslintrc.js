@@ -94,4 +94,48 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
   },
+  overrides: [
+    // published @material-ui/* code
+    {
+      files: ['packages/material-ui*/src/**/*.js'],
+      excludedFiles: ['*.test.js', 'packages/material-ui-benchmark/**/*.js'],
+      plugins: ['compat'],
+      settings: {
+        polyfills: [
+          // react environment
+          'Set',
+          'Map',
+          // polyfilled for babel: https://babeljs.io/docs/en/caveats#polyfills
+          'Array.from',
+          'Symbol',
+          'Symbol.iterator',
+          // polyfilled by next.js: https://github.com/zeit/next.js/#browser-support
+          'Promise',
+          // babel transform
+          'Object.assign',
+        ],
+      },
+      rules: {
+        'compat/compat': 'error',
+      },
+    },
+    // deployed docs code
+    {
+      files: ['docs/src/**/*.js', 'pages/**/*.js'],
+      excludedFiles: ['*.test.js'],
+      plugins: ['compat'],
+      settings: {
+        polyfills: [
+          // react env
+          'Set',
+          'Map',
+          // babel transform
+          'Object.assign',
+        ],
+      },
+      rules: {
+        'compat/compat': 'error',
+      },
+    },
+  ],
 };
