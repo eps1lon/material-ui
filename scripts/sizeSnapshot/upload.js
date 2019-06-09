@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
 const aws = require('aws-sdk');
+const fse = require('fs-extra');
+const path = require('path');
+
+const workspaceRoot = path.join(__dirname, '../../');
+const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
 
 async function main() {
-  const s3 = new aws.S3();
-
   function uploadArtifact(artifact, options) {
     return new Promise(async (resolve, reject) => {
+      const s3 = new aws.S3();
+
       s3.upload(
         {
           ...options,
@@ -23,42 +28,22 @@ async function main() {
     });
   }
 
-  console.log(process.env);
+  const branch = process.env.BUILD_SOURCEBRANCHNAME;
 
-  const branch = process.env.BUILD_SOURCEBRANCH;
+  const snapshot = await fse.readJSON(snapshotDestPath);
 
-  return
-
-  if (branch.startsWith('pull/')) {
-    return {
-      statusCode: 403,
-      body: JSON.stringify('size snapshots are only permitted for non-fork pushes'),
+  function upload(revision) {
+    const uploadOptions = {
+      Bucket: 'eps1lon-material-ui',
+      Key: `artifacts/${branch}/${revision}/size-snapshot.json`,
     };
+    return uploadArtifact(snapshot, uploadOptions);
   }
 
-  try {
-    function upload(revision) {
-      const uploadOptions = {
-        Bucket: 'eps1lon-material-ui',
-        Key: `artifacts/${build.branch}/${revision}/size-snapshot.json`,
-      };
-      return uploadArtifact(snapshotArtifact, uploadOptions);
-    }
-
-    // save snapshot under the commit id as well as imitating a symlink `latest`
-    // to the commit id
-    const [uploaded] = await Promise.all([upload(build.vcs_revision), upload('latest')]);
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(uploaded.Location),
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      statusCode: 500,
-    };
-  }
+  // save snapshot under the commit id as well as imitating a symlink `latest`
+  // to the commit id
+  const [uploaded] = await Promise.all([upload(process.env.BUILD_SOURCEVERSION), upload('latest')]);
+  console.log(uploaded);
 }
 
 main().catch(error => {
