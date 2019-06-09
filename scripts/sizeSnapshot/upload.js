@@ -30,7 +30,7 @@ async function main() {
 
   const branch = process.env.BUILD_SOURCEBRANCHNAME;
 
-  const snapshot = await fse.readJSON(snapshotDestPath);
+  const snapshot = {}; // await fse.readJSON(snapshotDestPath);
 
   function upload(revision) {
     const uploadOptions = {
