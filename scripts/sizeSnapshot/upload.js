@@ -24,23 +24,17 @@ async function main() {
   }
 
   console.log(process.env);
-  /* 
-  const branch = process.
 
-  let build;
-  try {
-    build = await loadBuild(desiredBuild);
-  } catch (err) {
-    return { statusCode: 404, body: JSON.stringify(String(err)) };
-  }
+  const branch = process.env.BUILD_SOURCEBRANCH;
 
-  if (build.branch.startsWith('pull/')) {
+  return
+
+  if (branch.startsWith('pull/')) {
     return {
       statusCode: 403,
       body: JSON.stringify('size snapshots are only permitted for non-fork pushes'),
     };
   }
-
 
   try {
     function upload(revision) {
@@ -64,7 +58,7 @@ async function main() {
     return {
       statusCode: 500,
     };
-  } */
+  }
 }
 
 main().catch(error => {
