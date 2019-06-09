@@ -60,4 +60,4 @@ steps:
     displayName: 'run danger on PRs'
     condition: eq(variables['Build.Reason'], 'PullRequest')
     env:
-      GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
+      DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
