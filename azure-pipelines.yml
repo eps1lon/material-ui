@@ -16,5 +16,5 @@ steps:
     displayName: 'install dependencies'
 
   - script: |
-      node scripts/sizeSnapshot/upload $(variables['AWS_ACCESS_KEY_ID'])
+      node scripts/sizeSnapshot/upload
     displayName: 'persist size snapshot'

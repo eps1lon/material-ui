@@ -29,7 +29,8 @@ async function main() {
   }
 
   console.log(process.argv);
-  console.log(process.env);
+  console.log(Boolean(process.env.AWS_SECRET_ACCESS_KEY));
+  console.log(Boolean(process.env.GITHUB_API_TOKEN));
 
   const branch = process.env.BUILD_SOURCEBRANCHNAME;
 
