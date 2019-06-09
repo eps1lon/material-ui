@@ -27,7 +27,10 @@ module.exports = async function loadComparison(parrentId, ref) {
   const [currentSnapshot, previousSnapshot] = await Promise.all([
     loadCurrentSnapshot(),
     // silence non existing snapshots
-    loadSnapshot(parrentId, ref).catch(() => ({})),
+    loadSnapshot(parrentId, ref).catch(error => {
+      console.warning(error);
+      return {};
+    }),
   ]);
 
   const bundleKeys = Object.keys({ ...currentSnapshot, ...previousSnapshot });

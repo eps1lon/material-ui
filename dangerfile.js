@@ -120,6 +120,8 @@ async function run() {
 
   const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
 
+  markdown(upstreamRef);
+
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
   const results = Object.entries(comparison.bundles);
   const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
