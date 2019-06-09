@@ -28,8 +28,7 @@ async function main() {
     });
   }
 
-  console.log(process.env);
-  const branch = process.env.BUILD_SOURCEBRANCHNAME;
+  const branch = process.env.BUILD_SOURCEBRANCHNAME.replace(/^refs\/head\//, '');
 
   const snapshot = {}; // await fse.readJSON(snapshotDestPath);
 
