@@ -28,6 +28,9 @@ async function main() {
     });
   }
 
+  console.log(process.argv);
+  console.log(process.env);
+
   const branch = process.env.BUILD_SOURCEBRANCHNAME;
 
   const snapshot = {}; // await fse.readJSON(snapshotDestPath);
