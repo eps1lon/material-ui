@@ -2,14 +2,14 @@ import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 
 function clientRender(element, options = {}) {
-  const { disableUnnmount = false, strict } = options;
+  const { container, disableUnnmount = false, strict } = options;
 
   if (!disableUnnmount) {
     cleanup();
   }
 
   const Mode = strict ? React.StrictMode : React.Fragment;
-  const result = render(element, { wrapper: Mode });
+  const result = render(element, { container, wrapper: Mode });
 
   /**
    * convenience helper. Better than repeating all props.
@@ -23,12 +23,16 @@ function clientRender(element, options = {}) {
 }
 
 export function createClientRender(globalOptions = {}) {
+  const container = document.createElement('div');
+  container.className = 'rtl-container';
+  window.document.body.insertBefore(container, window.document.body.firstChild);
+
   const { strict: globalStrict } = globalOptions;
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, strict });
+    return clientRender(element, { ...localOptions, container, strict });
   };
 }
 
