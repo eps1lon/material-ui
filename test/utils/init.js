@@ -5,6 +5,7 @@ import consoleError from './consoleError';
 import { useIsSsr } from '@material-ui/core/test-utils/RenderMode';
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import chaiSinon from 'sinon-chai';
 import { prettyDOM } from '@testing-library/react';
 
 chai.use(chaiDom);
@@ -21,6 +22,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 });
+chai.use(chaiSinon);
 
 consoleError();
 

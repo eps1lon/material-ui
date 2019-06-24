@@ -1,19 +1,22 @@
 import React from 'react';
-import { assert } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { assert, expect } from 'chai';
+import { match, spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Snackbar from './Snackbar';
 import Grow from '../Grow';
 
 describe('<Snackbar />', () => {
   let mount;
+  let render;
   let classes;
 
   before(() => {
     classes = getClasses(<Snackbar open />);
     // StrictModeViolation: uses #simulate
     mount = createMount({ strict: false });
+    render = createClientRender({ strict: true });
   });
 
   after(() => {
@@ -31,13 +34,12 @@ describe('<Snackbar />', () => {
   describe('prop: onClose', () => {
     it('should be call when clicking away', () => {
       const handleClose = spy();
-      mount(<Snackbar open onClose={handleClose} message="message" />);
+      render(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
-      window.document.body.dispatchEvent(event);
+      fireEvent.click(document.body)
 
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [event, 'clickaway']);
+      expect(handleClose).to.have.been.calledOnce;
+      expect(handleClose.firstCall.args[1]).to.equal('clickaway')
     });
   });
 
@@ -53,46 +55,62 @@ describe('<Snackbar />', () => {
     });
 
     it('should support synchronous onExited callback', () => {
-      const messageCount = 2;
-      let wrapper;
+      const hideDuration = 250;
+      const transitionDuration = hideDuration / 2;
       const handleCloseSpy = spy();
-      const handleClose = () => {
-        wrapper.setProps({ open: false });
-        handleCloseSpy();
-      };
       const handleExitedSpy = spy();
-      const handleExited = () => {
-        handleExitedSpy();
-        if (handleExitedSpy.callCount < messageCount) {
-          wrapper.setProps({ open: true });
+
+      const Test = React.forwardRef(function Test(props, ref) {
+        const [open, setOpen] = React.useState(false);
+
+        React.useImperativeHandle(ref, () => ({ doOpen: () => setOpen(true) }), []);
+
+        function handleClose() {
+          setOpen(false)
+          handleCloseSpy();
         }
-      };
-      const duration = 250;
-      wrapper = mount(
-        <Snackbar
-          open={false}
+
+        function handleExited() {
+          handleExitedSpy();
+          setOpen(true);
+        }
+
+        return <Snackbar
+          open={open}
           onClose={handleClose}
           onExited={handleExited}
           message="message"
-          autoHideDuration={duration}
-          transitionDuration={duration / 2}
-        />,
-      );
-      assert.strictEqual(handleCloseSpy.callCount, 0);
-      assert.strictEqual(handleExitedSpy.callCount, 0);
-      wrapper.setProps({ open: true });
-      clock.tick(duration);
-      assert.strictEqual(handleCloseSpy.callCount, 1);
-      assert.strictEqual(handleExitedSpy.callCount, 0);
-      clock.tick(duration / 2);
-      assert.strictEqual(handleCloseSpy.callCount, 1);
-      assert.strictEqual(handleExitedSpy.callCount, 1);
-      clock.tick(duration);
-      assert.strictEqual(handleCloseSpy.callCount, messageCount);
-      assert.strictEqual(handleExitedSpy.callCount, 1);
-      clock.tick(duration / 2);
-      assert.strictEqual(handleCloseSpy.callCount, messageCount);
-      assert.strictEqual(handleExitedSpy.callCount, messageCount);
+          autoHideDuration={hideDuration}
+          transitionDuration={transitionDuration}
+        />
+      })
+
+      const imperativeRef = React.createRef();
+      render(<Test ref={imperativeRef} />);
+
+      expect(handleCloseSpy).not.to.have.been.called;
+      expect(handleExitedSpy).not.to.have.been.called;
+
+      imperativeRef.current.doOpen()
+      clock.tick(hideDuration);
+
+      expect(handleCloseSpy).to.have.been.calledOnce;
+      expect(handleExitedSpy).not.to.have.been.called;
+
+      clock.tick(transitionDuration);
+
+      expect(handleCloseSpy).to.have.been.calledOnce;
+      expect(handleExitedSpy).to.have.been.calledOnce;
+
+      clock.tick(hideDuration);
+
+      expect(handleCloseSpy).to.have.been.calledTwice;
+      expect(handleExitedSpy).to.have.been.calledOnce;
+
+      clock.tick(transitionDuration);
+
+      expect(handleCloseSpy).to.have.been.calledTwice;
+      expect(handleExitedSpy).to.have.been.calledTwice;
     });
   });
 
@@ -110,7 +128,7 @@ describe('<Snackbar />', () => {
     it('should call onClose when the timer is done', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      const wrapper = mount(
+      const { setProps } = render(
         <Snackbar
           open={false}
           onClose={handleClose}
@@ -119,17 +137,17 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      wrapper.setProps({ open: true });
-      assert.strictEqual(handleClose.callCount, 0);
+      setProps({ open: true });
+      expect(handleClose).not.to.have.been.called;
+
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose).to.have.been.calledOnceWith(null, 'timeout')
     });
 
     it('should not call onClose when the autoHideDuration is reset', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      const wrapper = mount(
+      const { setProps } = render(
         <Snackbar
           open={false}
           onClose={handleClose}
@@ -138,12 +156,13 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      wrapper.setProps({ open: true });
-      assert.strictEqual(handleClose.callCount, 0);
+      setProps({ open: true });
+      expect(handleClose).not.to.have.been.called;
+
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({ autoHideDuration: undefined });
+      setProps({ autoHideDuration: undefined });
       clock.tick(autoHideDuration / 2);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose).not.to.have.been.called;
     });
 
     it('should be able to interrupt the timer', () => {
@@ -151,7 +170,7 @@ describe('<Snackbar />', () => {
       const handleMouseLeave = spy();
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      const wrapper = mount(
+      const { getByTestId } = render(
         <Snackbar
           open
           onMouseEnter={handleMouseEnter}
@@ -159,20 +178,27 @@ describe('<Snackbar />', () => {
           onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
+          data-testid="snackbar"
         />,
       );
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose).not.to.have.been.called;
+
       clock.tick(autoHideDuration / 2);
-      wrapper.simulate('mouseEnter');
-      assert.strictEqual(handleMouseEnter.callCount, 1, 'should trigger mouse enter callback');
+      // can't fire it on the actual text message since it doesn't bubble
+      // according to the DOM spec a mouseEnter is fired for each container separately which
+      // is why we need to get the container instead of getByText
+      fireEvent.mouseEnter(getByTestId('snackbar'))
+      expect(handleMouseEnter).to.have.been.calledOnce;
+
       clock.tick(autoHideDuration / 2);
-      wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleMouseLeave.callCount, 1, 'should trigger mouse leave callback');
-      assert.strictEqual(handleClose.callCount, 0);
+      // see mouseEnter target
+      fireEvent.mouseLeave(getByTestId('snackbar'))
+      expect(handleMouseLeave).to.have.been.calledOnce;
+      expect(handleClose).not.to.have.been.called;
+
       clock.tick(2e3);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose).to.have.been.calledOnceWith(null, 'timeout')
     });
 
     it('should not call onClose if autoHideDuration is undefined', () => {
