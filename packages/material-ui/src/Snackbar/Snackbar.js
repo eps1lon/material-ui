@@ -177,6 +177,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const handleMouseEnter = event => {
+    console.log('mousenter')
     if (onMouseEnter) {
       onMouseEnter(event);
     }

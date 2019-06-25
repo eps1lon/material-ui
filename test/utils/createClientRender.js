@@ -1,11 +1,13 @@
 import React from 'react';
-import { cleanup, render } from '@testing-library/react';
+import { act,cleanup, render } from '@testing-library/react';
 
 function clientRender(element, options = {}) {
   const { container, disableUnnmount = false, strict } = options;
 
   if (!disableUnnmount) {
-    cleanup();
+    act(() => {
+      cleanup();
+    })
   }
 
   const Mode = strict ? React.StrictMode : React.Fragment;

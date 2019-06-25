@@ -144,7 +144,7 @@ describe('<Snackbar />', () => {
       expect(handleClose).to.have.been.calledOnceWith(null, 'timeout')
     });
 
-    it('should not call onClose when the autoHideDuration is reset', () => {
+    it.only('should not call onClose when the autoHideDuration is reset', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
       const { setProps } = render(
@@ -156,21 +156,21 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      setProps({ open: true });
+      /* setProps({ open: true });
       expect(handleClose).not.to.have.been.called;
 
       clock.tick(autoHideDuration / 2);
       setProps({ autoHideDuration: undefined });
       clock.tick(autoHideDuration / 2);
-      expect(handleClose).not.to.have.been.called;
+      expect(handleClose).not.to.have.been.called; */
     });
 
-    it('should be able to interrupt the timer', () => {
+    it.only('should be able to interrupt the timer', () => {
       const handleMouseEnter = spy();
       const handleMouseLeave = spy();
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      const { getByTestId } = render(
+      const { debug, getByTestId } = render(
         <Snackbar
           open
           onMouseEnter={handleMouseEnter}
@@ -188,7 +188,7 @@ describe('<Snackbar />', () => {
       // can't fire it on the actual text message since it doesn't bubble
       // according to the DOM spec a mouseEnter is fired for each container separately which
       // is why we need to get the container instead of getByText
-      fireEvent.mouseEnter(getByTestId('snackbar'))
+      fireEvent.mouseEnter(getByTestId('snackbar'));
       expect(handleMouseEnter).to.have.been.calledOnce;
 
       clock.tick(autoHideDuration / 2);
