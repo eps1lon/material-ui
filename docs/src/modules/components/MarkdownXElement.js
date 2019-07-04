@@ -6,7 +6,7 @@ import marked from 'marked';
 import { withStyles } from '@material-ui/core/styles';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import prism from 'docs/src/modules/components/prism';
-import { MDXProvider } from '@mdx-js/react'
+import { MDXProvider } from '@mdx-js/react';
 
 function highlight(code, language) {
   let prismLanguage;
@@ -47,15 +47,19 @@ function highlight(code, language) {
 function Code({ children, className, ...other }) {
   const language = className.replace(/language-/, '');
 
-  return <pre {...other}><code className={className} dangerouslySetInnerHTML={{ __html: highlight(children, language) }}></code></pre>
+  return (
+    <pre {...other}>
+      <code
+        className={className}
+        dangerouslySetInnerHTML={{ __html: highlight(children, language) }}
+      />
+    </pre>
+  );
 }
-
-
-
 
 const mdxComponents = {
-  code: Code
-}
+  code: Code,
+};
 
 // Monkey patch to preserve non-breaking spaces
 // https://github.com/chjj/marked/blob/6b0416d10910702f73da9cb6bb3d4c8dcb7dead7/lib/marked.js#L142-L150
@@ -109,7 +113,6 @@ renderer.link = (href, title, text) => {
 
   return `<a href="${finalHref}"${more}>${text}</a>`;
 };
-
 
 const styles = theme => ({
   root: {
@@ -311,12 +314,8 @@ function MarkdownElement(props) {
 
   return (
     <MDXProvider components={mdxComponents}>
-      <div
-        className={clsx(classes.root, 'markdown-body', className)}
-        {...other}
-      />
+      <div className={clsx(classes.root, 'markdown-body', className)} {...other} />
     </MDXProvider>
-
   );
   /* eslint-enable */
 }

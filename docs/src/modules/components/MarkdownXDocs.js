@@ -120,12 +120,12 @@ function MarkdownXDocs(props) {
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
-  const currentPageNum = 1 // pageList.findIndex(page => page.pathname === activePage.pathname);
+  const currentPageNum = 1; // pageList.findIndex(page => page.pathname === activePage.pathname);
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
 
-  const headers = {title: 'test',description: 'test'} // getHeaders(markdown);
+  const headers = { title: 'test', description: 'test' }; // getHeaders(markdown);
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_UNIQUE__ = {};
 
@@ -154,43 +154,42 @@ function MarkdownXDocs(props) {
         <MarkdownXElement {...other} />
         <footer className={classes.footer}>
           {currentPage.displayNav === false ||
-            (nextPage.displayNav === false && !prevPage) ? null : (
-              <React.Fragment>
-                <Divider />
-                <div className={classes.pagination}>
-                  {prevPage ? (
-                    <Button
-                      component={Link}
-                      naked
-                      href={prevPage.pathname}
-                      size="large"
-                      className={classes.pageLinkButton}
-                    >
-                      <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
-                      {pageToTitleI18n(prevPage, t)}
-                    </Button>
-                  ) : (
-                      <div />
-                    )}
-                  {nextPage.displayNav === false ? null : (
-                    <Button
-                      component={Link}
-                      naked
-                      href={nextPage.pathname}
-                      size="large"
-                      className={classes.pageLinkButton}
-                    >
-                      {pageToTitleI18n(nextPage, t)}
-                      <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
-                    </Button>
-                  )}
-                </div>
-              </React.Fragment>
-            )}
+          (nextPage.displayNav === false && !prevPage) ? null : (
+            <React.Fragment>
+              <Divider />
+              <div className={classes.pagination}>
+                {prevPage ? (
+                  <Button
+                    component={Link}
+                    naked
+                    href={prevPage.pathname}
+                    size="large"
+                    className={classes.pageLinkButton}
+                  >
+                    <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
+                    {pageToTitleI18n(prevPage, t)}
+                  </Button>
+                ) : (
+                  <div />
+                )}
+                {nextPage.displayNav === false ? null : (
+                  <Button
+                    component={Link}
+                    naked
+                    href={nextPage.pathname}
+                    size="large"
+                    className={classes.pageLinkButton}
+                  >
+                    {pageToTitleI18n(nextPage, t)}
+                    <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
+                  </Button>
+                )}
+              </div>
+            </React.Fragment>
+          )}
         </footer>
       </AppContent>
     </AppFrame>
-
   );
 }
 

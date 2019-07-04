@@ -10,9 +10,11 @@ module.exports = function loadDemos(src) {
     const js = `require('${jsPath}').default`;
     const tsx = hasTSVersion ? `require('${tsPath}').default` : undefined;
     const raw = fs.readFileSync(require.resolve(jsPath), { encoding: 'utf8' });
-    const rawTS = hasTSVersion ? fs.readFileSync(require.resolve(tsPath), { encoding: 'utf8' }) : undefined;
+    const rawTS = hasTSVersion
+      ? fs.readFileSync(require.resolve(tsPath), { encoding: 'utf8' })
+      : undefined;
     const githubLocation = '';
 
     return `<MarkdownXDemo demo="${demo}" githubLocation="${githubLocation}" js={${js}} raw={${JSON.stringify(raw)}} tsx={${tsx}} rawTS={${JSON.stringify(rawTS)}}`;
   });
-}
+};
