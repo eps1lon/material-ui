@@ -55,6 +55,14 @@ module.exports = withTypescript({
             test: /\.(css|md)$/,
             loader: 'raw-loader',
           },
+          {
+            test: /\.mdx$/,
+            use: [
+              options.defaultLoaders.babel,
+              '@mdx-js/loader',
+              require.resolve('./docs/demo-loader')
+            ]
+          }
         ]),
       }),
     });
@@ -101,4 +109,5 @@ module.exports = withTypescript({
     // Number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 3, // default 2
   },
+  pageExtensions: ['jsx', 'mdx']
 });
