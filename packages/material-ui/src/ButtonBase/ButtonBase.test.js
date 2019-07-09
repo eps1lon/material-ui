@@ -8,7 +8,7 @@ import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, cleanup, createClientRender, fireEvent, prettyDOM } from 'test/utils/createClientRender';
 import * as PropTypes from 'prop-types';
 
 /**
@@ -59,7 +59,6 @@ describe('<ButtonBase />', () => {
 
   after(() => {
     cleanup();
-    mount.cleanUp();
   });
 
   describeConformance(<ButtonBase />, () => ({
@@ -68,6 +67,7 @@ describe('<ButtonBase />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
+    after: () => mount.cleanUp()
   }));
 
   describe('root node', () => {

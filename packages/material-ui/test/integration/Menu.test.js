@@ -10,7 +10,7 @@ import { setRef } from '../../src/utils/reactHelpers';
 import { stub } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { cleanup, render, fireEvent } from 'test/utils/createClientRender';
+import { cleanup, createClientRender, render, fireEvent } from 'test/utils/createClientRender';
 
 describe('<Menu> integration', () => {
   describe('Using mount', () => {
