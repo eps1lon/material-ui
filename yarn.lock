@@ -3226,9 +3226,9 @@ autosuggest-highlight@^3.1.1:
     diacritic "0.0.2"
 
 aws-sdk@^2.471.0:
-  version "2.471.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.471.0.tgz#08d9ad6fe7216ee4c7c4ea99d7e66b33d9e07930"
-  integrity sha512-c7e1939Nep03xLyN+qV1uzzotxYVqtcj+5x87C1s3qOPSG7aSVIbtJfcu4RUdtsKty5qUef6muJ6ohNMRYrW6g==
+  version "2.495.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.495.0.tgz#0b0ad8fcf581cb7bb858864fab88d461f0e67677"
+  integrity sha512-KG2nqF3biiAliMJpbavM0tLGzhcLkgJMHQ/q84+Wi5kc6+mjPSbtnctWYnvAFwoRiiygx82FA4Fx5ShnHOqinw==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -3462,8 +3462,7 @@ babel-plugin-transform-react-remove-prop-types@^0.4.21:
   integrity sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
 
 "babel-plugin-unwrap-createStyles@link:packages/babel-plugin-unwrap-createStyles":
-  version "0.0.0"
-  uid ""
+  version "4.1.0"
 
 babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
@@ -6067,8 +6066,9 @@ eslint-plugin-jsx-a11y@^6.0.3:
     jsx-ast-utils "^2.0.1"
 
 "eslint-plugin-material-ui@link:packages/eslint-plugin-material-ui":
-  version "0.0.0"
-  uid ""
+  version "4.0.0"
+  dependencies:
+    emoji-regex "^8.0.0"
 
 eslint-plugin-mocha@^5.0.0:
   version "5.3.0"
