@@ -51,7 +51,7 @@
     "jss-plugin-default-unit": "10.0.0-alpha.17",
     "jss-plugin-global": "10.0.0-alpha.17",
     "jss-plugin-nested": "10.0.0-alpha.17",
-    "jss-plugin-props-sort": "10.0.0-alpha.17",
+    "jss-plugin-props-sort": "10.0.0-alpha.23",
     "jss-plugin-rule-value-function": "10.0.0-alpha.17",
     "jss-plugin-vendor-prefixer": "10.0.0-alpha.17",
     "prop-types": "^15.7.2",
