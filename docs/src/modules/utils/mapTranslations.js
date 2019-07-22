@@ -1,8 +1,8 @@
 export default function mapTranslations(req, ext) {
   const translations = {};
   function load(filename) {
-  // .md is required by raw-loader which uses ES6 modules
-  const esModuleRequire = ext === 'md';
+    // .md is required by raw-loader which uses ES6 modules
+    const esModuleRequire = ext === 'md';
     if (esModuleRequire) {
       return req(filename).default;
     }
