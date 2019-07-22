@@ -48,7 +48,7 @@
     "hoist-non-react-statics": "^3.2.1",
     "jss": "10.0.0-alpha.17",
     "jss-plugin-camel-case": "10.0.0-alpha.17",
-    "jss-plugin-default-unit": "10.0.0-alpha.17",
+    "jss-plugin-default-unit": "10.0.0-alpha.23",
     "jss-plugin-global": "10.0.0-alpha.17",
     "jss-plugin-nested": "10.0.0-alpha.17",
     "jss-plugin-props-sort": "10.0.0-alpha.17",
