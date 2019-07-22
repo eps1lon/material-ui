@@ -974,7 +974,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.6.tgz#004b98298d04c7ca3b4f50ca2035d4f60d2eed1b"
   integrity sha512-h4t4jFjtm1YV7UirAFuSuFGyLa+NNxjdkq6DpFLANNQY5rHueFZHVY+8Cu1HYVP6DrheB0kv4m5xPjo7eKT7yQ==
 
-"@emotion/serialize@^0.11.8":
+"@emotion/serialize@^0.11.6", "@emotion/serialize@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@emotion/serialize/-/serialize-0.11.8.tgz#e41dcf7029e45286a3e0cf922933e670fe05402c"
   integrity sha512-Qb6Us2Yk1ZW8SOYH6s5z7qzXXb2iHwVeqc6FjXtac0vvxC416ki0eTtHNw4Q5smoyxdyZh3519NKGrQvvvrZ/Q==
