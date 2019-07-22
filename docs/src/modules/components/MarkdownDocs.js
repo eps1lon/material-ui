@@ -127,9 +127,9 @@ function MarkdownDocs(props) {
         const match = filename.match(/-([a-z]{2})\.md$/);
 
         if (match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1) {
-          markdowns[match[1]] = req(filename).default;
+          markdowns[match[1]] = req(filename);
         } else {
-          markdowns.en = req(filename).default;
+          markdowns.en = req(filename);
         }
       } else if (filename.indexOf('.tsx') !== -1) {
         const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '').replace(/\.tsx/g, '.js')}`;
@@ -137,7 +137,7 @@ function MarkdownDocs(props) {
         demos[demoName] = {
           ...demos[demoName],
           tsx: req(filename).default,
-          rawTS: reqSource(filename).default,
+          rawTS: reqSource(filename),
         };
       } else {
         const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '')}`;
@@ -145,7 +145,7 @@ function MarkdownDocs(props) {
         demos[demoName] = {
           ...demos[demoName],
           js: req(filename).default,
-          raw: reqSource(filename).default,
+          raw: reqSource(filename),
         };
       }
     });
