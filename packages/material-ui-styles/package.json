@@ -46,7 +46,7 @@
     "csstype": "^2.5.2",
     "deepmerge": "^4.0.0",
     "hoist-non-react-statics": "^3.2.1",
-    "jss": "10.0.0-alpha.17",
+    "jss": "10.0.0-alpha.23",
     "jss-plugin-camel-case": "10.0.0-alpha.17",
     "jss-plugin-default-unit": "10.0.0-alpha.17",
     "jss-plugin-global": "10.0.0-alpha.17",
