@@ -24,7 +24,7 @@ type BoxStyleFunction = ComposedStyleFunction<
     typeof shadows,
     typeof sizing,
     typeof spacing,
-    typeof typography
+    typeof typography,
   ]
 >;
 
