@@ -1,0 +1,2 @@
+networkTimeout: 150000
+yarnPath: '.yarn/releases/yarn-berry.js'
