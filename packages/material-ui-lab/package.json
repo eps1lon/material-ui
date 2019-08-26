@@ -1,7 +1,6 @@
 {
   "name": "@material-ui/lab",
   "version": "4.0.0-alpha.24",
-  "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
   "main": "./src/index.js",
@@ -45,7 +44,6 @@
     "prop-types": "^15.7.2",
     "warning": "^4.0.3"
   },
-  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

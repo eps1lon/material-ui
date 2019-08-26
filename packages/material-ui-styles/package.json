@@ -1,7 +1,6 @@
 {
   "name": "@material-ui/styles",
   "version": "4.3.3",
-  "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
   "main": "./src/index.js",

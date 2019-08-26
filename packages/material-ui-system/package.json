@@ -1,7 +1,6 @@
 {
   "name": "@material-ui/system",
   "version": "4.3.3",
-  "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
   "main": "./src/index.js",
@@ -43,7 +42,6 @@
     "prop-types": "^15.7.2",
     "warning": "^4.0.1"
   },
-  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
