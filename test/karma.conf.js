@@ -1,3 +1,4 @@
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 const webpack = require('webpack');
 
 const browserStack = {
@@ -61,7 +62,7 @@ module.exports = function setKarmaConfig(config) {
         rules: [
           {
             test: /\.js$/,
-            loader: require.resolve('babel-loader'),
+            loader: 'babel-loader',
             exclude: /node_modules(\\|\/)(?!(@testing-library\/react)(\\|\/)).*/,
           },
         ],
@@ -76,6 +77,10 @@ module.exports = function setKarmaConfig(config) {
           // use the cdn main field. Neither module nor main are supported for browserbuilds
           sinon: 'sinon/pkg/sinon.js',
         },
+        plugins: [PnpWebpackPlugin],
+      },
+      resolveLoader: {
+        plugins: [PnpWebpackPlugin.moduleLoader(module)],
       },
     },
     webpackServer: {

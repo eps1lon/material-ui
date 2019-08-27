@@ -1,0 +1,34 @@
+{
+  "name": "test",
+  "private": true,
+  "scripts": {
+    "test:run": "cd ../ && cross-env NODE_ENV=test mocha"
+  },
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@babel/runtime": "^7.4.4",
+    "@testing-library/react": "^9.1.3",
+    "@types/enzyme": "^3.10.3",
+    "chai": "^4.1.2",
+    "chai-dom": "^1.8.1",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "karma": "^4.2.0",
+    "karma-browserstack-launcher": "^1.3.0",
+    "karma-chrome-launcher": "^3.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^4.0.2",
+    "mocha": "^6.2.0",
+    "pnp-webpack-plugin": "^1.5.0",
+    "puppeteer": "^1.19.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "sinon": "^7.0.0",
+    "vrtest": "^0.2.0",
+    "webpack": "^4.28.4"
+  }
+}
