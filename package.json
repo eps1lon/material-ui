@@ -6,18 +6,8 @@
     "deduplicate": "node scripts/deduplicate.js",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
     "docs:api": "rimraf ./docs/pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./docs/pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./docs/pages/api",
-    "docs:build": "yarn workspace docs build",
-    "docs:build-sw": "yarn workspace docs build-sw",
-    "docs:deploy": "yarn workspace docs deploy",
-    "docs:dev": "yarn workspace docs dev",
-    "docs:export": "yarn workspace docs export",
-    "docs:icons": "yarn workspace docs icons",
     "docs:size-why": "cross-env DOCS_STATS_ENABLED=true yarn docs:build",
-    "docs:start": "yarn workspace docs icons",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
-    "docs:typescript": "yarn workspace docs typescript:transpile:dev",
-    "docs:typescript:check": "yarn workspace docs typescript",
-    "docs:typescript:formatted": "yarn workspace docs typescript:transpile",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache --report-unused-disable-directives",
@@ -164,5 +154,22 @@
   "workspaces": [
     "packages/*",
     "docs"
-  ]
+  ],
+  "dependenciesMeta": {
+    "next": {
+      "unplugged": true
+    },
+    "next-server": {
+      "unplugged": true
+    },
+    "react": {
+      "unplugged": true
+    },
+    "react-dom": {
+      "unplugged": true
+    },
+    "webpack": {
+      "unplugged": true
+    }
+  }
 }

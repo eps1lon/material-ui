@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const withTypescript = require('@zeit/next-typescript');
 const pkg = require('../package.json');
@@ -30,8 +31,11 @@ module.exports = withTypescript({
       );
     }
 
-    config.resolve.alias['react-dom$'] = 'react-dom/profiling';
-    config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
+    config.resolve.alias['react-dom$'] = require.resolve('react-dom/profiling');
+    config.resolve.alias['scheduler/tracing'] = require.resolve('scheduler/tracing-profiling');
+
+    config.resolve.plugins = [PnpWebpackPlugin];
+    config.resolveLoader.plugins = [PnpWebpackPlugin.moduleLoader(module)];
 
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
