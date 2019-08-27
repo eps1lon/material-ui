@@ -231,6 +231,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
       198,
       195,
       192,
+      191,
       189,
       186,
       183,
@@ -406,7 +407,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["fs-extra", "npm:8.1.0"],
             ["glob", "npm:7.1.4"],
             ["glob-gitignore", "npm:1.0.14"],
-            ["jsdom", "npm:15.1.1"],
             ["jsonlint", "npm:1.6.3"],
             ["lerna", "npm:3.16.4"],
             ["nyc", "npm:14.1.1"],
@@ -3984,9 +3984,11 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@material-ui/types", "workspace:packages/material-ui-types"],
             ["@material-ui/utils", "virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-utils"],
             ["@types/react-transition-group", "npm:4.2.2"],
+            ["chai", "npm:4.2.0"],
             ["clsx", "npm:1.0.4"],
             ["convert-css-length", "npm:2.0.1"],
             ["deepmerge", "npm:4.0.0"],
+            ["enzyme", "npm:3.10.0"],
             ["hoist-non-react-statics", "npm:3.3.0"],
             ["is-plain-object", "npm:3.0.0"],
             ["normalize-scroll-left", "npm:0.2.0"],
@@ -3994,6 +3996,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.9.0"],
             ["react-dom", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:16.9.0"],
+            ["react-test-renderer", "virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:16.9.0"],
             ["react-transition-group", "virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:4.2.2"],
             ["test", "workspace:test"],
             ["warning", "npm:4.0.3"]
@@ -4009,16 +4012,19 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@material-ui/types", "workspace:packages/material-ui-types"],
             ["@material-ui/utils", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-utils"],
             ["@types/react-transition-group", "npm:4.2.2"],
+            ["chai", "npm:4.2.0"],
             ["clsx", "npm:1.0.4"],
             ["convert-css-length", "npm:2.0.1"],
             ["deepmerge", "npm:4.0.0"],
+            ["enzyme", "npm:3.10.0"],
             ["hoist-non-react-statics", "npm:3.3.0"],
             ["is-plain-object", "npm:3.0.0"],
             ["normalize-scroll-left", "npm:0.2.0"],
             ["popper.js", "npm:1.15.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
+            ["react-test-renderer", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:16.9.0"],
             ["react-transition-group", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:4.2.2"],
             ["test", "workspace:test"],
             ["warning", "npm:4.0.3"]
@@ -4179,8 +4185,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["jss-plugin-rule-value-function", "npm:10.0.0-alpha.24"],
             ["jss-plugin-vendor-prefixer", "npm:10.0.0-alpha.24"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }],
@@ -4271,8 +4277,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["deepmerge", "npm:4.0.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }],
@@ -4373,8 +4379,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@material-ui/utils", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-utils"],
             ["@babel/runtime", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -4428,8 +4434,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@material-ui/utils", "virtual:afd4faf8e6818bb2793d0c50d5108012d47e0741b1240a64e3b66317db833695fc32e1e85a6650c415af6df7c775281de67ef988ff1ddaa00da755db1496c722#workspace:packages/material-ui-utils"],
             ["@babel/runtime", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -18134,6 +18140,28 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["scheduler", "npm:0.15.0"]
           ]
         }],
+        ["virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:16.9.0", {
+          "packageLocation": "./.yarn/virtual/react-test-renderer-virtual-2fa67285cc/0/cache/react-test-renderer-npm-16.9.0-ad0b4195ca.zip/node_modules/react-test-renderer/",
+          "packageDependencies": [
+            ["react-test-renderer", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:16.9.0"],
+            ["object-assign", "npm:4.1.1"],
+            ["prop-types", "npm:15.7.2"],
+            ["react", "npm:16.9.0"],
+            ["react-is", "npm:16.9.0"],
+            ["scheduler", "npm:0.15.0"]
+          ]
+        }],
+        ["virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:16.9.0", {
+          "packageLocation": "./.yarn/virtual/react-test-renderer-virtual-bc5a256e52/0/virtual/react-test-renderer-virtual-2fa67285cc/0/cache/react-test-renderer-npm-16.9.0-ad0b4195ca.zip/node_modules/react-test-renderer/",
+          "packageDependencies": [
+            ["react-test-renderer", "virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:16.9.0"],
+            ["object-assign", "npm:4.1.1"],
+            ["prop-types", "npm:15.7.2"],
+            ["react", "npm:16.9.0"],
+            ["react-is", "npm:16.9.0"],
+            ["scheduler", "npm:0.15.0"]
+          ]
+        }],
         ["virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:16.9.0", {
           "packageLocation": "./.yarn/virtual/react-test-renderer-virtual-5d15f771f8/0/cache/react-test-renderer-npm-16.9.0-ad0b4195ca.zip/node_modules/react-test-renderer/",
           "packageDependencies": [
@@ -18210,8 +18238,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["dom-helpers", "npm:3.4.0"],
             ["loose-envify", "npm:1.4.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null]
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"]
           ]
         }],
         ["virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:4.2.2", {
@@ -19201,7 +19229,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["fs-extra", "npm:8.1.0"],
             ["glob", "npm:7.1.4"],
             ["glob-gitignore", "npm:1.0.14"],
-            ["jsdom", "npm:15.1.1"],
             ["jsonlint", "npm:1.6.3"],
             ["lerna", "npm:3.16.4"],
             ["nyc", "npm:14.1.1"],
@@ -20639,6 +20666,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["cross-env", "npm:5.2.0"],
             ["enzyme", "npm:3.10.0"],
             ["enzyme-adapter-react-16", "virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:1.14.0"],
+            ["jsdom", "npm:15.1.1"],
             ["karma", "npm:4.2.0"],
             ["karma-browserstack-launcher", "virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:1.5.1"],
             ["karma-chrome-launcher", "npm:3.1.0"],

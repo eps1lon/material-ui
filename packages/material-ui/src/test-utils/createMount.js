@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
 
@@ -44,7 +44,7 @@ export default function createMount(options = {}) {
     const { disableUnnmount = false, strict = globalStrict, ...localEnzymeOptions } = localOptions;
 
     if (!disableUnnmount) {
-      ReactDOM.unmountComponentAtNode(attachTo);
+      //ReactDOM.unmountComponentAtNode(attachTo);
     }
 
     // some tests require that no other components are in the tree
@@ -58,7 +58,7 @@ export default function createMount(options = {}) {
 
   mountWithContext.attachTo = attachTo;
   mountWithContext.cleanUp = () => {
-    ReactDOM.unmountComponentAtNode(attachTo);
+    //ReactDOM.unmountComponentAtNode(attachTo);
     attachTo.parentNode.removeChild(attachTo);
   };
 

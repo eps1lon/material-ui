@@ -56,6 +56,10 @@
     "prop-types": "^15.7.2",
     "warning": "^4.0.1"
   },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
