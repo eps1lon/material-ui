@@ -8373,7 +8373,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-material-ui@workspace:packages/eslint-plugin-material-ui":
+"eslint-plugin-material-ui@workspace:*, eslint-plugin-material-ui@workspace:packages/eslint-plugin-material-ui":
   version: 0.0.0-use.local
   resolution: "eslint-plugin-material-ui@workspace:packages/eslint-plugin-material-ui"
   dependencies:
@@ -17248,6 +17248,7 @@ __metadata:
     eslint-plugin-babel: "npm:^5.3.0"
     eslint-plugin-import: "npm:^2.18.2"
     eslint-plugin-jsx-a11y: "npm:^6.2.3"
+    eslint-plugin-material-ui: "workspace:*"
     eslint-plugin-mocha: "npm:^6.1.0"
     eslint-plugin-react: "npm:^7.14.3"
     eslint-plugin-react-hooks: "npm:^2.0.1"
