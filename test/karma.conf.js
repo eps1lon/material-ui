@@ -61,7 +61,7 @@ module.exports = function setKarmaConfig(config) {
         rules: [
           {
             test: /\.js$/,
-            loader: 'babel-loader',
+            loader: require.resolve('babel-loader'),
             exclude: /node_modules(\\|\/)(?!(@testing-library\/react)(\\|\/)).*/,
           },
         ],
