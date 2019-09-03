@@ -4263,8 +4263,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["jss-plugin-rule-value-function", "npm:10.0.0-alpha.24"],
             ["jss-plugin-vendor-prefixer", "npm:10.0.0-alpha.24"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }]
@@ -4368,8 +4368,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@material-ui/utils", "virtual:69358bbbf7f20b693fc18766d5ba731ef8d173f77e00954811cb787731120b131d99f72c7a3b39b3eb0348e96a3c39e194a54e1c7b548177ed21087aef4a523c#workspace:packages/material-ui-utils"],
             ["@babel/runtime", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],

@@ -2560,6 +2560,8 @@ __metadata:
     jss-plugin-rule-value-function: "npm:10.0.0-alpha.24"
     jss-plugin-vendor-prefixer: "npm:10.0.0-alpha.24"
     prop-types: "npm:^15.7.2"
+    react: "npm:^16.9.0"
+    react-dom: "npm:^16.9.0"
     warning: "npm:^4.0.1"
   peerDependencies:
     react: ^16.8.0
