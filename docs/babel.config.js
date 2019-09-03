@@ -23,14 +23,14 @@ const alias = {
 };
 
 module.exports = {
-  presets: ['next/babel', '@zeit/next-typescript/babel'],
+  presets: [require.resolve('next/babel'), require.resolve('@zeit/next-typescript/babel')],
   plugins: [
-    'babel-plugin-optimize-clsx',
+    require.resolve('babel-plugin-optimize-clsx'),
     // for IE 11 support
-    '@babel/plugin-transform-object-assign',
-    'babel-plugin-preval',
+    require.resolve('@babel/plugin-transform-object-assign'),
+    require.resolve('babel-plugin-preval'),
     [
-      'babel-plugin-module-resolver',
+      require.resolve('babel-plugin-module-resolver'),
       {
         alias,
         transformFunctions: ['require', 'require.context'],
@@ -42,10 +42,13 @@ module.exports = {
   env: {
     production: {
       plugins: [
-        'babel-plugin-transform-react-constant-elements',
-        'babel-plugin-transform-dev-warning',
-        ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-        ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+        require.resolve('babel-plugin-transform-react-constant-elements'),
+        require.resolve('babel-plugin-transform-dev-warning'),
+        [
+          require.resolve('babel-plugin-react-remove-properties'),
+          { properties: ['data-mui-test'] },
+        ],
+        [require.resolve('babel-plugin-transform-react-remove-prop-types'), { mode: 'remove' }],
       ],
     },
   },

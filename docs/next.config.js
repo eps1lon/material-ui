@@ -36,6 +36,20 @@ module.exports = withTypescript({
 
     config.resolve.plugins = [PnpWebpackPlugin];
     config.resolveLoader.plugins = [PnpWebpackPlugin.moduleLoader(module)];
+    // backport of https://github.com/zeit/next.js/pull/8531
+    config.resolveLoader.alias = {
+      'emit-file-loader': require.resolve('next/dist/build/webpack/loaders/emit-file-loader'),
+      'next-babel-loader': require.resolve('next/dist/build/webpack/loaders/next-babel-loader'),
+      'next-client-pages-loader': require.resolve(
+        'next/dist/build/webpack/loaders/next-client-pages-loader',
+      ),
+      'next-data-loader': require.resolve('next/dist/build/webpack/loaders/next-data-loader'),
+      'next-minify-loader': require.resolve('next/dist/build/webpack/loaders/next-minify-loader'),
+      'next-serverless-loader': require.resolve(
+        'next/dist/build/webpack/loaders/next-serverless-loader',
+      ),
+      'noop-looder': require.resolve('next/dist/build/webpack/loaders/noop-loader'),
+    };
 
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
