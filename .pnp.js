@@ -9557,6 +9557,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["babel-plugin-unwrap-createstyles", "workspace:packages/babel-plugin-unwrap-createstyles"],
             ["clean-css", "npm:4.2.1"],
             ["clipboard-copy", "npm:3.1.0"],
+            ["clsx", "npm:1.0.4"],
             ["core-js", "npm:2.6.9"],
             ["cpy-cli", "npm:2.0.0"],
             ["cross-env", "npm:5.2.0"],
