@@ -31,8 +31,8 @@ module.exports = withTypescript({
       );
     }
 
-    config.resolve.alias['react-dom$'] = require.resolve('react-dom/profiling');
-    config.resolve.alias['scheduler/tracing'] = require.resolve('scheduler/tracing-profiling');
+    //config.resolve.alias['react-dom$'] = require.resolve('react-dom/profiling');
+    //config.resolve.alias['scheduler/tracing'] = require.resolve('scheduler/tracing-profiling');
 
     config.resolve.plugins = [PnpWebpackPlugin];
     config.resolveLoader.plugins = [PnpWebpackPlugin.moduleLoader(module)];
