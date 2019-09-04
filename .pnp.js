@@ -15376,6 +15376,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           "packageLocation": "./.yarn/unplugged/next-server-virtual-3ade78e1d5/node_modules/next-server/",
           "packageDependencies": [
             ["next-server", "virtual:9b5a854aad33939e7756c844839ebbb6e4ae6b22b1075d709c53ab9c913feacac2bd62a4069634ae77ec6ebb4aca54ad49122da930f6faad84af7e2f4092c6f0#npm:8.1.0"],
+            ["@babel/runtime-corejs2", "npm:7.1.2"],
             ["amp-toolbox-optimizer", "npm:0.5.2-beta.6"],
             ["etag", "npm:1.8.1"],
             ["find-up", "npm:3.0.0"],

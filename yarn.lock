@@ -13413,6 +13413,7 @@ __metadata:
   version: 8.1.0
   resolution: "next-server@npm:8.1.0"
   dependencies:
+    "@babel/runtime-corejs2": "npm:7.1.2"
     amp-toolbox-optimizer: "npm:0.5.2-beta.6"
     etag: "npm:1.8.1"
     find-up: "npm:3.0.0"
