@@ -111,16 +111,16 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "resolutions": {
-    "**/@babel/core": "^7.5.5",
-    "**/@babel/plugin-proposal-class-properties": "^7.5.5",
-    "**/@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-    "**/@babel/plugin-transform-destructuring": "npm:@minh.nguyen/plugin-transform-destructuring@^7.5.2",
-    "**/@babel/plugin-transform-runtime": "~7.5.5",
-    "**/@babel/preset-env": "^7.5.5",
-    "**/@babel/preset-react": "^7.0.0",
-    "**/@babel/runtime-corejs2": "^7.4.4",
-    "**/@babel/runtime": "^7.4.4",
-    "**/hoist-non-react-statics": "^3.2.1"
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-destructuring": "npm:@minh.nguyen/plugin-transform-destructuring@^7.5.2",
+    "@babel/plugin-transform-runtime": "~7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime-corejs2": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
+    "hoist-non-react-statics": "^3.2.1"
   },
   "nyc": {
     "include": [
