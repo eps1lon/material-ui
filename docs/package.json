@@ -84,6 +84,7 @@
     "next": "8.1.0",
     "next-server": "8.1.0",
     "notistack": "^0.8.9",
+    "nprogress": "^0.2.0",
     "pnp-webpack-plugin": "^1.5.0",
     "postcss": "^7.0.0",
     "prismjs": "^1.17.1",

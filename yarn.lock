@@ -7613,6 +7613,7 @@ __metadata:
     next: "npm:8.1.0"
     next-server: "npm:8.1.0"
     notistack: "npm:^0.8.9"
+    nprogress: "npm:^0.2.0"
     pnp-webpack-plugin: "npm:^1.5.0"
     postcss: "npm:^7.0.0"
     prismjs: "npm:^1.17.1"
