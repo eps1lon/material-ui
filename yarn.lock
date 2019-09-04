@@ -6378,7 +6378,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.0.0, core-js@npm:^3.1.3":
+"core-js@npm:^3.0.0, core-js@npm:^3.1.3, core-js@npm:^3.2.1":
   version: 3.2.1
   resolution: "core-js@npm:3.2.1"
   checksum: 76a9bcc79697ebec6b8a6174c759ff88bfe6c282255d4cb5d0c46eca908d06f873964e2563efbaea19087f9f22aa1fa40463b69713b8e68f699b58e6d7740a3b
@@ -7579,6 +7579,7 @@ __metadata:
     babel-plugin-unwrap-createstyles: ^4.1.0
     clean-css: "npm:^4.1.11"
     clipboard-copy: "npm:^3.0.0"
+    core-js: "npm:^3.2.1"
     cpy-cli: "npm:^2.0.0"
     cross-env: "npm:^5.2.0"
     css-loader: "npm:^3.1.0"
