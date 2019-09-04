@@ -18040,6 +18040,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["loose-envify", "npm:1.4.0"],
             ["prop-types", "npm:15.7.2"],
             ["react", null],
+            ["react-dom", null],
             ["react-is", "npm:16.9.0"],
             ["redux", "npm:4.0.4"]
           ]
@@ -18054,6 +18055,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["loose-envify", "npm:1.4.0"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.9.0"],
+            ["react-dom", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:16.9.0"],
             ["react-is", "npm:16.9.0"],
             ["redux", "npm:4.0.4"]
           ]
