@@ -146,6 +146,9 @@
     "next-server": {
       "unplugged": true
     },
+    "pnp-webpack-plugin": {
+      "unplugged": true
+    },
     "react": {
       "unplugged": true
     },

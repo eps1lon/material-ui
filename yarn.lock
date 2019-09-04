@@ -17310,6 +17310,8 @@ __metadata:
       unplugged: true
     next-server:
       unplugged: true
+    pnp-webpack-plugin:
+      unplugged: true
     react:
       unplugged: true
     react-dom:
