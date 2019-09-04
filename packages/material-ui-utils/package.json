@@ -40,6 +40,9 @@
     "prop-types": "^15.7.2",
     "react-is": "^16.8.6"
   },
+  "devDependencies": {
+    "@babel/runtime-corejs2": "^7.5.5"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

@@ -2602,6 +2602,7 @@ __metadata:
   resolution: "@material-ui/utils@workspace:packages/material-ui-utils"
   dependencies:
     "@babel/runtime": "npm:^7.4.4"
+    "@babel/runtime-corejs2": "npm:^7.5.5"
     prop-types: "npm:^15.7.2"
     react-is: "npm:^16.8.6"
   peerDependencies:
