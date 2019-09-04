@@ -44,7 +44,9 @@
     "prismjs": "^1.17.1"
   },
   "devDependencies": {
-    "@babel/runtime-corejs2": "^7.5.5"
+    "@babel/runtime-corejs2": "^7.5.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "publishConfig": {
     "access": "public"
