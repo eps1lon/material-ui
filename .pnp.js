@@ -9536,6 +9536,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["css-loader", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:3.2.0"],
             ["css-mediaquery", "npm:0.1.2"],
             ["date-fns", "npm:2.0.1"],
+            ["deepmerge", "npm:4.0.0"],
             ["doctrine", "npm:3.0.0"],
             ["downshift", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:3.2.12"],
             ["emotion-theming", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:10.0.14"],
