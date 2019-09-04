@@ -43,6 +43,9 @@
     "nprogress": "^0.2.0",
     "prismjs": "^1.17.1"
   },
+  "devDependencies": {
+    "@babel/runtime-corejs2": "^7.5.5"
+  },
   "publishConfig": {
     "access": "public"
   },

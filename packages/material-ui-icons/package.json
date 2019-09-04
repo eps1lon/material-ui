@@ -45,6 +45,7 @@
     "@babel/runtime": "^7.4.4"
   },
   "devDependencies": {
+    "@babel/runtime-corejs2": "^7.5.5",
     "fs-extra": "^8.1.0",
     "mkdirp": "^0.5.0",
     "mustache": "^3.0.2",
