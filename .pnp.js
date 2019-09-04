@@ -3988,6 +3988,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           "packageDependencies": [
             ["@material-ui/core", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#workspace:packages/material-ui"],
             ["@babel/runtime", "npm:7.5.5"],
+            ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["@material-ui/styles", "virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-styles"],
             ["@material-ui/system", "virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-system"],
             ["@material-ui/types", "workspace:packages/material-ui-types"],
@@ -4016,6 +4017,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           "packageDependencies": [
             ["@material-ui/core", "workspace:packages/material-ui"],
             ["@babel/runtime", "npm:7.5.5"],
+            ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["@material-ui/styles", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-styles"],
             ["@material-ui/system", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#workspace:packages/material-ui-system"],
             ["@material-ui/types", "workspace:packages/material-ui-types"],

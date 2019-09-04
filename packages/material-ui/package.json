@@ -54,6 +54,7 @@
     "warning": "^4.0.1"
   },
   "devDependencies": {
+    "@babel/runtime-corejs2": "^7.5.5",
     "chai": "^4.2.0",
     "enzyme": "^3.10.0",
     "react": "^16.9.0",

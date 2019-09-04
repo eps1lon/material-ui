@@ -1269,7 +1269,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime-corejs2@npm:^7.4.4":
+"@babel/runtime-corejs2@npm:^7.4.4, @babel/runtime-corejs2@npm:^7.5.5":
   version: 7.5.5
   resolution: "@babel/runtime-corejs2@npm:7.5.5"
   dependencies:
@@ -2441,6 +2441,7 @@ __metadata:
   resolution: "@material-ui/core@workspace:packages/material-ui"
   dependencies:
     "@babel/runtime": "npm:^7.4.4"
+    "@babel/runtime-corejs2": "npm:^7.5.5"
     "@material-ui/styles": ^4.3.3
     "@material-ui/system": ^4.3.3
     "@material-ui/types": ^4.1.1
