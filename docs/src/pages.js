@@ -1,4 +1,8 @@
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+// import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+
+function findPages() {
+  return [];
+}
 
 const pages = [
   {
