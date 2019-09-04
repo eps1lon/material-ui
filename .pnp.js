@@ -9548,6 +9548,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["gm", "npm:1.23.1"],
             ["isomorphic-fetch", "npm:2.2.1"],
             ["json2mq", "npm:0.2.0"],
+            ["jss", "npm:10.0.0-alpha.24"],
             ["jss-plugin-template", "npm:10.0.0-alpha.24"],
             ["jss-rtl", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:0.2.3"],
             ["lodash", "npm:4.17.15"],
@@ -13707,7 +13708,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           "packageLocation": "./.yarn/virtual/jss-rtl-virtual-28b3c88713/0/cache/jss-rtl-npm-0.2.3-727fbda886.zip/node_modules/jss-rtl/",
           "packageDependencies": [
             ["jss-rtl", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:0.2.3"],
-            ["jss", null],
+            ["jss", "npm:10.0.0-alpha.24"],
             ["rtl-css-js", "npm:1.13.0"]
           ]
         }]

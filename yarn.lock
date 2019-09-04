@@ -7595,6 +7595,7 @@ __metadata:
     gm: "npm:^1.23.0"
     isomorphic-fetch: "npm:^2.2.1"
     json2mq: "npm:^0.2.0"
+    jss: "npm:10.0.0-alpha.24"
     jss-plugin-template: "npm:^10.0.0-alpha.23"
     jss-rtl: "npm:^0.2.3"
     lodash: "npm:^4.17.15"
