@@ -26,8 +26,6 @@
     "mocha": "^6.2.0",
     "pnp-webpack-plugin": "^1.5.0",
     "puppeteer": "^1.19.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
     "sinon": "^7.0.0",
     "vrtest": "^0.2.0",
     "webpack": "^4.28.4"

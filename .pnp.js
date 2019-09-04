@@ -409,8 +409,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["nyc", "npm:14.1.1"],
             ["prettier", "npm:1.17.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
             ["rimraf", "npm:3.0.0"],
             ["rollup", "npm:1.20.2"],
             ["rollup-plugin-babel", "virtual:dc29733bcf61a43796c4b9a2f353c9a0a9fae657f398ab317ac802f0788cb3382efdba0e7d5e1734520f1710799f81350a42e4c66b69e33e4ae49992e0a44c46#npm:4.3.3"],
@@ -4805,8 +4803,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@testing-library/dom", "npm:6.1.0"],
             ["@types/testing-library__react", "npm:9.1.1"],
-            ["react", "npm:16.9.0"],
-            ["react-dom", "virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:16.9.0"]
+            ["react", null],
+            ["react-dom", null]
           ]
         }]
       ]],
@@ -5795,7 +5793,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["object.entries", "npm:1.1.0"],
             ["prop-types", "npm:15.7.2"],
             ["prop-types-exact", "npm:1.2.0"],
-            ["react", "npm:16.9.0"],
+            ["react", null],
             ["react-is", "npm:16.9.0"]
           ]
         }]
@@ -10136,8 +10134,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["object.assign", "npm:4.1.0"],
             ["object.values", "npm:1.1.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", "npm:16.9.0"],
-            ["react-dom", "virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:16.9.0"],
+            ["react", null],
+            ["react-dom", null],
             ["react-is", "npm:16.9.0"],
             ["react-test-renderer", "virtual:00f884ada9238ccd22b0944623a53090fb53aef93947a1af99c18765f3d8480d668f4235b4970e5fa2a0c56ee87b4462288456449f743613a402a5f47d384540#npm:16.9.0"],
             ["semver", "npm:5.7.1"]
@@ -10154,7 +10152,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["object.assign", "npm:4.1.0"],
             ["object.fromentries", "npm:2.0.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", "npm:16.9.0"],
+            ["react", null],
             ["semver", "npm:5.7.1"]
           ]
         }]
@@ -17892,17 +17890,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["react", "npm:16.9.0"],
             ["scheduler", "npm:0.15.0"]
           ]
-        }],
-        ["virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:16.9.0", {
-          "packageLocation": "./.yarn/virtual/react-dom-virtual-9152989d38/0/cache/react-dom-npm-16.9.0-b4d29e88a3.zip/node_modules/react-dom/",
-          "packageDependencies": [
-            ["react-dom", "virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:16.9.0"],
-            ["loose-envify", "npm:1.4.0"],
-            ["object-assign", "npm:4.1.1"],
-            ["prop-types", "npm:15.7.2"],
-            ["react", "npm:16.9.0"],
-            ["scheduler", "npm:0.15.0"]
-          ]
         }]
       ]],
       ["react-double-scrollbar", [
@@ -18249,7 +18236,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["react-test-renderer", "virtual:00f884ada9238ccd22b0944623a53090fb53aef93947a1af99c18765f3d8480d668f4235b4970e5fa2a0c56ee87b4462288456449f743613a402a5f47d384540#npm:16.9.0"],
             ["object-assign", "npm:4.1.1"],
             ["prop-types", "npm:15.7.2"],
-            ["react", "npm:16.9.0"],
+            ["react", null],
             ["react-is", "npm:16.9.0"],
             ["scheduler", "npm:0.15.0"]
           ]
@@ -19321,8 +19308,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["nyc", "npm:14.1.1"],
             ["prettier", "npm:1.17.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
             ["rimraf", "npm:3.0.0"],
             ["rollup", "npm:1.20.2"],
             ["rollup-plugin-babel", "virtual:dc29733bcf61a43796c4b9a2f353c9a0a9fae657f398ab317ac802f0788cb3382efdba0e7d5e1734520f1710799f81350a42e4c66b69e33e4ae49992e0a44c46#npm:4.3.3"],
@@ -20764,8 +20749,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["mocha", "npm:6.2.0"],
             ["pnp-webpack-plugin", "npm:1.5.0"],
             ["puppeteer", "npm:1.19.0"],
-            ["react", "npm:16.9.0"],
-            ["react-dom", "virtual:fe1f234c25021e456c0c061226608fd92ed3a123dd131250437cd22b1190d606981e758219dc58d5e4ec7cbcca0510e7a1b79f7faee3b9ca6add2dcb85d5ead7#npm:16.9.0"],
             ["sinon", "npm:7.4.1"],
             ["vrtest", "npm:0.2.0"],
             ["webpack", "npm:4.39.2"]

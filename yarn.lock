@@ -17160,9 +17160,6 @@ __metadata:
     webpack-bundle-analyzer: "npm:^3.0.0"
     webpack-cli: "npm:^3.3.7"
     yarn-deduplicate: "npm:^1.1.1"
-  peerDependencies:
-    react: "*"
-    react-dom: "*"
   dependenciesMeta:
     next:
       unplugged: true
@@ -18616,8 +18613,6 @@ __metadata:
     mocha: "npm:^6.2.0"
     pnp-webpack-plugin: "npm:^1.5.0"
     puppeteer: "npm:^1.19.0"
-    react: "npm:^16.9.0"
-    react-dom: "npm:^16.9.0"
     sinon: "npm:^7.0.0"
     vrtest: "npm:^0.2.0"
     webpack: "npm:^4.28.4"
