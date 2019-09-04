@@ -17112,6 +17112,7 @@ __metadata:
     "@babel/preset-env": "npm:^7.5.5"
     "@babel/preset-react": "npm:^7.0.0"
     "@babel/register": "npm:^7.5.5"
+    "@babel/runtime-corejs2": "npm:^7.4.4"
     "@types/chai": "npm:^4.1.7"
     "@types/chai-dom": "npm:^0.0.8"
     "@types/fs-extra": "npm:^8.0.0"

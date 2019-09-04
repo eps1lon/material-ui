@@ -43,6 +43,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",
+    "@babel/runtime-corejs2": "^7.5.5",
     "@types/chai": "^4.1.7",
     "@types/chai-dom": "^0.0.8",
     "@types/fs-extra": "^8.0.0",
