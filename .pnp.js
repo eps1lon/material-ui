@@ -9581,6 +9581,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["lodash", "npm:4.17.15"],
             ["lz-string", "npm:1.4.4"],
             ["markdown-to-jsx", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:6.10.3"],
+            ["marked", "npm:0.7.0"],
             ["material-table", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:1.50.0"],
             ["material-ui-popup-state", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:1.4.0"],
             ["next", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:8.1.0"],

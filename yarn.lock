@@ -7609,6 +7609,7 @@ __metadata:
     lodash: "npm:^4.17.15"
     lz-string: "npm:^1.4.4"
     markdown-to-jsx: "npm:^6.10.2"
+    marked: "npm:^0.7.0"
     material-table: "npm:^1.50.0"
     material-ui-popup-state: "npm:^1.4.0"
     next: "npm:8.1.0"
