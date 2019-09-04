@@ -9555,6 +9555,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["material-table", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:1.50.0"],
             ["material-ui-popup-state", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:1.4.0"],
             ["next", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:8.1.0"],
+            ["next-server", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:8.1.0"],
             ["notistack", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:0.8.9"],
             ["pnp-webpack-plugin", "npm:1.5.0"],
             ["postcss", "npm:7.0.17"],
@@ -15391,6 +15392,25 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["send", "npm:0.16.1"],
             ["url", "npm:0.11.0"]
           ]
+        }],
+        ["virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:8.1.0", {
+          "packageLocation": "./.yarn/unplugged/next-server-virtual-01f6d29464/node_modules/next-server/",
+          "packageDependencies": [
+            ["next-server", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:8.1.0"],
+            ["@babel/runtime-corejs2", "npm:7.1.2"],
+            ["amp-toolbox-optimizer", "npm:0.5.2-beta.6"],
+            ["etag", "npm:1.8.1"],
+            ["find-up", "npm:3.0.0"],
+            ["fresh", "npm:0.5.2"],
+            ["path-to-regexp", "npm:2.1.0"],
+            ["prop-types", "npm:15.6.2"],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:16.9.0"],
+            ["react-is", "npm:16.8.6"],
+            ["react-ssr-prepass", "virtual:01f6d2946424e35ae3b4577d69e8e18db2417f81b7b1be8170cde7e52d3af7944d5b2c26b55eabfb89615d1263ecf01653b9561fc6813c949edb5d8c818b9d5a#npm:1.0.2"],
+            ["send", "npm:0.16.1"],
+            ["url", "npm:0.11.0"]
+          ]
         }]
       ]],
       ["nice-try", [
@@ -18110,6 +18130,15 @@ function $$SETUP_STATE(hydrateRuntimeState) {
         }]
       ]],
       ["react-ssr-prepass", [
+        ["virtual:01f6d2946424e35ae3b4577d69e8e18db2417f81b7b1be8170cde7e52d3af7944d5b2c26b55eabfb89615d1263ecf01653b9561fc6813c949edb5d8c818b9d5a#npm:1.0.2", {
+          "packageLocation": "./.yarn/virtual/react-ssr-prepass-virtual-7a2d34fc3c/0/cache/react-ssr-prepass-npm-1.0.2-8b9fbfa2dc.zip/node_modules/react-ssr-prepass/",
+          "packageDependencies": [
+            ["react-ssr-prepass", "virtual:01f6d2946424e35ae3b4577d69e8e18db2417f81b7b1be8170cde7e52d3af7944d5b2c26b55eabfb89615d1263ecf01653b9561fc6813c949edb5d8c818b9d5a#npm:1.0.2"],
+            ["object-is", "npm:1.0.1"],
+            ["react", "npm:16.9.0"],
+            ["react-is", "npm:16.8.6"]
+          ]
+        }],
         ["virtual:3ade78e1d508ffc7a93b560c447d386c5b47a3359e8f23cbb40f3a57d5e6e3b6945f96e742607db1962878821d9d3c7e14704356da18dc9e0ff0f79ad3b6b388#npm:1.0.2", {
           "packageLocation": "./.yarn/virtual/react-ssr-prepass-virtual-bc08b1d2a9/0/cache/react-ssr-prepass-npm-1.0.2-8b9fbfa2dc.zip/node_modules/react-ssr-prepass/",
           "packageDependencies": [

@@ -7602,6 +7602,7 @@ __metadata:
     material-table: "npm:^1.50.0"
     material-ui-popup-state: "npm:^1.4.0"
     next: "npm:8.1.0"
+    next-server: "npm:8.1.0"
     notistack: "npm:^0.8.9"
     pnp-webpack-plugin: "npm:^1.5.0"
     postcss: "npm:^7.0.0"
