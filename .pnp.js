@@ -4085,6 +4085,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["marked", "npm:0.7.0"],
             ["nprogress", "npm:0.2.0"],
             ["prismjs", "npm:1.17.1"],
+            ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.9.0"],
             ["react-dom", "virtual:b8571807167fe2e6db93ac69c7e1be32360f1a531f5df367411a2131b0c5fb38052b0c6b1362e69700cc8715be9bd7226f6269064f5e32d14cf06f512a513a5c#npm:16.9.0"]
           ]
@@ -4101,6 +4102,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["marked", "npm:0.7.0"],
             ["nprogress", "npm:0.2.0"],
             ["prismjs", "npm:1.17.1"],
+            ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.9.0"],
             ["react-dom", "npm:16.9.0"]
           ]
