@@ -4054,8 +4054,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["normalize-scroll-left", "npm:0.2.0"],
             ["popper.js", "npm:1.15.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-transition-group", "virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:4.2.2"],
             ["warning", "npm:4.0.3"]
           ]
@@ -4092,8 +4092,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["nprogress", "npm:0.2.0"],
             ["prismjs", "npm:1.17.1"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null]
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"]
           ]
         }]
       ]],
@@ -4125,8 +4125,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["fs-extra", "npm:8.1.0"],
             ["mkdirp", "npm:0.5.1"],
             ["mustache", "npm:3.0.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["svgo", "npm:1.3.0"],
             ["temp", "npm:0.9.0"],
             ["yargs", "npm:13.3.0"]
@@ -4159,8 +4159,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@material-ui/utils", "virtual:5c847c8880335b769df1816dd864004c45e4e8e399ee1caaa55664bb83194f322a64abd3a9422457d3c7faf919883e9bbd31b26931eb4a3ad1b0e777d211f20f#workspace:packages/material-ui-utils"],
             ["clsx", "npm:1.0.4"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }]
@@ -4224,8 +4224,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["jss-plugin-rule-value-function", "npm:10.0.0-alpha.24"],
             ["jss-plugin-vendor-prefixer", "npm:10.0.0-alpha.24"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }],
@@ -4305,8 +4305,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["jss-plugin-rule-value-function", "npm:10.0.0-alpha.24"],
             ["jss-plugin-vendor-prefixer", "npm:10.0.0-alpha.24"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }]
@@ -4320,8 +4320,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["deepmerge", "npm:4.0.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }],
@@ -4359,8 +4359,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["deepmerge", "npm:4.0.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["warning", "npm:4.0.3"]
           ]
         }]
@@ -4382,8 +4382,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -4406,8 +4406,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -4418,8 +4418,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -4430,8 +4430,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -4490,8 +4490,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }],
@@ -4502,8 +4502,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@babel/runtime", "npm:7.5.5"],
             ["@babel/runtime-corejs2", "npm:7.5.5"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null],
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"],
             ["react-is", "npm:16.9.0"]
           ]
         }]
@@ -18319,8 +18319,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["dom-helpers", "npm:3.4.0"],
             ["loose-envify", "npm:1.4.0"],
             ["prop-types", "npm:15.7.2"],
-            ["react", null],
-            ["react-dom", null]
+            ["react", "npm:16.9.0"],
+            ["react-dom", "npm:16.9.0"]
           ]
         }],
         ["virtual:a3141ea0642d6116f2980b8eb310390d916d51c857f831c5a4f4515c5d9c1f4323c5eef9cc1a2cd88a9406840cb430df3fbde7a20106afd580ff27355c35ef8b#virtual:7a24b9213f4778b38a4e65791bff3b26a04f9b8f15e0bc809596540d296f3f51444e1de865e921c4ecea3796d9fcdb8b2f310cf23318b1d7e7bb37b119dbd1d9#npm:4.2.2", {
