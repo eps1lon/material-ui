@@ -1,3 +1,2 @@
 /unplugged/*
-!/unplugged/pnp-webpack-plugin-*
 /build-state.yml

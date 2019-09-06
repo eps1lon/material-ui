@@ -16862,7 +16862,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
       ]],
       ["pnp-webpack-plugin", [
         ["npm:1.5.0", {
-          "packageLocation": "./.yarn/unplugged/pnp-webpack-plugin-npm-1.5.0-b73cbddb67/node_modules/pnp-webpack-plugin/",
+          "packageLocation": "./.yarn/cache/pnp-webpack-plugin-npm-1.5.0-b73cbddb67.zip/node_modules/pnp-webpack-plugin/",
           "packageDependencies": [
             ["pnp-webpack-plugin", "npm:1.5.0"],
             ["ts-pnp", "virtual:b73cbddb67de30be4d9017fcda27dfe7b38cb82eb90bcfcd3f8739c7c80e33e42ab7b5fe338b3038c2f66b0da535ecd837b463c1b7dda147bfed23317538f430#npm:1.1.2"]
