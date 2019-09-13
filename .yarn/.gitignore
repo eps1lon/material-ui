@@ -1,2 +1,3 @@
 /unplugged/*
+!/unplugged/next-virtual-*
 /build-state.yml

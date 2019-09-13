@@ -12,11 +12,11 @@
 /coverage
 /docs/export
 /examples/**/.cache
+/packages/**/build/
 /packages/material-ui-codemod/lib
 /packages/material-ui-icons/material-io-tools-icons
 /test/regressions/screenshots
 /test/selenium-output
 /tmp
-build
 package-lock.json
 size-snapshot.json
