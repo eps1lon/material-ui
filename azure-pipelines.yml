@@ -53,6 +53,12 @@ steps:
       yarn docs:build
     displayName: 'build docs'
 
+  - task: PublishPipelineArtifact@0
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'docs'
+      targetPath: 'docs/.next'
+
   - script: |
       yarn size:snapshot
     displayName: 'create a size snapshot'
