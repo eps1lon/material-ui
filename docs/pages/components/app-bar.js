@@ -1,14 +1,24 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/app-bar', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/app-bar',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/app-bar';
+const Pages = {
+  en: dynamic(() => import(`../../src/pages/components/app-bar/app-bar.mdx`)),
+  de: dynamic(() => import(`../../src/pages/components/app-bar/app-bar-de.mdx`)),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function AppBarPage(props) {
+  const {
+    reduxServerState: {
+      options: { userLanguage = 'en' },
+    },
+  } = props;
+
+  const Page = Pages[userLanguage] || Pages.en;
+
+  return (
+    <MarkdownXDocs>
+      <Page />
+    </MarkdownXDocs>
+  );
 }

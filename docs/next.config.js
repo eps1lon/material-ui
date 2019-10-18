@@ -13,7 +13,8 @@ const workspaceRoot = path.join(__dirname, '../');
  */
 const reactMode = 'legacy';
 
-module.exports = withTypescript({
+module.exports = {
+  pageExtensions: ['js', 'md', 'mdx'],
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
@@ -80,14 +81,14 @@ module.exports = withTypescript({
       module: Object.assign({}, config.module, {
         rules: config.module.rules.concat([
           {
-            test: /\.(css|md)$/,
+            test: /\.(css)$/,
             loader: 'emit-file-loader',
             options: {
               name: 'dist/[path][name].[ext]',
             },
           },
           {
-            test: /\.(css|md)$/,
+            test: /\.(css)$/,
             loader: 'raw-loader',
           },
           // transpile 3rd party packages with dependencies in this repository
@@ -120,6 +121,18 @@ module.exports = withTypescript({
             include: [workspaceRoot],
             exclude: /node_modules/,
             use: options.defaultLoaders.babel,
+          },
+          {
+            test: /\.mdx$/,
+            use: [
+              options.defaultLoaders.babel,
+              {
+                loader: require.resolve('@mdx-js/loader'),
+              },
+              {
+                loader: require.resolve('./front-matter-loader'),
+              },
+            ],
           },
         ]),
       }),
@@ -167,4 +180,4 @@ module.exports = withTypescript({
     // Number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 3, // default 2
   },
-});
+};

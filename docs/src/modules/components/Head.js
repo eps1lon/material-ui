@@ -12,7 +12,7 @@ export default function Head(props) {
 
   return (
     <NextHead>
-      <title>{title}</title>
+      <title key="title">{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

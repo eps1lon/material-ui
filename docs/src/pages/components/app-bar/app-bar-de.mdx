@@ -3,6 +3,12 @@ title: App Bar React-Komponente
 components: AppBar, Toolbar, Menu
 ---
 
+import Head from 'next/head';
+
+<Head>
+  <title key="title">App Bar React-Komponente</title>
+</Head>
+
 # App Bar
 
 <p class="description">In der App-Bar werden Informationen und Aktionen angezeigt, die sich auf den aktuellen Bildschirm beziehen.</p>
@@ -65,11 +71,11 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Parameter
 
-1. `options` (*Object* [optional]):
+1. `options` (_Object_ [optional]):
 
-- `options.disableHysteresis ` (*Boolean* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
-- `options.target` (*Node* [optional]): Standardwert `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+- `options.disableHysteresis` (_Boolean_ [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
+- `options.target` (_Node_ [optional]): Standardwert `window`.
+- `options.threshold` (_Number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 
 #### Rückgabewerte
 
