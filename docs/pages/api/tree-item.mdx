@@ -1,0 +1,69 @@
+---
+filename: /packages/material-ui-lab/src/TreeItem/TreeItem.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# TreeItem API
+
+<p className="description">The API documentation of the TreeItem React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import TreeItem from '@material-ui/lab/TreeItem';
+// or
+import { TreeItem } from '@material-ui/lab';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The content of the component. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">collapseIcon</span> | <span className="prop-type">node</span> |  | The icon used to collapse the node. |
+| <span className="prop-name">endIcon</span> | <span className="prop-type">node</span> |  | The icon displayed next to a end node. |
+| <span className="prop-name">expandIcon</span> | <span className="prop-type">node</span> |  | The icon used to expand the node. |
+| <span className="prop-name">icon</span> | <span className="prop-type">node</span> |  | The icon to display next to the tree node's label. |
+| <span className="prop-name">label</span> | <span className="prop-type">node</span> |  | The tree node label. |
+| <span className="prop-name required">nodeId&nbsp;*</span> | <span className="prop-type">string</span> |  | The id of the node. |
+| <span className="prop-name">TransitionComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">Collapse</span> | The component used for the transition. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiTreeItem`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiTreeItem-root</span> | Styles applied to the root element.
+| <span className="prop-name">expanded</span> | <span className="prop-name">Mui-expanded</span> | Pseudo-class applied to the root element when expanded.
+| <span className="prop-name">group</span> | <span className="prop-name">MuiTreeItem-group</span> | Styles applied to the `role="group"` element.
+| <span className="prop-name">content</span> | <span className="prop-name">MuiTreeItem-content</span> | Styles applied to the tree node content.
+| <span className="prop-name">iconContainer</span> | <span className="prop-name">MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
+| <span className="prop-name">label</span> | <span className="prop-name">MuiTreeItem-label</span> | Styles applied to the label element.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TreeItem/TreeItem.js) for more detail.
+
+## Demos
+
+- [Tree View](/components/tree-view/)
+

@@ -1,0 +1,79 @@
+---
+filename: /packages/material-ui/src/Fab/Fab.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Fab API
+
+<p className="description">The API documentation of the Fab React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Fab from '@material-ui/core/Fab';
+// or
+import { Fab } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name required">children&nbsp;*</span> | <span className="prop-type">node</span> |  | The content of the button. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">color</span> | <span className="prop-type">'default'<br />&#124;&nbsp;'inherit'<br />&#124;&nbsp;'primary'<br />&#124;&nbsp;'secondary'</span> | <span className="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">'button'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">disabled</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the button will be disabled. |
+| <span className="prop-name">disableFocusRipple</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
+| <span className="prop-name">disableRipple</span> | <span className="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
+| <span className="prop-name">href</span> | <span className="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
+| <span className="prop-name">size</span> | <span className="prop-type">'small'<br />&#124;&nbsp;'medium'<br />&#124;&nbsp;'large'</span> | <span className="prop-default">'large'</span> | The size of the button. `small` is equivalent to the dense button styling. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'round'<br />&#124;&nbsp;'extended'</span> | <span className="prop-default">'round'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+
+## CSS
+
+- Style sheet name: `MuiFab`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiFab-root</span> | Styles applied to the root element.
+| <span className="prop-name">label</span> | <span className="prop-name">MuiFab-label</span> | Styles applied to the span element that wraps the children.
+| <span className="prop-name">primary</span> | <span className="prop-name">MuiFab-primary</span> | Styles applied to the root element if `color="primary"`.
+| <span className="prop-name">secondary</span> | <span className="prop-name">MuiFab-secondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span className="prop-name">extended</span> | <span className="prop-name">MuiFab-extended</span> | Styles applied to the root element if `variant="extended"`.
+| <span className="prop-name">focusVisible</span> | <span className="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span className="prop-name">colorInherit</span> | <span className="prop-name">MuiFab-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span className="prop-name">sizeSmall</span> | <span className="prop-name">MuiFab-sizeSmall</span> | Styles applied to the root element if `size="small"``.
+| <span className="prop-name">sizeMedium</span> | <span className="prop-name">MuiFab-sizeMedium</span> | Styles applied to the root element if `size="medium"``.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Fab/Fab.js) for more detail.
+
+## Inheritance
+
+The props of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Buttons](/components/buttons/)
+

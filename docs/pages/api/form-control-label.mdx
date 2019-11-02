@@ -1,0 +1,73 @@
+---
+filename: /packages/material-ui/src/FormControlLabel/FormControlLabel.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# FormControlLabel API
+
+<p className="description">The API documentation of the FormControlLabel React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+// or
+import { FormControlLabel } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+Use this component if you want to display an extra label.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">checked</span> | <span className="prop-type">bool</span> |  | If `true`, the component appears selected. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">control</span> | <span className="prop-type">element</span> |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
+| <span className="prop-name">disabled</span> | <span className="prop-type">bool</span> |  | If `true`, the control will be disabled. |
+| <span className="prop-name">inputRef</span> | <span className="prop-type">ref</span> |  | Pass a ref to the `input` element. |
+| <span className="prop-name">label</span> | <span className="prop-type">node</span> |  | The text to be used in an enclosing label element. |
+| <span className="prop-name">labelPlacement</span> | <span className="prop-type">'end'<br />&#124;&nbsp;'start'<br />&#124;&nbsp;'top'<br />&#124;&nbsp;'bottom'</span> | <span className="prop-default">'end'</span> | The position of the label. |
+| <span className="prop-name">name</span> | <span className="prop-type">string</span> |  |  |
+| <span className="prop-name">onChange</span> | <span className="prop-type">func</span> |  | Callback fired when the state is changed.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean). |
+| <span className="prop-name">value</span> | <span className="prop-type">any</span> |  | The value of the component. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiFormControlLabel`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiFormControlLabel-root</span> | Styles applied to the root element.
+| <span className="prop-name">labelPlacementStart</span> | <span className="prop-name">MuiFormControlLabel-labelPlacementStart</span> | Styles applied to the root element if `labelPlacement="start"`.
+| <span className="prop-name">labelPlacementTop</span> | <span className="prop-name">MuiFormControlLabel-labelPlacementTop</span> | Styles applied to the root element if `labelPlacement="top"`.
+| <span className="prop-name">labelPlacementBottom</span> | <span className="prop-name">MuiFormControlLabel-labelPlacementBottom</span> | Styles applied to the root element if `labelPlacement="bottom"`.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span className="prop-name">label</span> | <span className="prop-name">MuiFormControlLabel-label</span> | Styles applied to the label's Typography component.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormControlLabel/FormControlLabel.js) for more detail.
+
+## Demos
+
+- [Checkboxes](/components/checkboxes/)
+- [Radio Buttons](/components/radio-buttons/)
+- [Switches](/components/switches/)
+

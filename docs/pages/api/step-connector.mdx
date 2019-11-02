@@ -1,0 +1,65 @@
+---
+filename: /packages/material-ui/src/StepConnector/StepConnector.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# StepConnector API
+
+<p className="description">The API documentation of the StepConnector React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import StepConnector from '@material-ui/core/StepConnector';
+// or
+import { StepConnector } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiStepConnector`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiStepConnector-root</span> | Styles applied to the root element.
+| <span className="prop-name">horizontal</span> | <span className="prop-name">MuiStepConnector-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span className="prop-name">vertical</span> | <span className="prop-name">MuiStepConnector-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span className="prop-name">alternativeLabel</span> | <span className="prop-name">MuiStepConnector-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <span className="prop-name">active</span> | <span className="prop-name">MuiStepConnector-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span className="prop-name">completed</span> | <span className="prop-name">MuiStepConnector-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span className="prop-name">line</span> | <span className="prop-name">MuiStepConnector-line</span> | Styles applied to the line element.
+| <span className="prop-name">lineHorizontal</span> | <span className="prop-name">MuiStepConnector-lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span className="prop-name">lineVertical</span> | <span className="prop-name">MuiStepConnector-lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepConnector/StepConnector.js) for more detail.
+
+## Demos
+
+- [Steppers](/components/steppers/)
+

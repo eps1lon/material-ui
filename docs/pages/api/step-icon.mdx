@@ -1,0 +1,64 @@
+---
+filename: /packages/material-ui/src/StepIcon/StepIcon.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# StepIcon API
+
+<p className="description">The API documentation of the StepIcon React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import StepIcon from '@material-ui/core/StepIcon';
+// or
+import { StepIcon } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">active</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Whether this step is active. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">completed</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
+| <span className="prop-name">error</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Mark the step as failed. |
+| <span className="prop-name required">icon&nbsp;*</span> | <span className="prop-type">node</span> |  | The label displayed in the step icon. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiStepIcon`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiStepIcon-root</span> | Styles applied to the root element.
+| <span className="prop-name">text</span> | <span className="prop-name">MuiStepIcon-text</span> | Styles applied to the SVG text element.
+| <span className="prop-name">active</span> | <span className="prop-name">MuiStepIcon-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span className="prop-name">completed</span> | <span className="prop-name">MuiStepIcon-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <span className="prop-name">error</span> | <span className="prop-name">Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepIcon/StepIcon.js) for more detail.
+
+## Demos
+
+- [Steppers](/components/steppers/)
+

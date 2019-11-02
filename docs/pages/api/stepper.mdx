@@ -1,0 +1,70 @@
+---
+filename: /packages/material-ui/src/Stepper/Stepper.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Stepper API
+
+<p className="description">The API documentation of the Stepper React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Stepper from '@material-ui/core/Stepper';
+// or
+import { Stepper } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">activeStep</span> | <span className="prop-type">number</span> | <span className="prop-default">0</span> | Set the active step (zero based index). |
+| <span className="prop-name">alternativeLabel</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon. |
+| <span className="prop-name required">children&nbsp;*</span> | <span className="prop-type">node</span> |  | Two or more `<Step />` components. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">connector</span> | <span className="prop-type">element</span> | <span className="prop-default">&lt;StepConnector /></span> | An element to be placed between each step. |
+| <span className="prop-name">nonLinear</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If set the `Stepper` will not assist in controlling steps for linear flow. |
+| <span className="prop-name">orientation</span> | <span className="prop-type">'horizontal'<br />&#124;&nbsp;'vertical'</span> | <span className="prop-default">'horizontal'</span> | The stepper orientation (layout flow direction). |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([Paper](/api/paper/)).
+
+## CSS
+
+- Style sheet name: `MuiStepper`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiStepper-root</span> | Styles applied to the root element.
+| <span className="prop-name">horizontal</span> | <span className="prop-name">MuiStepper-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span className="prop-name">vertical</span> | <span className="prop-name">MuiStepper-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span className="prop-name">alternativeLabel</span> | <span className="prop-name">MuiStepper-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Stepper/Stepper.js) for more detail.
+
+## Inheritance
+
+The props of the [Paper](/api/paper/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Steppers](/components/steppers/)
+

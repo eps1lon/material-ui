@@ -1,0 +1,76 @@
+---
+filename: /packages/material-ui-lab/src/SpeedDial/SpeedDial.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# SpeedDial API
+
+<p className="description">The API documentation of the SpeedDial React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import SpeedDial from '@material-ui/lab/SpeedDial';
+// or
+import { SpeedDial } from '@material-ui/lab';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name required">ariaLabel&nbsp;*</span> | <span className="prop-type">string</span> |  | The aria-label of the button element. Also used to provide the `id` for the `SpeedDial` element and its children. |
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | SpeedDialActions to display when the SpeedDial is `open`. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">direction</span> | <span className="prop-type">'down'<br />&#124;&nbsp;'left'<br />&#124;&nbsp;'right'<br />&#124;&nbsp;'up'</span> | <span className="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
+| <span className="prop-name">FabProps</span> | <span className="prop-type">object</span> | <span className="prop-default">{}</span> | Props applied to the [`Fab`](/api/fab/) element. |
+| <span className="prop-name">hidden</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
+| <span className="prop-name">icon</span> | <span className="prop-type">node</span> |  | The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component provides a default Icon with animation. |
+| <span className="prop-name">onClose</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br /><br />**Signature:**<br />`function(event: object, reason: string) => void`<br />*event:* The event source of the callback.<br />*reason:* Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`. |
+| <span className="prop-name">onOpen</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be open.<br /><br />**Signature:**<br />`function(event: object, reason: string) => void`<br />*event:* The event source of the callback.<br />*reason:* Can be:`"toggle"`, `"focus"`, `"mouseEnter"`. |
+| <span className="prop-name required">open&nbsp;*</span> | <span className="prop-type">bool</span> |  | If `true`, the SpeedDial is open. |
+| <span className="prop-name">openIcon</span> | <span className="prop-type">node</span> |  | The icon to display in the SpeedDial Fab when the SpeedDial is open. |
+| <span className="prop-name">TransitionComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">Zoom</span> | The component used for the transition. |
+| <span className="prop-name">transitionDuration</span> | <span className="prop-type">number<br />&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span className="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span className="prop-name">TransitionProps</span> | <span className="prop-type">object</span> |  | Props applied to the `Transition` element. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiSpeedDial`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiSpeedDial-root</span> | Styles applied to the root element.
+| <span className="prop-name">fab</span> | <span className="prop-name">MuiSpeedDial-fab</span> | Styles applied to the Fab component.
+| <span className="prop-name">directionUp</span> | <span className="prop-name">MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
+| <span className="prop-name">directionDown</span> | <span className="prop-name">MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
+| <span className="prop-name">directionLeft</span> | <span className="prop-name">MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
+| <span className="prop-name">directionRight</span> | <span className="prop-name">MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
+| <span className="prop-name">actions</span> | <span className="prop-name">MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
+| <span className="prop-name">actionsClosed</span> | <span className="prop-name">MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js) for more detail.
+
+## Demos
+
+- [Speed Dial](/components/speed-dial/)
+

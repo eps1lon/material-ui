@@ -1,0 +1,87 @@
+---
+filename: /packages/material-ui/src/Select/Select.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Select API
+
+<p className="description">The API documentation of the Select React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Select from '@material-ui/core/Select';
+// or
+import { Select } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">autoWidth</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true.<br />⚠️The `MenuItem` elements **must** be direct descendants when `native` is false. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">displayEmpty</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, a value is displayed even if no items are selected.<br />In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected. You can only use it when the `native` prop is `false` (default). |
+| <span className="prop-name">IconComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
+| <span className="prop-name">input</span> | <span className="prop-type">element</span> |  | An `Input` element; does not have to be a material-ui specific `Input`. |
+| <span className="prop-name">inputProps</span> | <span className="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element. |
+| <span className="prop-name">labelWidth</span> | <span className="prop-type">number</span> | <span className="prop-default">0</span> | The label width to be used on OutlinedInput. This prop is required when the `variant` prop is `outlined`. |
+| <span className="prop-name">MenuProps</span> | <span className="prop-type">object</span> |  | Props applied to the [`Menu`](/api/menu/) element. |
+| <span className="prop-name">multiple</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If true, `value` must be an array and the menu will support multiple selections. |
+| <span className="prop-name">native</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the component will be using a native `select` element. |
+| <span className="prop-name">onChange</span> | <span className="prop-type">func</span> |  | Callback function fired when a menu item is selected.<br /><br />**Signature:**<br />`function(event: object, child?: object) => void`<br />*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (any).<br />*child:* The react element that was selected when `native` is `false` (default). |
+| <span className="prop-name">onClose</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be closed. Use in controlled mode (see open).<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. |
+| <span className="prop-name">onOpen</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be opened. Use in controlled mode (see open).<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. |
+| <span className="prop-name">open</span> | <span className="prop-type">bool</span> |  | Control `select` open state. You can only use it when the `native` prop is `false` (default). |
+| <span className="prop-name">renderValue</span> | <span className="prop-type">func</span> |  | Render the selected value. You can only use it when the `native` prop is `false` (default).<br /><br />**Signature:**<br />`function(value: any) => ReactElement`<br />*value:* The `value` provided to the component. |
+| <span className="prop-name">SelectDisplayProps</span> | <span className="prop-type">object</span> |  | Props applied to the clickable div element. |
+| <span className="prop-name">value</span> | <span className="prop-type">any</span> |  | The input value. Providing an empty string will select no options. This prop is required when the `native` prop is `false` (default). Set to an empty string `''` if you don't want any of the available options to be selected. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'standard'<br />&#124;&nbsp;'outlined'<br />&#124;&nbsp;'filled'</span> | <span className="prop-default">'standard'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([Input](/api/input/)).
+
+## CSS
+
+- Style sheet name: `MuiSelect`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiSelect-root</span> | Styles applied to the select component `root` class.
+| <span className="prop-name">select</span> | <span className="prop-name">MuiSelect-select</span> | Styles applied to the select component `select` class.
+| <span className="prop-name">filled</span> | <span className="prop-name">MuiSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
+| <span className="prop-name">outlined</span> | <span className="prop-name">MuiSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
+| <span className="prop-name">selectMenu</span> | <span className="prop-name">MuiSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
+| <span className="prop-name">icon</span> | <span className="prop-name">MuiSelect-icon</span> | Styles applied to the icon component.
+| <span className="prop-name">iconFilled</span> | <span className="prop-name">MuiSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
+| <span className="prop-name">iconOutlined</span> | <span className="prop-name">MuiSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Select/Select.js) for more detail.
+
+## Inheritance
+
+The props of the [Input](/api/input/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Selects](/components/selects/)
+

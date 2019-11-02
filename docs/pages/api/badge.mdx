@@ -1,0 +1,80 @@
+---
+filename: /packages/material-ui/src/Badge/Badge.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Badge API
+
+<p className="description">The API documentation of the Badge React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Badge from '@material-ui/core/Badge';
+// or
+import { Badge } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">anchorOrigin</span> | <span className="prop-type">{ horizontal: 'left'<br />&#124;&nbsp;'right', vertical: 'bottom'<br />&#124;&nbsp;'top' }</span> | <span className="prop-default">{  vertical: 'top',  horizontal: 'right',}</span> | The anchor of the badge. |
+| <span className="prop-name">badgeContent</span> | <span className="prop-type">node</span> |  | The content rendered within the badge. |
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The badge will be added relative to this node. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">color</span> | <span className="prop-type">'default'<br />&#124;&nbsp;'error'<br />&#124;&nbsp;'primary'<br />&#124;&nbsp;'secondary'</span> | <span className="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">invisible</span> | <span className="prop-type">bool</span> |  | If `true`, the badge will be invisible. |
+| <span className="prop-name">max</span> | <span className="prop-type">number</span> | <span className="prop-default">99</span> | Max count to show. |
+| <span className="prop-name">overlap</span> | <span className="prop-type">'circle'<br />&#124;&nbsp;'rectangle'</span> | <span className="prop-default">'rectangle'</span> | Wrapped shape the badge should overlap. |
+| <span className="prop-name">showZero</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'dot'<br />&#124;&nbsp;'standard'</span> | <span className="prop-default">'standard'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiBadge`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiBadge-root</span> | Styles applied to the root element.
+| <span className="prop-name">badge</span> | <span className="prop-name">MuiBadge-badge</span> | Styles applied to the badge `span` element.
+| <span className="prop-name">colorPrimary</span> | <span className="prop-name">MuiBadge-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span className="prop-name">colorSecondary</span> | <span className="prop-name">MuiBadge-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span className="prop-name">colorError</span> | <span className="prop-name">MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
+| <span className="prop-name">dot</span> | <span className="prop-name">MuiBadge-dot</span> | Styles applied to the root element if `variant="dot"`.
+| <span className="prop-name">anchorOriginTopRightRectangle</span> | <span className="prop-name">MuiBadge-anchorOriginTopRightRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
+| <span className="prop-name">anchorOriginBottomRightRectangle</span> | <span className="prop-name">MuiBadge-anchorOriginBottomRightRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
+| <span className="prop-name">anchorOriginTopLeftRectangle</span> | <span className="prop-name">MuiBadge-anchorOriginTopLeftRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
+| <span className="prop-name">anchorOriginBottomLeftRectangle</span> | <span className="prop-name">MuiBadge-anchorOriginBottomLeftRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
+| <span className="prop-name">anchorOriginTopRightCircle</span> | <span className="prop-name">MuiBadge-anchorOriginTopRightCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
+| <span className="prop-name">anchorOriginBottomRightCircle</span> | <span className="prop-name">MuiBadge-anchorOriginBottomRightCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
+| <span className="prop-name">anchorOriginTopLeftCircle</span> | <span className="prop-name">MuiBadge-anchorOriginTopLeftCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
+| <span className="prop-name">anchorOriginBottomLeftCircle</span> | <span className="prop-name">MuiBadge-anchorOriginBottomLeftCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
+| <span className="prop-name">invisible</span> | <span className="prop-name">MuiBadge-invisible</span> | Pseudo-class to the badge `span` element if `invisible={true}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Badge/Badge.js) for more detail.
+
+## Demos
+
+- [Badges](/components/badges/)
+

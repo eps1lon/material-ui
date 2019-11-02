@@ -9,7 +9,7 @@ export default MarkdownXDocs;
 
 # AppBar API
 
-<p class="description">The API documentation of the AppBar React component. Learn more about the props and the CSS customization points.</p>
+<p className="description">The API documentation of the AppBar React component. Learn more about the props and the CSS customization points.</p>
 
 ## Import
 
@@ -21,14 +21,16 @@ import { AppBar } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+
+
 ## Props
 
-| Name                                    | Type                                                                                                                                               | Default                                     | Description                                                                                                                                                                                                                                                             |
-| :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span>                                                                                                                |                                             | The content of the component.                                                                                                                                                                                                                                           |
-| <span class="prop-name">classes</span>  | <span class="prop-type">object</span>                                                                                                              |                                             | Override or extend the styles applied to the component. See [CSS API](#css) below for more details.                                                                                                                                                                     |
-| <span class="prop-name">color</span>    | <span class="prop-type">'default'<br />&#124;&nbsp;'inherit'<br />&#124;&nbsp;'primary'<br />&#124;&nbsp;'secondary'</span>                        | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component.                                                                                                                                                                          |
-| <span class="prop-name">position</span> | <span class="prop-type">'absolute'<br />&#124;&nbsp;'fixed'<br />&#124;&nbsp;'relative'<br />&#124;&nbsp;'static'<br />&#124;&nbsp;'sticky'</span> | <span class="prop-default">'fixed'</span>   | The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The content of the component. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">color</span> | <span className="prop-type">'default'<br />&#124;&nbsp;'inherit'<br />&#124;&nbsp;'primary'<br />&#124;&nbsp;'secondary'</span> | <span className="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span className="prop-name">position</span> | <span className="prop-type">'absolute'<br />&#124;&nbsp;'fixed'<br />&#124;&nbsp;'relative'<br />&#124;&nbsp;'static'<br />&#124;&nbsp;'sticky'</span> | <span className="prop-default">'fixed'</span> | The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
 
 The `ref` is forwarded to the root element.
 
@@ -39,17 +41,17 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 - Style sheet name: `MuiAppBar`.
 - Style sheet details:
 
-| Rule name                                       | Global class                                              | Description                                                  |
-| :---------------------------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------- |
-| <span class="prop-name">root</span>             | <span class="prop-name">MuiAppBar-root</span>             | Styles applied to the root element.                          |
-| <span class="prop-name">positionFixed</span>    | <span class="prop-name">MuiAppBar-positionFixed</span>    | Styles applied to the root element if `position="fixed"`.    |
-| <span class="prop-name">positionAbsolute</span> | <span class="prop-name">MuiAppBar-positionAbsolute</span> | Styles applied to the root element if `position="absolute"`. |
-| <span class="prop-name">positionSticky</span>   | <span class="prop-name">MuiAppBar-positionSticky</span>   | Styles applied to the root element if `position="sticky"`.   |
-| <span class="prop-name">positionStatic</span>   | <span class="prop-name">MuiAppBar-positionStatic</span>   | Styles applied to the root element if `position="static"`.   |
-| <span class="prop-name">positionRelative</span> | <span class="prop-name">MuiAppBar-positionRelative</span> | Styles applied to the root element if `position="relative"`. |
-| <span class="prop-name">colorDefault</span>     | <span class="prop-name">MuiAppBar-colorDefault</span>     | Styles applied to the root element if `color="default"`.     |
-| <span class="prop-name">colorPrimary</span>     | <span class="prop-name">MuiAppBar-colorPrimary</span>     | Styles applied to the root element if `color="primary"`.     |
-| <span class="prop-name">colorSecondary</span>   | <span class="prop-name">MuiAppBar-colorSecondary</span>   | Styles applied to the root element if `color="secondary"`.   |
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiAppBar-root</span> | Styles applied to the root element.
+| <span className="prop-name">positionFixed</span> | <span className="prop-name">MuiAppBar-positionFixed</span> | Styles applied to the root element if `position="fixed"`.
+| <span className="prop-name">positionAbsolute</span> | <span className="prop-name">MuiAppBar-positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
+| <span className="prop-name">positionSticky</span> | <span className="prop-name">MuiAppBar-positionSticky</span> | Styles applied to the root element if `position="sticky"`.
+| <span className="prop-name">positionStatic</span> | <span className="prop-name">MuiAppBar-positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span className="prop-name">positionRelative</span> | <span className="prop-name">MuiAppBar-positionRelative</span> | Styles applied to the root element if `position="relative"`.
+| <span className="prop-name">colorDefault</span> | <span className="prop-name">MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
+| <span className="prop-name">colorPrimary</span> | <span className="prop-name">MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span className="prop-name">colorSecondary</span> | <span className="prop-name">MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -67,3 +69,4 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [App Bar](/components/app-bar/)
+

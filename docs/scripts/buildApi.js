@@ -193,19 +193,8 @@ async function buildDocs(options) {
     }
 
     writeFileSync(
-      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`),
+      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.mdx`),
       markdown.replace(/\r?\n/g, reactAPI.EOL),
-    );
-    writeFileSync(
-      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './${kebabCase(reactAPI.name)}.md';
-
-export default function Page() {
-  return <MarkdownDocs markdown={markdown} />;
-}
-`.replace(/\r?\n/g, reactAPI.EOL),
     );
 
     console.log('Built markdown docs for', reactAPI.name);

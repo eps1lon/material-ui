@@ -1,0 +1,76 @@
+---
+filename: /packages/material-ui/src/NativeSelect/NativeSelect.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# NativeSelect API
+
+<p className="description">The API documentation of the NativeSelect React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import NativeSelect from '@material-ui/core/NativeSelect';
+// or
+import { NativeSelect } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+An alternative to `<Select native />` with a much smaller bundle size footprint.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The option elements to populate the select with. Can be some `<option>` elements. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">IconComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
+| <span className="prop-name">input</span> | <span className="prop-type">element</span> | <span className="prop-default">&lt;Input /></span> | An `Input` element; does not have to be a material-ui specific `Input`. |
+| <span className="prop-name">inputProps</span> | <span className="prop-type">object</span> |  | Attributes applied to the `select` element. |
+| <span className="prop-name">onChange</span> | <span className="prop-type">func</span> |  | Callback function fired when a menu item is selected.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
+| <span className="prop-name">value</span> | <span className="prop-type">any</span> |  | The input value. The DOM API casts this to a string. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'standard'<br />&#124;&nbsp;'outlined'<br />&#124;&nbsp;'filled'</span> |  | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([Input](/api/input/)).
+
+## CSS
+
+- Style sheet name: `MuiNativeSelect`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiNativeSelect-root</span> | Styles applied to the select component `root` class.
+| <span className="prop-name">select</span> | <span className="prop-name">MuiNativeSelect-select</span> | Styles applied to the select component `select` class.
+| <span className="prop-name">filled</span> | <span className="prop-name">MuiNativeSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
+| <span className="prop-name">outlined</span> | <span className="prop-name">MuiNativeSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
+| <span className="prop-name">selectMenu</span> | <span className="prop-name">MuiNativeSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
+| <span className="prop-name">icon</span> | <span className="prop-name">MuiNativeSelect-icon</span> | Styles applied to the icon component.
+| <span className="prop-name">iconFilled</span> | <span className="prop-name">MuiNativeSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
+| <span className="prop-name">iconOutlined</span> | <span className="prop-name">MuiNativeSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/NativeSelect/NativeSelect.js) for more detail.
+
+## Inheritance
+
+The props of the [Input](/api/input/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Selects](/components/selects/)
+

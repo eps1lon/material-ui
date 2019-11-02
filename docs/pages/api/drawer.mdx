@@ -1,0 +1,78 @@
+---
+filename: /packages/material-ui/src/Drawer/Drawer.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Drawer API
+
+<p className="description">The API documentation of the Drawer React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Drawer from '@material-ui/core/Drawer';
+// or
+import { Drawer } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+The props of the [Modal](/api/modal/) component are available
+when `variant="temporary"` is set.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">anchor</span> | <span className="prop-type">'left'<br />&#124;&nbsp;'top'<br />&#124;&nbsp;'right'<br />&#124;&nbsp;'bottom'</span> | <span className="prop-default">'left'</span> | Side from which the drawer will appear. |
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The contents of the drawer. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">elevation</span> | <span className="prop-type">number</span> | <span className="prop-default">16</span> | The elevation of the drawer. |
+| <span className="prop-name">ModalProps</span> | <span className="prop-type">object</span> | <span className="prop-default">{}</span> | Props applied to the [`Modal`](/api/modal/) element. |
+| <span className="prop-name">onClose</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. |
+| <span className="prop-name">open</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the drawer is open. |
+| <span className="prop-name">PaperProps</span> | <span className="prop-type">object</span> |  | Props applied to the [`Paper`](/api/paper/) element. |
+| <span className="prop-name">SlideProps</span> | <span className="prop-type">object</span> |  | Props applied to the [`Slide`](/api/slide/) element. |
+| <span className="prop-name">transitionDuration</span> | <span className="prop-type">number<br />&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span className="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'permanent'<br />&#124;&nbsp;'persistent'<br />&#124;&nbsp;'temporary'</span> | <span className="prop-default">'temporary'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiDrawer`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiDrawer-root</span> | Styles applied to the root element.
+| <span className="prop-name">docked</span> | <span className="prop-name">MuiDrawer-docked</span> | Styles applied to the root element if `variant="permanent or persistent"`.
+| <span className="prop-name">paper</span> | <span className="prop-name">MuiDrawer-paper</span> | Styles applied to the `Paper` component.
+| <span className="prop-name">paperAnchorLeft</span> | <span className="prop-name">MuiDrawer-paperAnchorLeft</span> | Styles applied to the `Paper` component if `anchor="left"`.
+| <span className="prop-name">paperAnchorRight</span> | <span className="prop-name">MuiDrawer-paperAnchorRight</span> | Styles applied to the `Paper` component if `anchor="right"`.
+| <span className="prop-name">paperAnchorTop</span> | <span className="prop-name">MuiDrawer-paperAnchorTop</span> | Styles applied to the `Paper` component if `anchor="top"`.
+| <span className="prop-name">paperAnchorBottom</span> | <span className="prop-name">MuiDrawer-paperAnchorBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"`.
+| <span className="prop-name">paperAnchorDockedLeft</span> | <span className="prop-name">MuiDrawer-paperAnchorDockedLeft</span> | Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
+| <span className="prop-name">paperAnchorDockedTop</span> | <span className="prop-name">MuiDrawer-paperAnchorDockedTop</span> | Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
+| <span className="prop-name">paperAnchorDockedRight</span> | <span className="prop-name">MuiDrawer-paperAnchorDockedRight</span> | Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
+| <span className="prop-name">paperAnchorDockedBottom</span> | <span className="prop-name">MuiDrawer-paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
+| <span className="prop-name">modal</span> | <span className="prop-name">MuiDrawer-modal</span> | Styles applied to the `Modal` component.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Drawer/Drawer.js) for more detail.
+
+## Demos
+
+- [Drawers](/components/drawers/)
+

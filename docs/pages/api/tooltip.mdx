@@ -1,0 +1,81 @@
+---
+filename: /packages/material-ui/src/Tooltip/Tooltip.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Tooltip API
+
+<p className="description">The API documentation of the Tooltip React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Tooltip from '@material-ui/core/Tooltip';
+// or
+import { Tooltip } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name required">children&nbsp;*</span> | <span className="prop-type">element</span> |  | Tooltip reference element.<br />⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">disableFocusListener</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Do not respond to focus events. |
+| <span className="prop-name">disableHoverListener</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Do not respond to hover events. |
+| <span className="prop-name">disableTouchListener</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Do not respond to long press touch events. |
+| <span className="prop-name">enterDelay</span> | <span className="prop-type">number</span> | <span className="prop-default">0</span> | The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`). |
+| <span className="prop-name">enterTouchDelay</span> | <span className="prop-type">number</span> | <span className="prop-default">700</span> | The number of milliseconds a user must touch the element before showing the tooltip. |
+| <span className="prop-name">id</span> | <span className="prop-type">string</span> |  | The relationship between the tooltip and the wrapper component is not clear from the DOM. This prop is used with aria-describedby to solve the accessibility issue. If you don't provide this prop. It falls back to a randomly generated id. |
+| <span className="prop-name">interactive</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Makes a tooltip interactive, i.e. will not close when the user hovers over the tooltip before the `leaveDelay` is expired. |
+| <span className="prop-name">leaveDelay</span> | <span className="prop-type">number</span> | <span className="prop-default">0</span> | The number of milliseconds to wait before hiding the tooltip. This prop won't impact the leave touch delay (`leaveTouchDelay`). |
+| <span className="prop-name">leaveTouchDelay</span> | <span className="prop-type">number</span> | <span className="prop-default">1500</span> | The number of milliseconds after the user stops touching an element before hiding the tooltip. |
+| <span className="prop-name">onClose</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. |
+| <span className="prop-name">onOpen</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be open.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. |
+| <span className="prop-name">open</span> | <span className="prop-type">bool</span> |  | If `true`, the tooltip is shown. |
+| <span className="prop-name">placement</span> | <span className="prop-type">'bottom-end'<br />&#124;&nbsp;'bottom-start'<br />&#124;&nbsp;'bottom'<br />&#124;&nbsp;'left-end'<br />&#124;&nbsp;'left-start'<br />&#124;&nbsp;'left'<br />&#124;&nbsp;'right-end'<br />&#124;&nbsp;'right-start'<br />&#124;&nbsp;'right'<br />&#124;&nbsp;'top-end'<br />&#124;&nbsp;'top-start'<br />&#124;&nbsp;'top'</span> | <span className="prop-default">'bottom'</span> | Tooltip placement. |
+| <span className="prop-name">PopperProps</span> | <span className="prop-type">object</span> |  | Props applied to the [`Popper`](/api/popper/) element. |
+| <span className="prop-name required">title&nbsp;*</span> | <span className="prop-type">node</span> |  | Tooltip title. Zero-length titles string are never displayed. |
+| <span className="prop-name">TransitionComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">Grow</span> | The component used for the transition. |
+| <span className="prop-name">TransitionProps</span> | <span className="prop-type">object</span> |  | Props applied to the `Transition` element. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiTooltip`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">popper</span> | <span className="prop-name">MuiTooltip-popper</span> | Styles applied to the Popper component.
+| <span className="prop-name">popperInteractive</span> | <span className="prop-name">MuiTooltip-popperInteractive</span> | Styles applied to the Popper component if `interactive={true}`.
+| <span className="prop-name">tooltip</span> | <span className="prop-name">MuiTooltip-tooltip</span> | Styles applied to the tooltip (label wrapper) element.
+| <span className="prop-name">touch</span> | <span className="prop-name">MuiTooltip-touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
+| <span className="prop-name">tooltipPlacementLeft</span> | <span className="prop-name">MuiTooltip-tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
+| <span className="prop-name">tooltipPlacementRight</span> | <span className="prop-name">MuiTooltip-tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
+| <span className="prop-name">tooltipPlacementTop</span> | <span className="prop-name">MuiTooltip-tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
+| <span className="prop-name">tooltipPlacementBottom</span> | <span className="prop-name">MuiTooltip-tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tooltip/Tooltip.js) for more detail.
+
+## Demos
+
+- [Tooltips](/components/tooltips/)
+

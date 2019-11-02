@@ -1,0 +1,65 @@
+---
+filename: /packages/material-ui-lab/src/Skeleton/Skeleton.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Skeleton API
+
+<p className="description">The API documentation of the Skeleton React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Skeleton from '@material-ui/lab/Skeleton';
+// or
+import { Skeleton } from '@material-ui/lab';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">disableAnimate</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true` the animation effect is disabled. |
+| <span className="prop-name">height</span> | <span className="prop-type">number<br />&#124;&nbsp;string</span> |  | Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'text'<br />&#124;&nbsp;'rect'<br />&#124;&nbsp;'circle'</span> | <span className="prop-default">'text'</span> | The type of content that will be rendered. |
+| <span className="prop-name">width</span> | <span className="prop-type">number<br />&#124;&nbsp;string</span> |  | Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiSkeleton`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiSkeleton-root</span> | Styles applied to the root element.
+| <span className="prop-name">text</span> | <span className="prop-name">MuiSkeleton-text</span> | Styles applied to the root element if `variant="text"`.
+| <span className="prop-name">rect</span> | <span className="prop-name">MuiSkeleton-rect</span> | Styles applied to the root element if `variant="rect"`.
+| <span className="prop-name">circle</span> | <span className="prop-name">MuiSkeleton-circle</span> | Styles applied to the root element if `variant="circle"`.
+| <span className="prop-name">animate</span> | <span className="prop-name">MuiSkeleton-animate</span> | Styles applied to the root element if `disabledAnimate={false}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/Skeleton/Skeleton.js) for more detail.
+
+## Demos
+
+- [Skeleton](/components/skeleton/)
+

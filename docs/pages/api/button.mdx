@@ -1,0 +1,100 @@
+---
+filename: /packages/material-ui/src/Button/Button.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Button API
+
+<p className="description">The API documentation of the Button React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Button from '@material-ui/core/Button';
+// or
+import { Button } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name required">children&nbsp;*</span> | <span className="prop-type">node</span> |  | The content of the button. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">color</span> | <span className="prop-type">'default'<br />&#124;&nbsp;'inherit'<br />&#124;&nbsp;'primary'<br />&#124;&nbsp;'secondary'</span> | <span className="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">'button'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">disabled</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the button will be disabled. |
+| <span className="prop-name">disableFocusRipple</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
+| <span className="prop-name">disableRipple</span> | <span className="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled.<br />⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`. |
+| <span className="prop-name">endIcon</span> | <span className="prop-type">node</span> |  | Element placed after the children. |
+| <span className="prop-name">fullWidth</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the button will take up the full width of its container. |
+| <span className="prop-name">href</span> | <span className="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
+| <span className="prop-name">size</span> | <span className="prop-type">'small'<br />&#124;&nbsp;'medium'<br />&#124;&nbsp;'large'</span> | <span className="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
+| <span className="prop-name">startIcon</span> | <span className="prop-type">node</span> |  | Element placed before the children. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'text'<br />&#124;&nbsp;'outlined'<br />&#124;&nbsp;'contained'</span> | <span className="prop-default">'text'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+
+## CSS
+
+- Style sheet name: `MuiButton`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiButton-root</span> | Styles applied to the root element.
+| <span className="prop-name">label</span> | <span className="prop-name">MuiButton-label</span> | Styles applied to the span element that wraps the children.
+| <span className="prop-name">text</span> | <span className="prop-name">MuiButton-text</span> | Styles applied to the root element if `variant="text"`.
+| <span className="prop-name">textPrimary</span> | <span className="prop-name">MuiButton-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
+| <span className="prop-name">textSecondary</span> | <span className="prop-name">MuiButton-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
+| <span className="prop-name">outlined</span> | <span className="prop-name">MuiButton-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span className="prop-name">outlinedPrimary</span> | <span className="prop-name">MuiButton-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+| <span className="prop-name">outlinedSecondary</span> | <span className="prop-name">MuiButton-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+| <span className="prop-name">contained</span> | <span className="prop-name">MuiButton-contained</span> | Styles applied to the root element if `variant="contained"`.
+| <span className="prop-name">containedPrimary</span> | <span className="prop-name">MuiButton-containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
+| <span className="prop-name">containedSecondary</span> | <span className="prop-name">MuiButton-containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
+| <span className="prop-name">focusVisible</span> | <span className="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span className="prop-name">colorInherit</span> | <span className="prop-name">MuiButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span className="prop-name">textSizeSmall</span> | <span className="prop-name">MuiButton-textSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="text"`.
+| <span className="prop-name">textSizeLarge</span> | <span className="prop-name">MuiButton-textSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="text"`.
+| <span className="prop-name">outlinedSizeSmall</span> | <span className="prop-name">MuiButton-outlinedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="outlined"`.
+| <span className="prop-name">outlinedSizeLarge</span> | <span className="prop-name">MuiButton-outlinedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="outlined"`.
+| <span className="prop-name">containedSizeSmall</span> | <span className="prop-name">MuiButton-containedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="contained"`.
+| <span className="prop-name">containedSizeLarge</span> | <span className="prop-name">MuiButton-containedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="contained"`.
+| <span className="prop-name">sizeSmall</span> | <span className="prop-name">MuiButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span className="prop-name">sizeLarge</span> | <span className="prop-name">MuiButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
+| <span className="prop-name">fullWidth</span> | <span className="prop-name">MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span className="prop-name">startIcon</span> | <span className="prop-name">MuiButton-startIcon</span> | Styles applied to the startIcon element if supplied.
+| <span className="prop-name">endIcon</span> | <span className="prop-name">MuiButton-endIcon</span> | Styles applied to the endIcon element if supplied.
+| <span className="prop-name">iconSizeSmall</span> | <span className="prop-name">MuiButton-iconSizeSmall</span> | Styles applied to the icon element if supplied and `size="small"`.
+| <span className="prop-name">iconSizeMedium</span> | <span className="prop-name">MuiButton-iconSizeMedium</span> | Styles applied to the icon element if supplied and `size="medium"`.
+| <span className="prop-name">iconSizeLarge</span> | <span className="prop-name">MuiButton-iconSizeLarge</span> | Styles applied to the icon element if supplied and `size="large"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js) for more detail.
+
+## Inheritance
+
+The props of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Buttons](/components/buttons/)
+

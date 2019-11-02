@@ -1,0 +1,75 @@
+---
+filename: /packages/material-ui/src/MobileStepper/MobileStepper.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# MobileStepper API
+
+<p className="description">The API documentation of the MobileStepper React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import MobileStepper from '@material-ui/core/MobileStepper';
+// or
+import { MobileStepper } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">activeStep</span> | <span className="prop-type">number</span> | <span className="prop-default">0</span> | Set the active step (zero based index). Defines which dot is highlighted when the variant is 'dots'. |
+| <span className="prop-name">backButton</span> | <span className="prop-type">node</span> |  | A back button element. For instance, it can be a `Button` or an `IconButton`. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">LinearProgressProps</span> | <span className="prop-type">object</span> |  | Props applied to the `LinearProgress` element. |
+| <span className="prop-name">nextButton</span> | <span className="prop-type">node</span> |  | A next button element. For instance, it can be a `Button` or an `IconButton`. |
+| <span className="prop-name">position</span> | <span className="prop-type">'bottom'<br />&#124;&nbsp;'top'<br />&#124;&nbsp;'static'</span> | <span className="prop-default">'bottom'</span> | Set the positioning type. |
+| <span className="prop-name required">steps&nbsp;*</span> | <span className="prop-type">number</span> |  | The total steps. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'text'<br />&#124;&nbsp;'dots'<br />&#124;&nbsp;'progress'</span> | <span className="prop-default">'dots'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([Paper](/api/paper/)).
+
+## CSS
+
+- Style sheet name: `MuiMobileStepper`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiMobileStepper-root</span> | Styles applied to the root element.
+| <span className="prop-name">positionBottom</span> | <span className="prop-name">MuiMobileStepper-positionBottom</span> | Styles applied to the root element if `position="bottom"`.
+| <span className="prop-name">positionTop</span> | <span className="prop-name">MuiMobileStepper-positionTop</span> | Styles applied to the root element if `position="top"`.
+| <span className="prop-name">positionStatic</span> | <span className="prop-name">MuiMobileStepper-positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span className="prop-name">dots</span> | <span className="prop-name">MuiMobileStepper-dots</span> | Styles applied to the dots container if `variant="dots"`.
+| <span className="prop-name">dot</span> | <span className="prop-name">MuiMobileStepper-dot</span> | Styles applied to each dot if `variant="dots"`.
+| <span className="prop-name">dotActive</span> | <span className="prop-name">MuiMobileStepper-dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
+| <span className="prop-name">progress</span> | <span className="prop-name">MuiMobileStepper-progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/MobileStepper/MobileStepper.js) for more detail.
+
+## Inheritance
+
+The props of the [Paper](/api/paper/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Steppers](/components/steppers/)
+

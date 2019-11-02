@@ -1,0 +1,63 @@
+---
+filename: /packages/material-ui/src/GridListTile/GridListTile.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# GridListTile API
+
+<p className="description">The API documentation of the GridListTile React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import GridListTile from '@material-ui/core/GridListTile';
+// or
+import { GridListTile } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`). |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">cols</span> | <span className="prop-type">number</span> | <span className="prop-default">1</span> | Width of the tile in number of grid cells. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">rows</span> | <span className="prop-type">number</span> | <span className="prop-default">1</span> | Height of the tile in number of grid cells. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiGridListTile`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiGridListTile-root</span> | Styles applied to the root element.
+| <span className="prop-name">tile</span> | <span className="prop-name">MuiGridListTile-tile</span> | Styles applied to the `div` element that wraps the children.
+| <span className="prop-name">imgFullHeight</span> | <span className="prop-name">MuiGridListTile-imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+| <span className="prop-name">imgFullWidth</span> | <span className="prop-name">MuiGridListTile-imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridListTile/GridListTile.js) for more detail.
+
+## Demos
+
+- [Grid List](/components/grid-list/)
+

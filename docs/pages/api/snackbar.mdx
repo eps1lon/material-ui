@@ -1,0 +1,83 @@
+---
+filename: /packages/material-ui/src/Snackbar/Snackbar.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Snackbar API
+
+<p className="description">The API documentation of the Snackbar React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Snackbar from '@material-ui/core/Snackbar';
+// or
+import { Snackbar } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">action</span> | <span className="prop-type">node</span> |  | The action to display. |
+| <span className="prop-name">anchorOrigin</span> | <span className="prop-type">{ horizontal: 'left'<br />&#124;&nbsp;'center'<br />&#124;&nbsp;'right', vertical: 'top'<br />&#124;&nbsp;'bottom' }</span> | <span className="prop-default">{ vertical: 'bottom', horizontal: 'center' }</span> | The anchor of the `Snackbar`. |
+| <span className="prop-name">autoHideDuration</span> | <span className="prop-type">number</span> |  | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
+| <span className="prop-name">children</span> | <span className="prop-type">element</span> |  | Replace the `SnackbarContent` component. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">ClickAwayListenerProps</span> | <span className="prop-type">object</span> |  | Props applied to the `ClickAwayListener` element. |
+| <span className="prop-name">ContentProps</span> | <span className="prop-type">object</span> |  | Props applied to the [`SnackbarContent`](/api/snackbar-content/) element. |
+| <span className="prop-name">disableWindowBlurListener</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the `autoHideDuration` timer will expire even if the window is not focused. |
+| <span className="prop-name">key</span> | <span className="prop-type">any</span> |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key prop to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
+| <span className="prop-name">message</span> | <span className="prop-type">node</span> |  | The message to display. |
+| <span className="prop-name">onClose</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be closed. Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop. The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.<br /><br />**Signature:**<br />`function(event: object, reason: string) => void`<br />*event:* The event source of the callback.<br />*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`. |
+| <span className="prop-name">onEnter</span> | <span className="prop-type">func</span> |  | Callback fired before the transition is entering. |
+| <span className="prop-name">onEntered</span> | <span className="prop-type">func</span> |  | Callback fired when the transition has entered. |
+| <span className="prop-name">onEntering</span> | <span className="prop-type">func</span> |  | Callback fired when the transition is entering. |
+| <span className="prop-name">onExit</span> | <span className="prop-type">func</span> |  | Callback fired before the transition is exiting. |
+| <span className="prop-name">onExited</span> | <span className="prop-type">func</span> |  | Callback fired when the transition has exited. |
+| <span className="prop-name">onExiting</span> | <span className="prop-type">func</span> |  | Callback fired when the transition is exiting. |
+| <span className="prop-name">open</span> | <span className="prop-type">bool</span> |  | If true, `Snackbar` is open. |
+| <span className="prop-name">resumeHideDuration</span> | <span className="prop-type">number</span> |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
+| <span className="prop-name">TransitionComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">Grow</span> | The component used for the transition. |
+| <span className="prop-name">transitionDuration</span> | <span className="prop-type">number<br />&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span className="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span className="prop-name">TransitionProps</span> | <span className="prop-type">object</span> |  | Props applied to the `Transition` element. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiSnackbar`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiSnackbar-root</span> | Styles applied to the root element.
+| <span className="prop-name">anchorOriginTopCenter</span> | <span className="prop-name">MuiSnackbar-anchorOriginTopCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.
+| <span className="prop-name">anchorOriginBottomCenter</span> | <span className="prop-name">MuiSnackbar-anchorOriginBottomCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.
+| <span className="prop-name">anchorOriginTopRight</span> | <span className="prop-name">MuiSnackbar-anchorOriginTopRight</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.
+| <span className="prop-name">anchorOriginBottomRight</span> | <span className="prop-name">MuiSnackbar-anchorOriginBottomRight</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.
+| <span className="prop-name">anchorOriginTopLeft</span> | <span className="prop-name">MuiSnackbar-anchorOriginTopLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
+| <span className="prop-name">anchorOriginBottomLeft</span> | <span className="prop-name">MuiSnackbar-anchorOriginBottomLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Snackbar/Snackbar.js) for more detail.
+
+## Demos
+
+- [Snackbars](/components/snackbars/)
+

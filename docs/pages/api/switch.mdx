@@ -1,0 +1,88 @@
+---
+filename: /packages/material-ui/src/Switch/Switch.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Switch API
+
+<p className="description">The API documentation of the Switch React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Switch from '@material-ui/core/Switch';
+// or
+import { Switch } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">checked</span> | <span className="prop-type">bool</span> |  | If `true`, the component is checked. |
+| <span className="prop-name">checkedIcon</span> | <span className="prop-type">node</span> |  | The icon to display when the component is checked. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">color</span> | <span className="prop-type">'primary'<br />&#124;&nbsp;'secondary'<br />&#124;&nbsp;'default'</span> | <span className="prop-default">'secondary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span className="prop-name">disabled</span> | <span className="prop-type">bool</span> |  | If `true`, the switch will be disabled. |
+| <span className="prop-name">disableRipple</span> | <span className="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
+| <span className="prop-name">edge</span> | <span className="prop-type">'start'<br />&#124;&nbsp;'end'<br />&#124;&nbsp;false</span> | <span className="prop-default">false</span> | If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape). |
+| <span className="prop-name">icon</span> | <span className="prop-type">node</span> |  | The icon to display when the component is unchecked. |
+| <span className="prop-name">id</span> | <span className="prop-type">string</span> |  | The id of the `input` element. |
+| <span className="prop-name">inputProps</span> | <span className="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
+| <span className="prop-name">inputRef</span> | <span className="prop-type">ref</span> |  | Pass a ref to the `input` element. |
+| <span className="prop-name">onChange</span> | <span className="prop-type">func</span> |  | Callback fired when the state is changed.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean). |
+| <span className="prop-name">required</span> | <span className="prop-type">bool</span> |  | If `true`, the `input` element will be required. |
+| <span className="prop-name">size</span> | <span className="prop-type">'small'<br />&#124;&nbsp;'medium'</span> | <span className="prop-default">'medium'</span> | The size of the switch. `small` is equivalent to the dense switch styling. |
+| <span className="prop-name">type</span> | <span className="prop-type">string</span> |  | The input component prop `type`. |
+| <span className="prop-name">value</span> | <span className="prop-type">any</span> |  | The value of the component. The DOM API casts this to a string. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([IconButton](/api/icon-button/)).
+
+## CSS
+
+- Style sheet name: `MuiSwitch`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiSwitch-root</span> | Styles applied to the root element.
+| <span className="prop-name">edgeStart</span> | <span className="prop-name">MuiSwitch-edgeStart</span> | Styles applied to the root element if `edge="start"`.
+| <span className="prop-name">edgeEnd</span> | <span className="prop-name">MuiSwitch-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
+| <span className="prop-name">switchBase</span> | <span className="prop-name">MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
+| <span className="prop-name">colorPrimary</span> | <span className="prop-name">MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
+| <span className="prop-name">colorSecondary</span> | <span className="prop-name">MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span className="prop-name">sizeSmall</span> | <span className="prop-name">MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span className="prop-name">checked</span> | <span className="prop-name">Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
+| <span className="prop-name">input</span> | <span className="prop-name">MuiSwitch-input</span> | Styles applied to the internal SwitchBase component's input element.
+| <span className="prop-name">thumb</span> | <span className="prop-name">MuiSwitch-thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
+| <span className="prop-name">track</span> | <span className="prop-name">MuiSwitch-track</span> | Styles applied to the track element.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Switch/Switch.js) for more detail.
+
+## Inheritance
+
+The props of the [IconButton](/api/icon-button/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Switches](/components/switches/)
+- [Transfer List](/components/transfer-list/)
+

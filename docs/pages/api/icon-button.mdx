@@ -1,0 +1,78 @@
+---
+filename: /packages/material-ui/src/IconButton/IconButton.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# IconButton API
+
+<p className="description">The API documentation of the IconButton React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import IconButton from '@material-ui/core/IconButton';
+// or
+import { IconButton } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+Refer to the [Icons](/components/icons/) section of the documentation
+regarding the available icon options.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The icon element. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">color</span> | <span className="prop-type">'default'<br />&#124;&nbsp;'inherit'<br />&#124;&nbsp;'primary'<br />&#124;&nbsp;'secondary'</span> | <span className="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span className="prop-name">disabled</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the button will be disabled. |
+| <span className="prop-name">disableFocusRipple</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
+| <span className="prop-name">disableRipple</span> | <span className="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
+| <span className="prop-name">edge</span> | <span className="prop-type">'start'<br />&#124;&nbsp;'end'<br />&#124;&nbsp;false</span> | <span className="prop-default">false</span> | If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape). |
+| <span className="prop-name">size</span> | <span className="prop-type">'small'<br />&#124;&nbsp;'medium'</span> | <span className="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+
+## CSS
+
+- Style sheet name: `MuiIconButton`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiIconButton-root</span> | Styles applied to the root element.
+| <span className="prop-name">edgeStart</span> | <span className="prop-name">MuiIconButton-edgeStart</span> | Styles applied to the root element if `edge="start"`.
+| <span className="prop-name">edgeEnd</span> | <span className="prop-name">MuiIconButton-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
+| <span className="prop-name">colorInherit</span> | <span className="prop-name">MuiIconButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span className="prop-name">colorPrimary</span> | <span className="prop-name">MuiIconButton-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span className="prop-name">colorSecondary</span> | <span className="prop-name">MuiIconButton-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span className="prop-name">disabled</span> | <span className="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span className="prop-name">sizeSmall</span> | <span className="prop-name">MuiIconButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span className="prop-name">label</span> | <span className="prop-name">MuiIconButton-label</span> | Styles applied to the children container element.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/IconButton/IconButton.js) for more detail.
+
+## Inheritance
+
+The props of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Buttons](/components/buttons/)
+- [Grid List](/components/grid-list/)
+

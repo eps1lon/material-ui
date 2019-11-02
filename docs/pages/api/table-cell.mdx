@@ -1,0 +1,75 @@
+---
+filename: /packages/material-ui/src/TableCell/TableCell.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# TableCell API
+
+<p className="description">The API documentation of the TableCell React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import TableCell from '@material-ui/core/TableCell';
+// or
+import { TableCell } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">align</span> | <span className="prop-type">'inherit'<br />&#124;&nbsp;'left'<br />&#124;&nbsp;'center'<br />&#124;&nbsp;'right'<br />&#124;&nbsp;'justify'</span> | <span className="prop-default">'inherit'</span> | Set the text-align on the table cell content.<br />Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals. |
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The table cell contents. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">padding</span> | <span className="prop-type">'default'<br />&#124;&nbsp;'checkbox'<br />&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. By default, the Table parent component set the value (`default`). |
+| <span className="prop-name">scope</span> | <span className="prop-type">string</span> |  | Set scope attribute. |
+| <span className="prop-name">size</span> | <span className="prop-type">'small'<br />&#124;&nbsp;'medium'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |
+| <span className="prop-name">sortDirection</span> | <span className="prop-type">'asc'<br />&#124;&nbsp;'desc'<br />&#124;&nbsp;false</span> |  | Set aria-sort direction. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'head'<br />&#124;&nbsp;'body'<br />&#124;&nbsp;'footer'</span> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiTableCell`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiTableCell-root</span> | Styles applied to the root element.
+| <span className="prop-name">head</span> | <span className="prop-name">MuiTableCell-head</span> | Styles applied to the root element if `variant="head"` or `context.table.head`.
+| <span className="prop-name">body</span> | <span className="prop-name">MuiTableCell-body</span> | Styles applied to the root element if `variant="body"` or `context.table.body`.
+| <span className="prop-name">footer</span> | <span className="prop-name">MuiTableCell-footer</span> | Styles applied to the root element if `variant="footer"` or `context.table.footer`.
+| <span className="prop-name">sizeSmall</span> | <span className="prop-name">MuiTableCell-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span className="prop-name">paddingCheckbox</span> | <span className="prop-name">MuiTableCell-paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
+| <span className="prop-name">paddingNone</span> | <span className="prop-name">MuiTableCell-paddingNone</span> | Styles applied to the root element if `padding="none"`.
+| <span className="prop-name">alignLeft</span> | <span className="prop-name">MuiTableCell-alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <span className="prop-name">alignCenter</span> | <span className="prop-name">MuiTableCell-alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <span className="prop-name">alignRight</span> | <span className="prop-name">MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
+| <span className="prop-name">alignJustify</span> | <span className="prop-name">MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
+| <span className="prop-name">stickyHeader</span> | <span className="prop-name">MuiTableCell-stickyHeader</span> | Styles applied to the root element if `context.table.stickyHeader={true}`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableCell/TableCell.js) for more detail.
+
+## Demos
+
+- [Tables](/components/tables/)
+

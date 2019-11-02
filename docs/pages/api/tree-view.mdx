@@ -1,0 +1,63 @@
+---
+filename: /packages/material-ui-lab/src/TreeView/TreeView.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# TreeView API
+
+<p className="description">The API documentation of the TreeView React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import TreeView from '@material-ui/lab/TreeView';
+// or
+import { TreeView } from '@material-ui/lab';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | The content of the component. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">defaultCollapseIcon</span> | <span className="prop-type">node</span> |  | The default icon used to collapse the node. |
+| <span className="prop-name">defaultEndIcon</span> | <span className="prop-type">node</span> |  | The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop. |
+| <span className="prop-name">defaultExpanded</span> | <span className="prop-type">Array<string></span> | <span className="prop-default">[]</span> | Expanded node ids. |
+| <span className="prop-name">defaultExpandIcon</span> | <span className="prop-type">node</span> |  | The default icon used to expand the node. |
+| <span className="prop-name">defaultParentIcon</span> | <span className="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
+| <span className="prop-name">onNodeToggle</span> | <span className="prop-type">func</span> |  | Callback fired when a `TreeItem` is expanded/collapsed.<br /><br />**Signature:**<br />`function(nodeId: string, expanded: boolean) => void`<br />*nodeId:* The id of the toggled node.<br />*expanded:* The node status - If `true` the node was expanded. If `false` the node was collapsed. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiTreeView`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiTreeView-root</span> | Styles applied to the root element.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TreeView/TreeView.js) for more detail.
+
+## Demos
+
+- [Tree View](/components/tree-view/)
+

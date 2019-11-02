@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const markdownRegex = /\.md$/;
+const markdownRegex = /\.mdx?$/;
 
 // Returns the markdowns of the documentation in a flat array.
 // {
@@ -29,7 +29,7 @@ function findPagesMarkdown(
     let pathname = itemPath
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/pages/, '')
-      .replace('.md', '');
+      .replace(markdownRegex, '');
 
     // Remove the last pathname segment.
     pathname = pathname

@@ -8,14 +8,24 @@ import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
-const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
+const DEMO_IGNORE = [
+  ...LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`),
+  ...LANGUAGES_IN_PROGRESS.map(language => `${language}.mdx`),
+];
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
 }
 
 function generateHeader(reactAPI) {
-  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
+  return [
+    '---',
+    `filename: ${normalizePath(reactAPI.filename)}`,
+    '---',
+    '',
+    "import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';",
+    'export default MarkdownXDocs;',
+  ].join('\n');
 }
 
 function getDeprecatedInfo(type) {
@@ -92,7 +102,7 @@ function generatePropDescription(prop) {
   if (type.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
     if (deprecatedInfo) {
-      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
+      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br /><br />`;
     }
   }
 
@@ -103,7 +113,7 @@ function generatePropDescription(prop) {
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
   const jsDocText = escapeCell(parsed.description)
-    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/(\r?\n){2}/g, '<br />')
     .replace(/\r?\n/g, ' ');
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) {
@@ -134,7 +144,7 @@ function generatePropDescription(prop) {
       parsedReturns = { type: { name: 'void' } };
     }
 
-    signature += '<br><br>**Signature:**<br>`function(';
+    signature += '<br /><br />**Signature:**<br />`function(';
     signature += parsedArgs
       .map(tag => {
         if (tag.type.type === 'AllLiteral') {
@@ -148,16 +158,16 @@ function generatePropDescription(prop) {
         return `${tag.name}: ${tag.type.name}`;
       })
       .join(', ');
-    signature += `) => ${parsedReturns.type.name}\`<br>`;
-    signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
+    signature += `) => ${parsedReturns.type.name}\`<br />`;
+    signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br />');
     if (parsedReturns.description) {
-      signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
+      signature += `<br /> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
     }
   }
 
   let notes = '';
   if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
-    notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
+    notes += '<br />⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
   }
 
   return `${deprecated}${jsDocText}${signature}${notes}`;
@@ -212,7 +222,7 @@ function generatePropType(type) {
             return generatePropType(type2);
           })
           // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
+          .join('<br />&#124;&nbsp;')
       );
     }
 
@@ -268,7 +278,7 @@ function generateProps(reactAPI) {
     let defaultValue = '';
 
     if (prop.defaultValue) {
-      defaultValue = `<span class="prop-default">${escapeCell(
+      defaultValue = `<span className="prop-default">${escapeCell(
         prop.defaultValue.value.replace(/\r*\n/g, ''),
       )}</span>`;
     }
@@ -280,9 +290,9 @@ function generateProps(reactAPI) {
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propRaw = `<span class="prop-name required">${propRaw}&nbsp;*</span>`;
+      propRaw = `<span className="prop-name required">${propRaw}&nbsp;*</span>`;
     } else {
-      propRaw = `<span class="prop-name">${propRaw}</span>`;
+      propRaw = `<span className="prop-name">${propRaw}</span>`;
     }
 
     if (prop.type.name === 'custom') {
@@ -291,7 +301,7 @@ function generateProps(reactAPI) {
       }
     }
 
-    textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
+    textProps += `| ${propRaw} | <span className="prop-type">${generatePropType(
       prop.type,
     )}</span> | ${defaultValue} | ${description} |\n`;
 
@@ -340,7 +350,7 @@ function generateClasses(reactAPI) {
     text += reactAPI.styles.classes
       .map(
         styleRule =>
-          `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">${
+          `| <span className="prop-name">${styleRule}</span> | <span className="prop-name">${
             reactAPI.styles.globalClasses[styleRule]
           }</span> | ${
             reactAPI.styles.descriptions[styleRule]
@@ -451,7 +461,7 @@ export default function generateMarkdown(reactAPI) {
     '',
     `# ${reactAPI.name} API`,
     '',
-    `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
+    `<p className="description">The API documentation of the ${reactAPI.name} React component. ` +
       'Learn more about the props and the CSS customization points.</p>',
     '',
     generateImportStatement(reactAPI),

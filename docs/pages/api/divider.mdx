@@ -1,0 +1,67 @@
+---
+filename: /packages/material-ui/src/Divider/Divider.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Divider API
+
+<p className="description">The API documentation of the Divider React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Divider from '@material-ui/core/Divider';
+// or
+import { Divider } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">absolute</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Absolutely position the element. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">'hr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name">light</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the divider will have a lighter color. |
+| <span className="prop-name">orientation</span> | <span className="prop-type">'horizontal'<br />&#124;&nbsp;'vertical'</span> | <span className="prop-default">'horizontal'</span> | The divider orientation. |
+| <span className="prop-name">variant</span> | <span className="prop-type">'fullWidth'<br />&#124;&nbsp;'inset'<br />&#124;&nbsp;'middle'</span> | <span className="prop-default">'fullWidth'</span> | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+- Style sheet name: `MuiDivider`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiDivider-root</span> | Styles applied to the root element.
+| <span className="prop-name">absolute</span> | <span className="prop-name">MuiDivider-absolute</span> | Styles applied to the root element if `absolute={true}`.
+| <span className="prop-name">inset</span> | <span className="prop-name">MuiDivider-inset</span> | Styles applied to the root element if `variant="inset"`.
+| <span className="prop-name">light</span> | <span className="prop-name">MuiDivider-light</span> | Styles applied to the root element if `light={true}`.
+| <span className="prop-name">middle</span> | <span className="prop-name">MuiDivider-middle</span> | Styles applied to the root element if `variant="middle"`.
+| <span className="prop-name">vertical</span> | <span className="prop-name">MuiDivider-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Divider/Divider.js) for more detail.
+
+## Demos
+
+- [Dividers](/components/dividers/)
+- [Lists](/components/lists/)
+

@@ -1,0 +1,83 @@
+---
+filename: /packages/material-ui/src/TablePagination/TablePagination.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# TablePagination API
+
+<p className="description">The API documentation of the TablePagination React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import TablePagination from '@material-ui/core/TablePagination';
+// or
+import { TablePagination } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+A `TableCell` based component for placing inside `TableFooter` for pagination.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">ActionsComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
+| <span className="prop-name">backIconButtonProps</span> | <span className="prop-type">object</span> |  | Props applied to the back arrow [`IconButton`](/api/icon-button/) component. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">component</span> | <span className="prop-type">elementType</span> | <span className="prop-default">TableCell</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span className="prop-name required">count&nbsp;*</span> | <span className="prop-type">number</span> |  | The total number of rows. |
+| <span className="prop-name">labelDisplayedRows</span> | <span className="prop-type">func</span> | <span className="prop-default">({ from, to, count }) => `${from}-${to} of ${count}`</span> | Customize the displayed rows label. |
+| <span className="prop-name">labelRowsPerPage</span> | <span className="prop-type">node</span> | <span className="prop-default">'Rows per page:'</span> | Customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
+| <span className="prop-name">nextIconButtonProps</span> | <span className="prop-type">object</span> |  | Props applied to the next arrow [`IconButton`](/api/icon-button/) element. |
+| <span className="prop-name required">onChangePage&nbsp;*</span> | <span className="prop-type">func</span> |  | Callback fired when the page is changed.<br /><br />**Signature:**<br />`function(event: object, page: number) => void`<br />*event:* The event source of the callback.<br />*page:* The page selected. |
+| <span className="prop-name">onChangeRowsPerPage</span> | <span className="prop-type">func</span> |  | Callback fired when the number of rows per page is changed.<br /><br />**Signature:**<br />`function(event: object) => void`<br />*event:* The event source of the callback. |
+| <span className="prop-name required">page&nbsp;*</span> | <span className="prop-type">number</span> |  | The zero-based index of the current page. |
+| <span className="prop-name required">rowsPerPage&nbsp;*</span> | <span className="prop-type">number</span> |  | The number of rows per page. |
+| <span className="prop-name">rowsPerPageOptions</span> | <span className="prop-type">array</span> | <span className="prop-default">[10, 25, 50, 100]</span> | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
+| <span className="prop-name">SelectProps</span> | <span className="prop-type">object</span> | <span className="prop-default">{}</span> | Props applied to the rows per page [`Select`](/api/select/) element. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([TableCell](/api/table-cell/)).
+
+## CSS
+
+- Style sheet name: `MuiTablePagination`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiTablePagination-root</span> | Styles applied to the root element.
+| <span className="prop-name">toolbar</span> | <span className="prop-name">MuiTablePagination-toolbar</span> | Styles applied to the Toolbar component.
+| <span className="prop-name">spacer</span> | <span className="prop-name">MuiTablePagination-spacer</span> | Styles applied to the spacer element.
+| <span className="prop-name">caption</span> | <span className="prop-name">MuiTablePagination-caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
+| <span className="prop-name">selectRoot</span> | <span className="prop-name">MuiTablePagination-selectRoot</span> | Styles applied to the Select component root element.
+| <span className="prop-name">select</span> | <span className="prop-name">MuiTablePagination-select</span> | Styles applied to the Select component `select` class.
+| <span className="prop-name">selectIcon</span> | <span className="prop-name">MuiTablePagination-selectIcon</span> | Styles applied to the Select component `icon` class.
+| <span className="prop-name">input</span> | <span className="prop-name">MuiTablePagination-input</span> | Styles applied to the `InputBase` component.
+| <span className="prop-name">menuItem</span> | <span className="prop-name">MuiTablePagination-menuItem</span> | Styles applied to the MenuItem component.
+| <span className="prop-name">actions</span> | <span className="prop-name">MuiTablePagination-actions</span> | Styles applied to the internal `TablePaginationActions` component.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TablePagination/TablePagination.js) for more detail.
+
+## Inheritance
+
+The props of the [TableCell](/api/table-cell/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Tables](/components/tables/)
+

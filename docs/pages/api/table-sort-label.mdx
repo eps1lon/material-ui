@@ -1,0 +1,70 @@
+---
+filename: /packages/material-ui/src/TableSortLabel/TableSortLabel.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# TableSortLabel API
+
+<p className="description">The API documentation of the TableSortLabel React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+// or
+import { TableSortLabel } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+A button based label for placing inside `TableCell` for column sorting.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">active</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the label will have the active styling (should be true for the sorted column). |
+| <span className="prop-name">children</span> | <span className="prop-type">node</span> |  | Label contents, the arrow will be appended automatically. |
+| <span className="prop-name">classes</span> | <span className="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span className="prop-name">direction</span> | <span className="prop-type">'asc'<br />&#124;&nbsp;'desc'</span> | <span className="prop-default">'desc'</span> | The current sort direction. |
+| <span className="prop-name">hideSortIcon</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Hide sort icon when active is false. |
+| <span className="prop-name">IconComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">ArrowDownwardIcon</span> | Sort icon to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
+
+## CSS
+
+- Style sheet name: `MuiTableSortLabel`.
+- Style sheet details:
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span className="prop-name">root</span> | <span className="prop-name">MuiTableSortLabel-root</span> | Styles applied to the root element.
+| <span className="prop-name">active</span> | <span className="prop-name">MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span className="prop-name">icon</span> | <span className="prop-name">MuiTableSortLabel-icon</span> | Styles applied to the icon component.
+| <span className="prop-name">iconDirectionDesc</span> | <span className="prop-name">MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
+| <span className="prop-name">iconDirectionAsc</span> | <span className="prop-name">MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableSortLabel/TableSortLabel.js) for more detail.
+
+## Inheritance
+
+The props of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Tables](/components/tables/)
+

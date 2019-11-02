@@ -1,0 +1,67 @@
+---
+filename: /packages/material-ui/src/Modal/Modal.js
+---
+
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+export default MarkdownXDocs;
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# Modal API
+
+<p className="description">The API documentation of the Modal React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import Modal from '@material-ui/core/Modal';
+// or
+import { Modal } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+Modal is a lower-level construct that is leveraged by the following components:
+
+- [Dialog](/api/dialog/)
+- [Drawer](/api/drawer/)
+- [Menu](/api/menu/)
+- [Popover](/api/popover/)
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+rather than directly using Modal.
+
+This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span className="prop-name">BackdropComponent</span> | <span className="prop-type">elementType</span> | <span className="prop-default">SimpleBackdrop</span> | A backdrop component. This prop enables custom backdrop rendering. |
+| <span className="prop-name">BackdropProps</span> | <span className="prop-type">object</span> |  | Props applied to the [`Backdrop`](/api/backdrop/) element. |
+| <span className="prop-name required">children&nbsp;*</span> | <span className="prop-type">element</span> |  | A single child content element.<br />⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
+| <span className="prop-name">closeAfterTransition</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | When set to true the Modal waits until a nested Transition is completed before closing. |
+| <span className="prop-name">container</span> | <span className="prop-type">object<br />&#124;&nbsp;func</span> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |
+| <span className="prop-name">disableAutoFocus</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.<br />Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
+| <span className="prop-name">disableBackdropClick</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, clicking the backdrop will not fire any callback. |
+| <span className="prop-name">disableEnforceFocus</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the modal will not prevent focus from leaving the modal while open.<br />Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
+| <span className="prop-name">disableEscapeKeyDown</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, hitting escape will not fire any callback. |
+| <span className="prop-name">disablePortal</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Disable the portal behavior. The children stay within it's parent DOM hierarchy. |
+| <span className="prop-name">disableRestoreFocus</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the modal will not restore focus to previously focused element once modal is hidden. |
+| <span className="prop-name">disableScrollLock</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Disable the scroll lock behavior. |
+| <span className="prop-name">hideBackdrop</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | If `true`, the backdrop is not rendered. |
+| <span className="prop-name">keepMounted</span> | <span className="prop-type">bool</span> | <span className="prop-default">false</span> | Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal. |
+| <span className="prop-name">onBackdropClick</span> | <span className="prop-type">func</span> |  | Callback fired when the backdrop is clicked. |
+| <span className="prop-name">onClose</span> | <span className="prop-type">func</span> |  | Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.<br /><br />**Signature:**<br />`function(event: object, reason: string) => void`<br />*event:* The event source of the callback.<br />*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`. |
+| <span className="prop-name">onEscapeKeyDown</span> | <span className="prop-type">func</span> |  | Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus. |
+| <span className="prop-name">onRendered</span> | <span className="prop-type">func</span> |  | Callback fired once the children has been mounted into the `container`. It signals that the `open={true}` prop took effect.<br />This prop will be deprecated and removed in v5, the ref can be used instead. |
+| <span className="prop-name required">open&nbsp;*</span> | <span className="prop-type">bool</span> |  | If `true`, the modal is open. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## Demos
+
+- [Modal](/components/modal/)
+
