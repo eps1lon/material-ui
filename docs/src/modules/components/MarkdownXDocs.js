@@ -181,11 +181,12 @@ function MarkdownXDocs(props) {
 }
 
 MarkdownXDocs.propTypes = {
+  children: PropTypes.node,
   classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   disableEdit: PropTypes.bool,
   disableToc: PropTypes.bool,
-  translatedPages: PropTypes.object.isRequired,
+  translatedPages: PropTypes.object,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
 };
