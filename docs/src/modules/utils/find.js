@@ -74,7 +74,8 @@ function findComponents(directory, components = []) {
   return components;
 }
 
-const jsRegex = /\.js$/;
+// FIXME duplicate with pageExtensions in next.config.js
+const pageRegex = /\.(js|md|mdx)$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
 // Returns the Next.js pages available in a nested format.
@@ -90,7 +91,7 @@ function findPages(
     const pathname = itemPath
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/pages/, '')
-      .replace('.js', '')
+      .replace(/\.(js|md|mdx)$/, '')
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, '');
 
@@ -116,7 +117,7 @@ function findPages(
       return;
     }
 
-    if (!jsRegex.test(item) || blackList.includes(pathname)) {
+    if (!pageRegex.test(item) || blackList.includes(pathname)) {
       return;
     }
 
