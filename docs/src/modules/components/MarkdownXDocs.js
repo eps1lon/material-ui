@@ -117,7 +117,7 @@ function MarkdownXDocs(props) {
 
   const userLanguage = useSelector(state => state.options.userLanguage) || 'en';
   const Page = translatedPages[userLanguage];
-  const mdxContent = Page || children;
+  const mdxContent = Page !== undefined ? <Page /> : children;
 
   const t = useSelector(state => state.options.t);
 
