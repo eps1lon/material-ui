@@ -106,18 +106,11 @@ function flattenPages(pages, current = []) {
 }
 
 function MarkdownXDocs(props) {
-  const {
-    classes,
-    disableAd = false,
-    disableEdit,
-    disableToc = false,
-    reduxServerState: {
-      options: { userLanguage = 'en' },
-    },
-    translatedPages,
-  } = props;
+  const { classes, disableAd = false, disableEdit, disableToc = false, translatedPages } = props;
 
-  const Page = translatedPages[userLanguage] || translatedPages.en;
+  const userLanguage = useSelector(state => state.options.userLanguage) || 'en';
+  const Page = translatedPages[userLanguage];
+
   const t = useSelector(state => state.options.t);
 
   const { activePage, pages } = React.useContext(PageContext);
@@ -186,7 +179,6 @@ MarkdownXDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableEdit: PropTypes.bool,
   disableToc: PropTypes.bool,
-  reduxServerState: PropTypes.object.isRequired,
   translatedPages: PropTypes.object.isRequired,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.

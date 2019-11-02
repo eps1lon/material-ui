@@ -14,6 +14,6 @@ const pages = {
   zh: dynamic(() => import(`../../src/pages/components/app-bar/app-bar-zh.mdx`)),
 };
 
-export default function AppBarPage(props) {
-  return <MarkdownXDocs {...props} translatedPages={pages} />;
+export default function AppBarPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
