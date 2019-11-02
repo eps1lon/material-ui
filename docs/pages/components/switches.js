@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/switches', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/switches',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/switches';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/switches/switches.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/switches/switches-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/switches/switches-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/switches/switches-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/switches/switches-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/switches/switches-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/switches/switches-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/switches/switches-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/switches/switches-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function SwitchesPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

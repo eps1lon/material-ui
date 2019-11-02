@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/guides/right-to-left', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/guides/right-to-left',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/guides/right-to-left';
+const pages = {
+  en: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left.mdx')),
+  aa: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-de.mdx')),
+  es: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/guides/right-to-left/right-to-left-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function RightToLeftPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

@@ -1,16 +1,21 @@
-import 'docs/src/modules/components/bootstrap';
-// --- Post bootstrap -----
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/tree-view', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/tree-view',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/tree-view';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/tree-view/tree-view.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/tree-view/tree-view-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/tree-view/tree-view-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/tree-view/tree-view-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/tree-view/tree-view-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/tree-view/tree-view-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/tree-view/tree-view-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/tree-view/tree-view-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/tree-view/tree-view-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function TreeViewPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

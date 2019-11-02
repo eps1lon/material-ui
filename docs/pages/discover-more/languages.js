@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/discover-more/languages', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/discover-more/languages',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/discover-more/languages';
+const pages = {
+  en: dynamic(() => import('../../src/pages/discover-more/languages/languages.mdx')),
+  aa: dynamic(() => import('../../src/pages/discover-more/languages/languages-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/discover-more/languages/languages-de.mdx')),
+  es: dynamic(() => import('../../src/pages/discover-more/languages/languages-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/discover-more/languages/languages-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/discover-more/languages/languages-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/discover-more/languages/languages-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/discover-more/languages/languages-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/discover-more/languages/languages-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function LanguagesPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

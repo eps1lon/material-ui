@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/dividers', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/dividers',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/dividers';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/dividers/dividers.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/dividers/dividers-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/dividers/dividers-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/dividers/dividers-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/dividers/dividers-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/dividers/dividers-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/dividers/dividers-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/dividers/dividers-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/dividers/dividers-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function DividersPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

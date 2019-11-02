@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/hidden', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/hidden',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/hidden';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/hidden/hidden.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/hidden/hidden-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/hidden/hidden-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/hidden/hidden-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/hidden/hidden-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/hidden/hidden-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/hidden/hidden-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/hidden/hidden-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/hidden/hidden-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function HiddenPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

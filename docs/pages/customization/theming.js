@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/customization/theming', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/customization/theming',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/customization/theming';
+const pages = {
+  en: dynamic(() => import('../../src/pages/customization/theming/theming.mdx')),
+  aa: dynamic(() => import('../../src/pages/customization/theming/theming-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/customization/theming/theming-de.mdx')),
+  es: dynamic(() => import('../../src/pages/customization/theming/theming-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/customization/theming/theming-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/customization/theming/theming-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/customization/theming/theming-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/customization/theming/theming-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/customization/theming/theming-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function ThemingPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

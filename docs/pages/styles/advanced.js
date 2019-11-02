@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/styles/advanced', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/styles/advanced',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/styles/advanced';
+const pages = {
+  en: dynamic(() => import('../../src/pages/styles/advanced/advanced.mdx')),
+  aa: dynamic(() => import('../../src/pages/styles/advanced/advanced-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/styles/advanced/advanced-de.mdx')),
+  es: dynamic(() => import('../../src/pages/styles/advanced/advanced-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/styles/advanced/advanced-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/styles/advanced/advanced-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/styles/advanced/advanced-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/styles/advanced/advanced-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/styles/advanced/advanced-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function AdvancedPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/links', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/links',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/links';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/links/links.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/links/links-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/links/links-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/links/links-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/links/links-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/links/links-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/links/links-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/links/links-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/links/links-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function LinksPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

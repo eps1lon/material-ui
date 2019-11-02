@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/autocomplete', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/autocomplete',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/autocomplete';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/autocomplete/autocomplete-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function AutocompletePage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

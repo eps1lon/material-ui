@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/customization/spacing', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/customization/spacing',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/customization/spacing';
+const pages = {
+  en: dynamic(() => import('../../src/pages/customization/spacing/spacing.mdx')),
+  aa: dynamic(() => import('../../src/pages/customization/spacing/spacing-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/customization/spacing/spacing-de.mdx')),
+  es: dynamic(() => import('../../src/pages/customization/spacing/spacing-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/customization/spacing/spacing-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/customization/spacing/spacing-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/customization/spacing/spacing-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/customization/spacing/spacing-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/customization/spacing/spacing-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function SpacingPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

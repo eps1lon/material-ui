@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/system/shadows', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/system/shadows',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/system/shadows';
+const pages = {
+  en: dynamic(() => import('../../src/pages/system/shadows/shadows.mdx')),
+  aa: dynamic(() => import('../../src/pages/system/shadows/shadows-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/system/shadows/shadows-de.mdx')),
+  es: dynamic(() => import('../../src/pages/system/shadows/shadows-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/system/shadows/shadows-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/system/shadows/shadows-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/system/shadows/shadows-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/system/shadows/shadows-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/system/shadows/shadows-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function ShadowsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

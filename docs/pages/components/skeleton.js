@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/skeleton', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/skeleton',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/skeleton';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/skeleton/skeleton.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/skeleton/skeleton-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/skeleton/skeleton-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/skeleton/skeleton-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/skeleton/skeleton-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/skeleton/skeleton-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/skeleton/skeleton-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/skeleton/skeleton-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/skeleton/skeleton-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function SkeletonPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

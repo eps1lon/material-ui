@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/system/flexbox', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/system/flexbox',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/system/flexbox';
+const pages = {
+  en: dynamic(() => import('../../src/pages/system/flexbox/flexbox.mdx')),
+  aa: dynamic(() => import('../../src/pages/system/flexbox/flexbox-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/system/flexbox/flexbox-de.mdx')),
+  es: dynamic(() => import('../../src/pages/system/flexbox/flexbox-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/system/flexbox/flexbox-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/system/flexbox/flexbox-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/system/flexbox/flexbox-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/system/flexbox/flexbox-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/system/flexbox/flexbox-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function FlexboxPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

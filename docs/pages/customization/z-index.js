@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/customization/z-index', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/customization/z-index',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/customization/z-index';
+const pages = {
+  en: dynamic(() => import('../../src/pages/customization/z-index/z-index.mdx')),
+  aa: dynamic(() => import('../../src/pages/customization/z-index/z-index-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/customization/z-index/z-index-de.mdx')),
+  es: dynamic(() => import('../../src/pages/customization/z-index/z-index-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/customization/z-index/z-index-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/customization/z-index/z-index-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/customization/z-index/z-index-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/customization/z-index/z-index-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/customization/z-index/z-index-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function ZIndexPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

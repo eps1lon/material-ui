@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/avatars', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/avatars',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/avatars';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/avatars/avatars.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/avatars/avatars-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/avatars/avatars-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/avatars/avatars-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/avatars/avatars-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/avatars/avatars-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/avatars/avatars-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/avatars/avatars-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/avatars/avatars-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function AvatarsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

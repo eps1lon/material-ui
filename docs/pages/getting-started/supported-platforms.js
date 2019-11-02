@@ -1,18 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context(
-  'docs/src/pages/getting-started/supported-platforms',
-  true,
-  /\.md|\.js$/,
-);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/getting-started/supported-platforms',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/getting-started/supported-platforms';
+const pages = {
+  en: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms.mdx')),
+  aa: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-de.mdx')),
+  es: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/getting-started/supported-platforms/supported-platforms-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function SupportedPlatformsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/popper', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/popper',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/popper';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/popper/popper.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/popper/popper-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/popper/popper-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/popper/popper-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/popper/popper-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/popper/popper-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/popper/popper-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/popper/popper-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/popper/popper-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function PopperPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

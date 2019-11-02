@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/customization/globals', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/customization/globals',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/customization/globals';
+const pages = {
+  en: dynamic(() => import('../../src/pages/customization/globals/globals.mdx')),
+  aa: dynamic(() => import('../../src/pages/customization/globals/globals-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/customization/globals/globals-de.mdx')),
+  es: dynamic(() => import('../../src/pages/customization/globals/globals-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/customization/globals/globals-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/customization/globals/globals-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/customization/globals/globals-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/customization/globals/globals-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/customization/globals/globals-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function GlobalsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

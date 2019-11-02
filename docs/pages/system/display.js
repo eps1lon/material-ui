@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/system/display', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/system/display',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/system/display';
+const pages = {
+  en: dynamic(() => import('../../src/pages/system/display/display.mdx')),
+  aa: dynamic(() => import('../../src/pages/system/display/display-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/system/display/display-de.mdx')),
+  es: dynamic(() => import('../../src/pages/system/display/display-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/system/display/display-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/system/display/display-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/system/display/display-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/system/display/display-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/system/display/display-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function DisplayPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

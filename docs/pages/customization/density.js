@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/customization/density', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/customization/density',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/customization/density';
+const pages = {
+  en: dynamic(() => import('../../src/pages/customization/density/density.mdx')),
+  aa: dynamic(() => import('../../src/pages/customization/density/density-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/customization/density/density-de.mdx')),
+  es: dynamic(() => import('../../src/pages/customization/density/density-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/customization/density/density-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/customization/density/density-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/customization/density/density-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/customization/density/density-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/customization/density/density-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function DensityPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

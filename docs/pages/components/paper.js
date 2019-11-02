@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/paper', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/paper',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/paper';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/paper/paper.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/paper/paper-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/paper/paper-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/paper/paper-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/paper/paper-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/paper/paper-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/paper/paper-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/paper/paper-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/paper/paper-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function PaperPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

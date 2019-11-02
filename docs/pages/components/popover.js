@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/popover', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/popover',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/popover';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/popover/popover.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/popover/popover-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/popover/popover-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/popover/popover-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/popover/popover-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/popover/popover-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/popover/popover-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/popover/popover-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/popover/popover-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function PopoverPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

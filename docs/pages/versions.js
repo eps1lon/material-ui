@@ -1,10 +1,19 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/versions', false, /\.(md|js|tsx)$/);
-const reqSource = require.context('!raw-loader!../src/pages/versions', false, /\.(js|tsx)$/);
-const reqPrefix = 'pages/versions';
+const pages = {
+  en: dynamic(() => import('../src/pages/versions/versions.mdx')),
+  aa: dynamic(() => import('../src/pages/versions/versions-aa.mdx')),
+  de: dynamic(() => import('../src/pages/versions/versions-de.mdx')),
+  es: dynamic(() => import('../src/pages/versions/versions-es.mdx')),
+  fr: dynamic(() => import('../src/pages/versions/versions-fr.mdx')),
+  ja: dynamic(() => import('../src/pages/versions/versions-ja.mdx')),
+  pt: dynamic(() => import('../src/pages/versions/versions-pt.mdx')),
+  ru: dynamic(() => import('../src/pages/versions/versions-ru.mdx')),
+  zh: dynamic(() => import('../src/pages/versions/versions-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function VersionsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }

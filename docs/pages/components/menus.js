@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/menus', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/menus',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/menus';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/menus/menus.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/menus/menus-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/menus/menus-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/menus/menus-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/menus/menus-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/menus/menus-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/menus/menus-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/menus/menus-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/menus/menus-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function MenusPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

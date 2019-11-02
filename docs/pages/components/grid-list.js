@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/grid-list', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/grid-list',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/grid-list';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/grid-list/grid-list.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/grid-list/grid-list-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/grid-list/grid-list-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/grid-list/grid-list-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/grid-list/grid-list-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/grid-list/grid-list-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/grid-list/grid-list-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/grid-list/grid-list-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/grid-list/grid-list-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function GridListPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

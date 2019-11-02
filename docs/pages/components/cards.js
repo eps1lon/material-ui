@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/cards', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/cards',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/cards';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/cards/cards.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/cards/cards-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/cards/cards-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/cards/cards-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/cards/cards-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/cards/cards-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/cards/cards-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/cards/cards-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/cards/cards-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function CardsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

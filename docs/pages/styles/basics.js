@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/styles/basics', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/styles/basics',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/styles/basics';
+const pages = {
+  en: dynamic(() => import('../../src/pages/styles/basics/basics.mdx')),
+  aa: dynamic(() => import('../../src/pages/styles/basics/basics-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/styles/basics/basics-de.mdx')),
+  es: dynamic(() => import('../../src/pages/styles/basics/basics-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/styles/basics/basics-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/styles/basics/basics-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/styles/basics/basics-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/styles/basics/basics-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/styles/basics/basics-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function BasicsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

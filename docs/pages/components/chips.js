@@ -1,14 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/components/chips', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/chips',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/components/chips';
+const pages = {
+  en: dynamic(() => import('../../src/pages/components/chips/chips.mdx')),
+  aa: dynamic(() => import('../../src/pages/components/chips/chips-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/components/chips/chips-de.mdx')),
+  es: dynamic(() => import('../../src/pages/components/chips/chips-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/components/chips/chips-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/components/chips/chips-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/components/chips/chips-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/components/chips/chips-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/components/chips/chips-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function ChipsPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+

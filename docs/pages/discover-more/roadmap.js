@@ -1,14 +1,11 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/discover-more/roadmap', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/discover-more/roadmap',
-  false,
-  /\.(js|tsx)$/,
-);
-const reqPrefix = 'pages/discover-more/roadmap';
+const pages = {
+  en: dynamic(() => import('../../src/pages/discover-more/roadmap/roadmap.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function RoadmapPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }

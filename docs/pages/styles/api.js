@@ -1,10 +1,21 @@
+
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownXDocs from 'docs/src/modules/components/MarkdownXDocs';
+import dynamic from 'next/dynamic';
 
-const req = require.context('docs/src/pages/styles/api', false, /\.(md|js|tsx)$/);
-const reqSource = require.context('!raw-loader!../../src/pages/styles/api', false, /\.(js|tsx)$/);
-const reqPrefix = 'pages/styles/api';
+const pages = {
+  en: dynamic(() => import('../../src/pages/styles/api/api.mdx')),
+  aa: dynamic(() => import('../../src/pages/styles/api/api-aa.mdx')),
+  de: dynamic(() => import('../../src/pages/styles/api/api-de.mdx')),
+  es: dynamic(() => import('../../src/pages/styles/api/api-es.mdx')),
+  fr: dynamic(() => import('../../src/pages/styles/api/api-fr.mdx')),
+  ja: dynamic(() => import('../../src/pages/styles/api/api-ja.mdx')),
+  pt: dynamic(() => import('../../src/pages/styles/api/api-pt.mdx')),
+  ru: dynamic(() => import('../../src/pages/styles/api/api-ru.mdx')),
+  zh: dynamic(() => import('../../src/pages/styles/api/api-zh.mdx')),
+};
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function ApiPage() {
+  return <MarkdownXDocs translatedPages={pages} />;
 }
+
