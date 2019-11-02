@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const withTypescript = require('@zeit/next-typescript');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES_SSR } = require('./src/modules/constants');
@@ -128,6 +127,9 @@ module.exports = {
               options.defaultLoaders.babel,
               {
                 loader: require.resolve('@mdx-js/loader'),
+              },
+              {
+                loader: require.resolve('./mui-demo-loader'),
               },
               {
                 loader: require.resolve('./front-matter-loader'),
