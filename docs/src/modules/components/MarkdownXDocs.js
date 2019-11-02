@@ -106,10 +106,18 @@ function flattenPages(pages, current = []) {
 }
 
 function MarkdownXDocs(props) {
-  const { classes, disableAd = false, disableEdit, disableToc = false, translatedPages } = props;
+  const {
+    children,
+    classes,
+    disableAd = false,
+    disableEdit,
+    disableToc = false,
+    translatedPages = {},
+  } = props;
 
   const userLanguage = useSelector(state => state.options.userLanguage) || 'en';
   const Page = translatedPages[userLanguage];
+  const mdxContent = Page || children;
 
   const t = useSelector(state => state.options.t);
 
@@ -129,9 +137,7 @@ function MarkdownXDocs(props) {
       {disableAd ? null : null}
       <AppContent disableAd={disableAd} disableToc={disableToc}>
         {!disableEdit ? null : null}
-        <MDXProvider components={components}>
-          <Page />
-        </MDXProvider>
+        <MDXProvider components={components}>{mdxContent}</MDXProvider>
         <footer className={classes.footer}>
           {!currentPage ||
           currentPage.displayNav === false ||
