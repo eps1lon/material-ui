@@ -227,7 +227,7 @@ function generatePropType(type) {
     }
 
     case 'arrayOf': {
-      return `Array<${generatePropType(type.value)}>`;
+      return `Array&lt;${generatePropType(type.value)}&gt;`;
     }
 
     case 'instanceOf': {

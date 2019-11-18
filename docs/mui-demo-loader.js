@@ -25,7 +25,8 @@ function muiDemoLoader(content, file) {
     imports.push(
       `import ${demoIdentifier} from './${name}';`,
       `import ${demoSourceIdentifierJS} from '!!raw-loader!./${name}.js';`,
-      `import ${demoSourceIdentifierTS} from '!!raw-loader!./${name}.tsx';`,
+      // TODO: what about missing demos?
+      // `import ${demoSourceIdentifierTS} from '!!raw-loader!./${name}.tsx';`,
     );
 
     return `

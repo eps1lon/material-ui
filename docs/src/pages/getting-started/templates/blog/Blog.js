@@ -17,9 +17,9 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Markdown from './Markdown';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
+import post1 from '!!raw-loader!./blog-post.1.md';
+import post2 from '!!raw-loader!./blog-post.2.md';
+import post3 from '!!raw-loader!./blog-post.3.md';
 
 function Copyright() {
   return (

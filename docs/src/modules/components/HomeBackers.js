@@ -5,10 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Container from '@material-ui/core/Container';
-import mapTranslations from 'docs/src/modules/utils/mapTranslations';
-
-const req = require.context('docs/src/modules/components', false, /\.md$/);
-const backers = mapTranslations(req, 'md');
 
 const styles = theme => ({
   root: {
@@ -19,16 +15,13 @@ const styles = theme => ({
   },
 });
 
+// TODO: port to mdx
 function HomeBackers(props) {
   const { classes } = props;
-  const userLanguage = useSelector(state => state.options.userLanguage);
-
   return (
     <div className={classes.root}>
       <NoSsr>
-        <Container maxWidth="md">
-          <MarkdownElement className={classes.markdownElement} text={backers[userLanguage]} />
-        </Container>
+        <Container maxWidth="md" />
       </NoSsr>
     </div>
   );

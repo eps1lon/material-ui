@@ -4,10 +4,11 @@
 
 ## CSS
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
-それは本当に強力な機能です。</p>
+設定変数が十分に強力でない場合は、 `theme` のキーを`overrides` し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
+それは本当に強力な機能です。
 
-<pre><code class="js">const theme = createMuiTheme({
+```js
+const theme = createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
     MuiButton: {
@@ -19,7 +20,7 @@
     },
   },
 });
-`</pre> 
+```
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 

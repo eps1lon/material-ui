@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import Markdown from './modules/components/Markdown';
 import Typography from './modules/components/Typography';
 import AppAppBar from './modules/views/AppAppBar';
-import terms from './modules/views/terms.md';
+import terms from '!!raw-loader!./modules/views/terms.md';
 import AppFooter from './modules/views/AppFooter';
 
 function Terms() {
