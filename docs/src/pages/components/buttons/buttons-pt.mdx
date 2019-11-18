@@ -133,16 +133,15 @@ Se você deseja usar `not-allowed`, você tem duas opções:
 
 Então:
 
-- Você deve adicionar `eventos-ponteiro: nenhum;` novamente quando você precisa exibir dicas [ ferramentas em elementos desabilitados](/components/tooltips/#disabled-elements)</li> 
+- Você deve adicionar `eventos-ponteiro: nenhum;` novamente quando você precisa exibir dicas [ ferramentas em elementos desabilitados](/components/tooltips/#disabled-elements)
+- O cursor não muda se você renderizar algum outro elemento de botão, por exemplo, um elemento link `<a>`.
     
-    - O cursor não muda se você renderizar algum outro elemento de botão, por exemplo, um elemento link `<a>`.</ul> 
-    
-    2. ** Alteração no DOM** Você pode encapsular o botão:
-    
-    ```jsx
-    <span style={{ cursor: "not-allowed" }}>
-      <Button component={Link} disabled>disabled</Button>
-    </span>
-    ```
-    
-    This has the advantage of supporting any element, for instance, a link `<a>` element.
+2. ** Alteração no DOM** Você pode encapsular o botão:
+
+```jsx
+<span style={{ cursor: "not-allowed" }}>
+  <Button component={Link} disabled>disabled</Button>
+</span>
+```
+
+This has the advantage of supporting any element, for instance, a link `<a>` element.
