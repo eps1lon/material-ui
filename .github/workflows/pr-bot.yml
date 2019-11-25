@@ -1,5 +1,5 @@
-name: Pull Request Into
-on: [pull_request]
+name: Pull Request Intro
+on: [push]
 
 jobs:
   greeting:
@@ -8,7 +8,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Add commit comment
         run: |
-          jq -nc '{"body": "<!--
+          body="
+<!--
   0 failure: 
   0 warning: 
   
@@ -17,8 +18,9 @@ jobs:
 -->
 
 Here could appear your bundle changes
-"}' | \
+"
+          jq -nc "{'body': '$body'}" | \
           curl -sL  -X POST -d @- \
             -H "Content-Type: application/json" \
             -H "Authorization: token ${{ secrets.MUI_PR_BOT_GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/issues/{{ github.event.number }}/comments"
+            "https://api.github.com/repos/${{ github.repository }}/issues/223/comments"
