@@ -1,0 +1,19 @@
+name: "Maintenance"
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  ship-prs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: merge ready PRs
+      uses: "./.github/actions/automerge"
+      with:
+        mergeLabels: "PR: ready to ship"
+        mergeMethod: "squash"
+        mergeCommitMessage: "pull-request-title"
+        updateMethod: "merge"
+        updateFailedLabels: "PR: needs rebase"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
