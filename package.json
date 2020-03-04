@@ -41,6 +41,8 @@
     "typescript": "lerna run typescript --parallel"
   },
   "devDependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.6",
     "@babel/node": "^7.8.4",
@@ -104,7 +106,6 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
-    "lodash": "^4.17.15",
     "jsdom": "^16.0.0",
     "karma": "^4.3.0",
     "karma-browserstack-launcher": "~1.4.0",
@@ -114,6 +115,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",
+    "lodash": "^4.17.15",
     "mocha": "^7.0.0",
     "node-fetch": "^ 2.6.0",
     "nyc": "^15.0.0",
