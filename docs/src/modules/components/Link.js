@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
+import { Router as NextRouter, useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 import { useSelector } from 'react-redux';
@@ -27,27 +27,34 @@ NextComposed.propTypes = {
 function Link(props) {
   const {
     activeClassName = 'active',
+    as: asProp,
     className: classNameProps,
-    href: routerHref,
+    href,
     innerRef,
     naked,
     role: roleProp,
     ...other
   } = props;
-
-  // apply nextjs rewrites
-  const href = routerHref.replace(/\/api-docs\/(.*)/, '/api/$1');
-
-  const router = useRouter();
+  const pathname =
+    // eslint-disable-next-line no-nested-ternary
+    typeof href === 'string'
+      ? href
+      : href != null
+      ? // href object for next/link: { pathname: string, query?: string }
+        href.pathname
+      : undefined;
+  let asPath = NextRouter._rewriteUrlForNextExport(asProp || href);
 
   const userLanguage = useSelector(state => state.options.userLanguage);
-  const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === routerHref && activeClassName,
-  });
-
-  if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
-    other.as = `/${userLanguage}${href}`;
+  if (userLanguage !== 'en' && pathname.indexOf('/') === 0 && pathname.indexOf('/blog') !== 0) {
+    asPath = `/${userLanguage}${asPath}`;
   }
+
+  const router = useRouter();
+  const isActivePage = router.asPath === asPath;
+  const className = clsx(classNameProps, {
+    [activeClassName]: isActivePage && activeClassName,
+  });
 
   // catch role passed from ButtonBase. This is definitely a link
   const role = roleProp === 'button' ? undefined : roleProp;
@@ -59,11 +66,21 @@ function Link(props) {
   }
 
   if (naked) {
-    return <NextComposed className={className} href={href} ref={innerRef} role={role} {...other} />;
+    return (
+      <NextComposed
+        as={asPath}
+        className={className}
+        href={href}
+        ref={innerRef}
+        role={role}
+        {...other}
+      />
+    );
   }
 
   return (
     <MuiLink
+      as={asPath}
       component={NextComposed}
       className={className}
       href={href}
@@ -78,7 +95,7 @@ Link.propTypes = {
   activeClassName: PropTypes.string,
   as: PropTypes.string,
   className: PropTypes.string,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,

@@ -139,8 +139,10 @@ module.exports = {
         if (!page.children) {
           map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
+            ...page,
             query: {
               userLanguage,
+              ...page.query,
             },
           };
           return;

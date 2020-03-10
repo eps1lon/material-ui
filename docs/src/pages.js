@@ -1,4 +1,20 @@
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+import foundApiPages from /* preval */ 'docs/src/modules/utils/componentApiPages';
+import kebabCase from 'lodash/kebabCase';
+
+const apiPages = {
+  title: 'Component API',
+  pathname: '/api',
+  children: foundApiPages.map(page => {
+    return {
+      linkProps: {
+        as: `/api/${kebabCase(page.query.component)}`,
+        href: { pathname: '/api', query: page.query },
+      },
+      pathname: page.pathname,
+      title: page.query.component,
+    };
+  }),
+};
 
 const pages = [
   {
@@ -128,7 +144,7 @@ const pages = [
       },
     ],
   },
-  { title: 'Component API', ...findPages[0] },
+  apiPages,
   {
     pathname: '/styles',
     children: [

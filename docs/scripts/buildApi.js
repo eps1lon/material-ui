@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
-import { mkdir, readFileSync, writeFileSync } from 'fs';
-import { getLineFeed } from './helpers';
+import { readFileSync } from 'fs';
+import { writeJson } from 'fs-extra';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import * as _ from 'lodash';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import generateMarkdown from '../src/modules/utils/generateMarkdown';
+import propJsdocHandler from '../src/modules/utils/propJsdocHandler';
+import chainedPropHandler from '../src/modules/utils/chainedPropHandler';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
@@ -15,35 +15,7 @@ import createGenerateClassName from '../../packages/material-ui-styles/src/creat
 
 const generateClassName = createGenerateClassName();
 
-function ensureExists(pat, mask, cb) {
-  mkdir(pat, mask, err => {
-    if (err) {
-      if (err.code === 'EEXIST') {
-        cb(null); // ignore the error if the folder already exists
-      } else {
-        cb(err); // something else went wrong
-      }
-    } else {
-      cb(null); // successfully created folder
-    }
-  });
-}
-
-// Read the command-line args
-const args = process.argv;
-
-// Exit with a message
-function exit(error) {
-  console.log(error, '\n');
-  process.exit();
-}
-
-if (args.length < 4) {
-  exit('\nERROR: syntax: buildApi source target');
-}
-
 const rootDirectory = path.resolve(__dirname, '../../');
-const docsApiDirectory = path.resolve(rootDirectory, args[3]);
 const theme = createMuiTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
@@ -70,7 +42,7 @@ function getInheritance(testInfo, src) {
       break;
 
     default:
-      pathname = `/api/${kebabCase(inheritedComponentName)}`;
+      pathname = `/api/${_.kebabCase(inheritedComponentName)}`;
       break;
   }
 
@@ -80,12 +52,11 @@ function getInheritance(testInfo, src) {
   };
 }
 
-async function buildDocs(options) {
-  const { component: componentObject, pagesMarkdown } = options;
+async function buildComponentApi(componentObject) {
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
-    return;
+    return null;
   }
 
   const spread = !src.match(/ = exactProp\(/);
@@ -150,20 +121,31 @@ async function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
-      filename: componentObject.filename,
-    });
+    reactAPI = docgenParse(
+      src,
+      null,
+      defaultHandlers.concat(muiDefaultPropsHandler, propJsdocHandler, chainedPropHandler),
+      {
+        filename: componentObject.filename,
+      },
+    );
   } catch (err) {
-    console.log('Error parsing src for', componentObject.filename);
+    console.error('Error parsing src for', componentObject.filename);
     throw err;
   }
 
+  reactAPI.props = _.mapValues(
+    _.omitBy(reactAPI.props, descriptor => {
+      const hasIgnoreTag = descriptor.tags.find(tag => tag.title === 'ignore') !== undefined;
+      return hasIgnoreTag;
+    }),
+    ({ ...descriptor }) => {
+      return descriptor;
+    },
+  );
   reactAPI.name = name;
   reactAPI.styles = styles;
-  reactAPI.pagesMarkdown = pagesMarkdown;
-  reactAPI.src = src;
   reactAPI.spread = spread;
-  reactAPI.EOL = getLineFeed(src);
 
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
@@ -177,59 +159,80 @@ async function buildDocs(options) {
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
 
-  let markdown;
-  try {
-    markdown = generateMarkdown(reactAPI);
-  } catch (err) {
-    console.log('Error generating markdown for', componentObject.filename);
-    throw err;
+  // eslint-disable-next-line no-console
+  console.log('Built API data for', reactAPI.name);
+  return reactAPI;
+}
+
+async function run() {
+  const outputDir = path.resolve(__dirname, '../static/api');
+  const pagesMarkdown = findPagesMarkdown().map(markdown => {
+    const markdownSource = readFileSync(markdown.filename, 'utf8');
+    return {
+      ...markdown,
+      components: getHeaders(markdownSource).components,
+    };
+  });
+  const components = process.argv
+    .slice(2)
+    .map(dir => {
+      return findComponents(path.resolve(dir));
+    })
+    .reduce((accumulatedComponents, partialComponents) => {
+      return accumulatedComponents.concat(partialComponents);
+    }, []);
+
+  /**
+   * @param {string} componentName
+   * @returns {string[]} - list of pathnames to pages using this component
+   */
+  function findPagesOfComponent(componentName) {
+    return Array.from(
+      new Set(
+        pagesMarkdown
+          .filter(markdown => {
+            return markdown.components.includes(componentName);
+          })
+          .map(markdown => {
+            return markdown.pathname;
+          }),
+      ),
+    );
   }
 
-  ensureExists(docsApiDirectory, 0o744, err => {
-    if (err) {
-      console.log('Error creating directory', docsApiDirectory);
-      return;
-    }
+  const componentApis = {};
+  await Promise.all(
+    components.map(async component => {
+      try {
+        const componentApi = await buildComponentApi(component);
+        if (componentApi !== null) {
+          const usedInPages = findPagesOfComponent(componentApi.name);
 
-    writeFileSync(
-      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`),
-      markdown.replace(/\r?\n/g, reactAPI.EOL),
-    );
-    writeFileSync(
-      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './${kebabCase(reactAPI.name)}.md';
+          componentApis[componentApi.name] = {
+            ...componentApi,
+            usedInPages,
+          };
+        }
+      } catch (error) {
+        console.warn(`error building docs for ${component.filename}`);
+        console.error(error);
+        process.exit(1);
+      }
+    }),
+  );
 
-export default function Page() {
-  return <MarkdownDocs markdown={markdown} />;
-}
-`.replace(/\r?\n/g, reactAPI.EOL),
-    );
-
-    console.log('Built markdown docs for', reactAPI.name);
-  });
-}
-
-function run() {
-  const pagesMarkdown = findPagesMarkdown()
-    .map(markdown => {
-      const markdownSource = readFileSync(markdown.filename, 'utf8');
-      return {
-        ...markdown,
-        components: getHeaders(markdownSource).components,
-      };
-    })
-    .filter(markdown => markdown.components.length > 0);
-  const components = findComponents(path.resolve(rootDirectory, args[2]));
-
-  components.forEach(component => {
-    buildDocs({ component, pagesMarkdown }).catch(error => {
-      console.warn(`error building docs for ${component.filename}`);
-      console.error(error);
-      process.exit(1);
-    });
-  });
+  await Promise.all(
+    Object.values(componentApis)
+      .map(api => {
+        return writeJson(path.join(outputDir, `${api.name}.json`), api, { spaces: 2 });
+      })
+      .concat(
+        writeJson(path.join(outputDir, '__ids__.json'), Object.keys(componentApis), { spaces: 2 }),
+      ),
+  );
 }
 
-run();
+run().catch(error => {
+  console.error(error, '\n');
+  process.exit();
+});
