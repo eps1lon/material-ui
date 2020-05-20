@@ -2,13 +2,25 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import * as globCallback from 'glob';
-import { promisify } from 'util';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
+import * as ts from 'typescript';
 import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
 
-const glob = promisify(globCallback);
+// TODO: cleanup
+// tslint:disable:ban-ts-ignore
+
+function assertIsDefined<T>(val: T): asserts val is Exclude<T, undefined> {
+  if (val === undefined || val === null) {
+    throw new Error(`Expected 'val' to be defined, but received ${val}`);
+  }
+}
+
+function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
+  const declarations = symbol.getDeclarations() || [];
+
+  return new Set(declarations.map((declaration) => declaration.getSourceFile().fileName));
+}
 
 enum GenerateResult {
   Success,
@@ -93,26 +105,14 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Zoom: transitionCallbacks,
 };
 
-const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
-
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(__dirname, '../prettier.config.js'),
 });
 
 async function generateProptypes(
-  tsFile: string,
   jsFile: string,
-  program: ttp.ts.Program,
+  proptypes: ttp.ProgramNode,
 ): Promise<GenerateResult> {
-  const proptypes = ttp.parseFromProgram(tsFile, program, {
-    shouldResolveObject: ({ name }) => {
-      if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
-        return false;
-      }
-      return undefined;
-    },
-  });
-
   if (proptypes.body.length === 0) {
     return GenerateResult.NoComponent;
   }
@@ -154,6 +154,9 @@ async function generateProptypes(
       return generated;
     },
     shouldInclude: ({ component, prop, usedProps }) => {
+      if (prop.name === 'ref') {
+        return false;
+      }
       if (prop.name === 'children') {
         return true;
       }
@@ -165,7 +168,7 @@ async function generateProptypes(
         shouldDocument = true;
       } else {
         prop.filenames.forEach((filename) => {
-          const isExternal = filename !== tsFile;
+          const isExternal = filename !== component.propsFilename;
           if (!isExternal) {
             shouldDocument = true;
           }
@@ -197,65 +200,316 @@ async function generateProptypes(
 }
 
 interface HandlerArgv {
-  'disable-cache': boolean;
-  pattern: string;
   verbose: boolean;
 }
-async function run(argv: HandlerArgv) {
-  const { 'disable-cache': ignoreCache, pattern, verbose } = argv;
+async function run() {
+  const tsconfigPath = path.resolve(__dirname, './tsconfig.json');
+  const proptypesPath = path.resolve(__dirname, './proptypes.tsx');
+  const shouldResolveObject = (data: { name: string; propertyCount: number; depth: number }) => {
+    return data.propertyCount <= 50 && data.depth <= 3;
+  };
 
-  const filePattern = new RegExp(pattern);
-  if (pattern.length > 0) {
-    console.log(`Only considering declaration files matching ${filePattern}`);
+  const { config, error } = ts.readConfigFile(tsconfigPath, (filePath) =>
+    fse.readFileSync(filePath, { encoding: 'utf8' }),
+  );
+  if (error !== undefined || config === undefined) {
+    throw new Error('error reading tsconfig');
   }
-
-  // Matches files where the folder and file both start with uppercase letters
-  // Example: AppBar/AppBar.d.ts
-
-  const allFiles = await Promise.all(
-    [
-      path.resolve(__dirname, '../packages/material-ui/src'),
-      path.resolve(__dirname, '../packages/material-ui-lab/src'),
-    ].map((folderPath) =>
-      glob('+([A-Z])*/+([A-Z])*.d.ts', {
-        absolute: true,
-        cwd: folderPath,
-      }),
-    ),
+  const { errors, options: compilerOptions } = ts.parseJsonConfigFileContent(
+    config,
+    ts.sys,
+    path.dirname(tsconfigPath),
   );
 
-  const files = _.flatten(allFiles)
-    // Filter out files where the directory name and filename doesn't match
-    // Example: Modal/ModalManager.d.ts
-    .filter((filePath) => {
-      const folderName = path.basename(path.dirname(filePath));
-      const fileName = path.basename(filePath, '.d.ts');
+  const program = ts.createProgram([proptypesPath], compilerOptions);
+  const checker = program.getTypeChecker();
+  const proptypesFile = program.getSourceFile(proptypesPath)!;
 
-      return fileName === folderName;
-    })
-    .filter((filePath) => {
-      return filePattern.test(filePath);
-    });
-  const program = ttp.createProgram(files, tsconfig);
+  // copy from ttp.parser
+  function checkSymbol(symbol: ts.Symbol, typeStack: number[]): ttp.PropTypeNode {
+    const declarations = symbol.getDeclarations();
+    const declaration = declarations && declarations[0];
 
-  const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
-    const jsFile = tsFile.replace('.d.ts', '.js');
+    const symbolFilenames = getSymbolFileNames(symbol);
 
-    if (!ignoreCache && (await fse.stat(jsFile)).mtimeMs > (await fse.stat(tsFile)).mtimeMs) {
-      // Javascript version is newer, skip file
-      return GenerateResult.Skipped;
+    // TypeChecker keeps the name for
+    // { a: Reacttp.ElementType, b: Reacttp.ReactElement | boolean }
+    // but not
+    // { a?: Reacttp.ElementType, b: Reacttp.ReactElement }
+    // get around this by not using the TypeChecker
+    if (
+      declaration &&
+      ts.isPropertySignature(declaration) &&
+      declaration.type &&
+      ts.isTypeReferenceNode(declaration.type)
+    ) {
+      const name = declaration.type.typeName.getText();
+      if (
+        // tslint:disable-next-line:prefer-switch
+        name === 'React.ElementType' ||
+        name === 'React.ComponentType' ||
+        name === 'React.ReactElement'
+      ) {
+        const elementNode = ttp.elementNode(
+          name === 'React.ReactElement' ? 'element' : 'elementType',
+        );
+
+        return ttp.propTypeNode(
+          symbol.getName(),
+          '',
+          declaration.questionToken
+            ? ttp.unionNode([ttp.undefinedNode(), elementNode])
+            : elementNode,
+          symbolFilenames,
+        );
+      }
     }
 
-    return generateProptypes(tsFile, jsFile, program);
+    const type = declaration
+      ? // The proptypes aren't detailed enough that we need all the different combinations
+        // so we just pick the first and ignore the rest
+        checker.getTypeOfSymbolAtLocation(symbol, declaration)
+      : // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
+        ((symbol as any).type as ts.Type);
+
+    if (!type) {
+      throw new Error('No types found');
+    }
+
+    // Typechecker only gives the type "any" if it's present in a union
+    // This means the type of "a" in {a?:any} isn't "any | undefined"
+    // So instead we check for the questionmark to detect optional types
+    let parsedType: ttp.Node | undefined;
+    if (
+      (type.flags & ts.TypeFlags.Any || type.flags & ts.TypeFlags.Unknown) &&
+      declaration &&
+      ts.isPropertySignature(declaration)
+    ) {
+      parsedType = declaration.questionToken
+        ? ttp.unionNode([ttp.undefinedNode(), ttp.anyNode()])
+        : ttp.anyNode();
+    } else {
+      parsedType = checkType(type, typeStack, symbol.getName());
+    }
+
+    return ttp.propTypeNode(symbol.getName(), '', parsedType, symbolFilenames);
+  }
+
+  function checkType(type: ts.Type, typeStack: number[], name: string): ttp.Node {
+    // If the typeStack contains type.id we're dealing with an object that references itself.
+    // To prevent getting stuck in an infinite loop we just set it to an objectNode
+    if (typeStack.includes((type as any).id)) {
+      return ttp.objectNode();
+    }
+
+    {
+      const typeNode = type as any;
+
+      const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
+      const typeName = symbol ? checker.getFullyQualifiedName(symbol) : null;
+      switch (typeName) {
+        case 'global.JSX.Element':
+        case 'Reacttp.ReactElement': {
+          return ttp.elementNode('element');
+        }
+        case 'Reacttp.ElementType': {
+          return ttp.elementNode('elementType');
+        }
+        case 'Reacttp.ReactNode': {
+          return ttp.unionNode([ttp.elementNode('node'), ttp.undefinedNode()]);
+        }
+        case 'Reacttp.Component': {
+          return ttp.instanceOfNode(typeName);
+        }
+        case 'Element':
+        case 'HTMLElement': {
+          return ttp.DOMElementNode();
+        }
+      }
+    }
+
+    // @ts-ignore - Private method
+    if (checker.isArrayType(type)) {
+      // @ts-ignore - Private method
+      const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
+      return ttp.arrayNode(checkType(arrayType, typeStack, name));
+    }
+
+    if (type.isUnion()) {
+      const node = ttp.unionNode(type.types.map((x) => checkType(x, typeStack, name)));
+
+      return node.types.length === 1 ? node.types[0] : node;
+    }
+
+    if (type.flags & ts.TypeFlags.String) {
+      return ttp.stringNode();
+    }
+
+    if (type.flags & ts.TypeFlags.Number) {
+      return ttp.numericNode();
+    }
+
+    if (type.flags & ts.TypeFlags.Undefined) {
+      return ttp.undefinedNode();
+    }
+
+    if (type.flags & ts.TypeFlags.Any || type.flags & ts.TypeFlags.Unknown) {
+      return ttp.anyNode();
+    }
+
+    if (type.flags & ts.TypeFlags.Literal) {
+      if (type.isLiteral()) {
+        return ttp.literalNode(type.isStringLiteral() ? `"${type.value}"` : type.value, '');
+      }
+      return ttp.literalNode(checker.typeToString(type));
+    }
+
+    if (type.flags & ts.TypeFlags.Null) {
+      return ttp.literalNode('null');
+    }
+
+    if (type.getCallSignatures().length) {
+      return ttp.functionNode();
+    }
+
+    // Object-like type
+    {
+      const properties = type.getProperties();
+      if (properties.length) {
+        if (
+          shouldResolveObject({ name, propertyCount: properties.length, depth: typeStack.length })
+        ) {
+          const filtered = properties;
+          if (filtered.length > 0) {
+            return ttp.interfaceNode(
+              filtered.map((x) => checkSymbol(x, [...typeStack, (type as any).id])),
+            );
+          }
+        }
+
+        return ttp.objectNode();
+      }
+    }
+
+    // Object without properties or object keyword
+    if (
+      type.flags & ts.TypeFlags.Object ||
+      (type.flags & ts.TypeFlags.NonPrimitive && checker.typeToString(type) === 'object')
+    ) {
+      return ttp.objectNode();
+    }
+
+    console.warn(
+      `Unable to handle node of type "ts.TypeFlags.${ts.TypeFlags[type.flags]}", using any`,
+    );
+    return ttp.anyNode();
+  }
+
+  const host: ts.LanguageServiceHost = {
+    getCompilationSettings() {
+      return compilerOptions;
+    },
+    getCurrentDirectory() {
+      return process.cwd();
+    },
+    getDefaultLibFileName(options) {
+      return ts.getDefaultLibFilePath(options);
+    },
+    getScriptFileNames() {
+      return [proptypesPath];
+    },
+    getScriptSnapshot(fileName) {
+      if (!fse.existsSync(fileName)) {
+        return undefined;
+      }
+
+      return ts.ScriptSnapshot.fromString(fse.readFileSync(fileName).toString());
+    },
+    getScriptVersion() {
+      return 'file does not change';
+    },
+    readFile(filePath, encoding) {
+      // console.log('readFile', filePath);
+      return fse.readFileSync(filePath).toString(encoding);
+    },
+    fileExists(filePath) {
+      // console.log('fileExists', filePath, fse.existsSync(filePath));
+      return fse.existsSync(filePath);
+    },
+  };
+  const language = ts.createLanguageService(host);
+
+  const promises: Array<Promise<GenerateResult>> = [];
+  proptypesFile.forEachChild((node) => {
+    if (ts.isExpressionStatement(node) && ts.isJsxSelfClosingElement(node.expression)) {
+      const componentSymbol = checker.getSymbolAtLocation(node.expression.tagName);
+      assertIsDefined(componentSymbol);
+
+      const componentName = componentSymbol.getEscapedName().toString();
+      // the symbol of the component in the proptypesFile is associated to proptypesPath
+      // we want the source file of its type definition
+      // basically "go to definition" in vscode
+      const propsFilename = checker
+        .getAliasedSymbol(componentSymbol)
+        .getDeclarations()
+        ?.map((declaration) => declaration.getSourceFile().fileName)?.[0];
+      assertIsDefined(propsFilename);
+
+      // prop suggestion start after the component name e.g.
+      // <Grow
+      //       ^ CTRL+Space displays suggestions
+      const completionPosition = node.expression.tagName.end + 1;
+      const completions = language.getCompletionsAtPosition(proptypesPath, completionPosition, {
+        disableSuggestions: true,
+        includeExternalModuleExports: false,
+      })!;
+
+      const proptypes = completions.entries.map((completionEntry) => {
+        const propName = completionEntry.name;
+        assertIsDefined(propName);
+
+        const propDetails = language.getCompletionEntryDetails(
+          proptypesPath,
+          completionPosition,
+          propName,
+          {},
+          completionEntry.source,
+          {},
+        );
+        assertIsDefined(propDetails);
+
+        const propSymbol = language.getCompletionEntrySymbol(
+          proptypesPath,
+          completionPosition,
+          propName,
+          completionEntry.source,
+        );
+        assertIsDefined(propSymbol);
+
+        const propFileNames =
+          propSymbol
+            .getDeclarations()
+            ?.map((declaration) => declaration.getSourceFile().fileName) ?? [];
+
+        const propTypeNode = checkSymbol(propSymbol, [(propSymbol as any).id]);
+
+        propTypeNode.jsDoc = propDetails.documentation
+          ?.map((displayPart) => displayPart.text)
+          .join('\n');
+
+        return propTypeNode;
+      });
+
+      promises.push(
+        generateProptypes(
+          propsFilename.replace(/\.d\.ts$/, '.js'),
+          ttp.programNode([ttp.componentNode(componentName, proptypes, propsFilename)]),
+        ),
+      );
+    }
   });
 
   const results = await Promise.all(promises);
-
-  if (verbose) {
-    files.forEach((file, index) => {
-      console.log('%s - %s', GenerateResult[results[index]], path.basename(file, '.d.ts'));
-    });
-  }
 
   console.log('--- Summary ---');
   const groups = _.groupBy(results, (x) => x);
@@ -270,25 +524,7 @@ async function run(argv: HandlerArgv) {
 yargs
   .command({
     command: '$0',
-    describe: 'Generates Component.propTypes from TypeScript declarations',
-    builder: (command) => {
-      return command
-        .option('disable-cache', {
-          default: false,
-          describe: 'Considers all files on every run',
-          type: 'boolean',
-        })
-        .option('verbose', {
-          default: false,
-          describe: 'Logs result for each file',
-          type: 'boolean',
-        })
-        .option('pattern', {
-          default: '',
-          describe: 'Only considers declaration files matching this pattern.',
-          type: 'string',
-        });
-    },
+    describe: 'Generates component.propTypes from TypeScript declarations',
     handler: run,
   })
   .help()
