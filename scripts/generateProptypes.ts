@@ -7,9 +7,6 @@ import * as yargs from 'yargs';
 import * as ts from 'typescript';
 import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
 
-// TODO: cleanup
-// tslint:disable:ban-ts-ignore
-
 function assertIsDefined<T>(val: T): asserts val is Exclude<T, undefined> {
   if (val === undefined || val === null) {
     throw new Error(`Expected 'val' to be defined, but received ${val}`);
@@ -133,59 +130,65 @@ async function generateProptypes(
 
   const jsContent = await fse.readFile(jsFile, 'utf8');
 
-  const result = ttp.inject(proptypes, jsContent, {
-    removeExistingPropTypes: true,
-    comment: [
-      '----------------------------- Warning --------------------------------',
-      '| These PropTypes are generated from the TypeScript type definitions |',
-      '|     To update them edit the d.ts file and run "yarn proptypes"     |',
-      '----------------------------------------------------------------------',
-    ].join('\n'),
-    reconcilePropTypes: (prop, previous, generated) => {
-      const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
-      const ignoreGenerated =
-        previous !== undefined &&
-        previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
-      if (usedCustomValidator || ignoreGenerated) {
-        // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
-        return previous!;
-      }
+  let result: string | null = null;
+  try {
+    result = ttp.inject(proptypes, jsContent, {
+      removeExistingPropTypes: true,
+      comment: [
+        '----------------------------- Warning --------------------------------',
+        '| These PropTypes are generated from the TypeScript type definitions |',
+        '|     To update them edit the d.ts file and run "yarn proptypes"     |',
+        '----------------------------------------------------------------------',
+      ].join('\n'),
+      reconcilePropTypes: (prop, previous, generated) => {
+        const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
+        const ignoreGenerated =
+          previous !== undefined &&
+          previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
+        if (usedCustomValidator || ignoreGenerated) {
+          // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
+          return previous!;
+        }
 
-      return generated;
-    },
-    shouldInclude: ({ component, prop, usedProps }) => {
-      if (prop.name === 'ref') {
-        return false;
-      }
-      if (prop.name === 'children') {
-        return true;
-      }
-      let shouldDocument;
+        return generated;
+      },
+      shouldInclude: ({ component, prop, usedProps }) => {
+        if (prop.name === 'ref') {
+          return false;
+        }
+        if (prop.name === 'children') {
+          return true;
+        }
+        let shouldDocument;
 
-      const documentRegExp = new RegExp(/\r?\n?@document/);
-      if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
-        prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
-        shouldDocument = true;
-      } else {
-        prop.filenames.forEach((filename) => {
-          const isExternal = filename !== component.propsFilename;
-          if (!isExternal) {
-            shouldDocument = true;
-          }
-        });
-      }
+        const documentRegExp = new RegExp(/\r?\n?@document/);
+        if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
+          prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
+          shouldDocument = true;
+        } else {
+          prop.filenames.forEach((filename) => {
+            const isExternal = filename !== component.propsFilename;
+            if (!isExternal) {
+              shouldDocument = true;
+            }
+          });
+        }
 
-      const { name: componentName } = component;
-      if (
-        useExternalDocumentation[componentName] &&
-        useExternalDocumentation[componentName].includes(prop.name)
-      ) {
-        shouldDocument = true;
-      }
+        const { name: componentName } = component;
+        if (
+          useExternalDocumentation[componentName] &&
+          useExternalDocumentation[componentName].includes(prop.name)
+        ) {
+          shouldDocument = true;
+        }
 
-      return shouldDocument;
-    },
-  });
+        return shouldDocument;
+      },
+    });
+  } catch (error) {
+    console.log(JSON.stringify(proptypes, null, 2));
+    return GenerateResult.Failed;
+  }
 
   if (!result) {
     return GenerateResult.Failed;
@@ -205,8 +208,19 @@ interface HandlerArgv {
 async function run() {
   const tsconfigPath = path.resolve(__dirname, './tsconfig.json');
   const proptypesPath = path.resolve(__dirname, './proptypes.tsx');
-  const shouldResolveObject = (data: { name: string; propertyCount: number; depth: number }) => {
-    return data.propertyCount <= 50 && data.depth <= 3;
+  const shouldResolveObject = ({
+    name,
+    propertyCount,
+    depth,
+  }: {
+    name: string;
+    propertyCount: number;
+    depth: number;
+  }) => {
+    if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
+      return false;
+    }
+    return propertyCount <= 50 && depth <= 3;
   };
 
   const { config, error } = ts.readConfigFile(tsconfigPath, (filePath) =>
@@ -273,7 +287,8 @@ async function run() {
         ((symbol as any).type as ts.Type);
 
     if (!type) {
-      throw new Error('No types found');
+      // FIXME: throw new Error('No types found');
+      return ttp.propTypeNode(symbol.getName(), '', ttp.anyNode(), symbolFilenames);
     }
 
     // Typechecker only gives the type "any" if it's present in a union
@@ -309,16 +324,16 @@ async function run() {
       const typeName = symbol ? checker.getFullyQualifiedName(symbol) : null;
       switch (typeName) {
         case 'global.JSX.Element':
-        case 'Reacttp.ReactElement': {
+        case 'React.ReactElement': {
           return ttp.elementNode('element');
         }
-        case 'Reacttp.ElementType': {
+        case 'React.ElementType': {
           return ttp.elementNode('elementType');
         }
-        case 'Reacttp.ReactNode': {
+        case 'React.ReactNode': {
           return ttp.unionNode([ttp.elementNode('node'), ttp.undefinedNode()]);
         }
-        case 'Reacttp.Component': {
+        case 'React.Component': {
           return ttp.instanceOfNode(typeName);
         }
         case 'Element':
@@ -328,11 +343,16 @@ async function run() {
       }
     }
 
-    // @ts-ignore - Private method
-    if (checker.isArrayType(type)) {
-      // @ts-ignore - Private method
-      const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
-      return ttp.arrayNode(checkType(arrayType, typeStack, name));
+    if (/Array/.test(type.symbol?.name)) {
+      try {
+        const arrayType = checker.getIndexTypeOfType(type, ts.IndexKind.Number);
+        if (arrayType !== undefined) {
+          return ttp.arrayNode(checkType(arrayType, typeStack, name));
+        }
+        console.log(type);
+      } catch (error) {
+        console.warn(error);
+      }
     }
 
     if (type.isUnion()) {
@@ -491,13 +511,17 @@ async function run() {
             .getDeclarations()
             ?.map((declaration) => declaration.getSourceFile().fileName) ?? [];
 
-        const propTypeNode = checkSymbol(propSymbol, [(propSymbol as any).id]);
+        try {
+          const propTypeNode = checkSymbol(propSymbol, [(propSymbol as any).id]);
 
-        propTypeNode.jsDoc = propDetails.documentation
-          ?.map((displayPart) => displayPart.text)
-          .join('\n');
+          propTypeNode.jsDoc = propDetails.documentation
+            ?.map((displayPart) => displayPart.text)
+            .join('\n');
 
-        return propTypeNode;
+          return propTypeNode;
+        } catch (error) {
+          throw new Error(`Could not create proptypes for ${componentName}#${propName}:\n${error}`);
+        }
       });
 
       promises.push(
