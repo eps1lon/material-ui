@@ -81,7 +81,7 @@ import {
   TreeView,
 } from '@material-ui/lab';
 
-<AppBar />;
+{/* <AppBar />;
 <Backdrop />;
 <Badge />;
 <BottomNavigation />;
@@ -144,10 +144,10 @@ import {
 <TextareaAutosize />;
 <TextField />;
 <Tooltip />;
-<Zoom />;
-<Alert />;
-<AlertTitle />;
-{/* <Autocomplete />;
+<Zoom />; */}
+<Alert iconMapping={{}} />;
+{/* <AlertTitle />;
+<Autocomplete />;
 <AvatarGroup />;
 <Pagination />;
 <Rating />;

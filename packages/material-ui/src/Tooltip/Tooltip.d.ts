@@ -3,6 +3,7 @@ import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PopperProps } from '../Popper/Popper';
 
+type RequiredReactNode = Exclude<React.ReactNode, null | undefined>;
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
   /**
@@ -100,7 +101,7 @@ export interface TooltipProps
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
-  title: Exclude<React.ReactNode, null | undefined>;
+  title: RequiredReactNode;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

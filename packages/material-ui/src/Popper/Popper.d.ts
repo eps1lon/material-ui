@@ -29,7 +29,8 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   /**
    * Popper render function or node.
    */
-  children:
+  // TODO: Handle with a custom type?
+  /* children:
     | React.ReactNode
     | ((props: {
         placement: PopperPlacementType;
@@ -38,7 +39,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
           onEnter: () => {};
           onExited: () => {};
         };
-      }) => React.ReactNode);
+      }) => React.ReactNode); */
   /**
    * A HTML element, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.

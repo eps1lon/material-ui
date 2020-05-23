@@ -3,12 +3,14 @@ import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
+type RequiredReactNode = React.ReactChild | React.ReactFragment | React.ReactPortal | boolean;
+
 export interface ExpansionPanelProps
   extends StandardProps<PaperProps, ExpansionPanelClassKey, 'onChange'> {
   /**
    * The content of the expansion panel.
    */
-  children: Exclude<React.ReactNode, null | undefined>;
+  children: RequiredReactNode;
   /**
    * If `true`, expands the panel by default.
    */

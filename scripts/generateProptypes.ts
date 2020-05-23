@@ -247,9 +247,9 @@ async function run() {
     const symbolFilenames = getSymbolFileNames(symbol);
 
     // TypeChecker keeps the name for
-    // { a: Reacttp.ElementType, b: Reacttp.ReactElement | boolean }
+    // { a: React.ElementType, b: React.ReactElement | boolean }
     // but not
-    // { a?: Reacttp.ElementType, b: Reacttp.ReactElement }
+    // { a?: React.ElementType, b: React.ReactElement }
     // get around this by not using the TypeChecker
     if (
       declaration &&
@@ -283,12 +283,16 @@ async function run() {
       ? // The proptypes aren't detailed enough that we need all the different combinations
         // so we just pick the first and ignore the rest
         checker.getTypeOfSymbolAtLocation(symbol, declaration)
-      : // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
-        ((symbol as any).type as ts.Type);
+      : null;
 
-    if (!type) {
-      // FIXME: throw new Error('No types found');
-      return ttp.propTypeNode(symbol.getName(), '', ttp.anyNode(), symbolFilenames);
+    // e.g. for mapped types
+    if (type === null) {
+      return ttp.propTypeNode(
+        symbol.getName(),
+        '',
+        ttp.unionNode([ttp.anyNode(), ttp.undefinedNode()]),
+        symbolFilenames,
+      );
     }
 
     // Typechecker only gives the type "any" if it's present in a union
@@ -318,9 +322,11 @@ async function run() {
     }
 
     {
-      const typeNode = type as any;
+      // REVIEW: Why did this used to cast to `any`?
+      const typeNode = type;
 
       const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
+      // getFullyQualifiedName includes the namespace.
       const typeName = symbol ? checker.getFullyQualifiedName(symbol) : null;
       switch (typeName) {
         case 'global.JSX.Element':
@@ -341,6 +347,11 @@ async function run() {
           return ttp.DOMElementNode();
         }
       }
+
+      // Custom type where the namespace is the path of the file where it was defined.
+      if (typeName?.endsWith('.RequiredReactNode')) {
+        return ttp.elementNode('node');
+      }
     }
 
     if (/Array/.test(type.symbol?.name)) {
@@ -349,9 +360,8 @@ async function run() {
         if (arrayType !== undefined) {
           return ttp.arrayNode(checkType(arrayType, typeStack, name));
         }
-        console.log(type);
       } catch (error) {
-        console.warn(error);
+        // console.log(type);
       }
     }
 
@@ -402,7 +412,9 @@ async function run() {
           const filtered = properties;
           if (filtered.length > 0) {
             return ttp.interfaceNode(
-              filtered.map((x) => checkSymbol(x, [...typeStack, (type as any).id])),
+              filtered.map((x) => {
+                return checkSymbol(x, [...typeStack, (type as any).id]);
+              }),
             );
           }
         }
@@ -484,45 +496,50 @@ async function run() {
         includeExternalModuleExports: false,
       })!;
 
-      const proptypes = completions.entries.map((completionEntry) => {
-        const propName = completionEntry.name;
-        assertIsDefined(propName);
+      const proptypes = completions.entries
+        .map((completionEntry) => {
+          const propName = completionEntry.name;
+          assertIsDefined(propName);
 
-        const propDetails = language.getCompletionEntryDetails(
-          proptypesPath,
-          completionPosition,
-          propName,
-          {},
-          completionEntry.source,
-          {},
-        );
-        assertIsDefined(propDetails);
+          const propDetails = language.getCompletionEntryDetails(
+            proptypesPath,
+            completionPosition,
+            propName,
+            {},
+            completionEntry.source,
+            {},
+          );
+          assertIsDefined(propDetails);
 
-        const propSymbol = language.getCompletionEntrySymbol(
-          proptypesPath,
-          completionPosition,
-          propName,
-          completionEntry.source,
-        );
-        assertIsDefined(propSymbol);
+          const propSymbol = language.getCompletionEntrySymbol(
+            proptypesPath,
+            completionPosition,
+            propName,
+            completionEntry.source,
+          );
+          assertIsDefined(propSymbol);
 
-        const propFileNames =
-          propSymbol
-            .getDeclarations()
-            ?.map((declaration) => declaration.getSourceFile().fileName) ?? [];
+          // DEBUG
+          if (propName !== 'iconMapping') {
+            // return null;
+          }
 
-        try {
-          const propTypeNode = checkSymbol(propSymbol, [(propSymbol as any).id]);
+          console.log('---------%s--------', propName);
+          try {
+            const propTypeNode = checkSymbol(propSymbol, [(propSymbol as any).id]);
 
-          propTypeNode.jsDoc = propDetails.documentation
-            ?.map((displayPart) => displayPart.text)
-            .join('\n');
+            propTypeNode.jsDoc = propDetails.documentation
+              ?.map((displayPart) => displayPart.text)
+              .join('\n');
 
-          return propTypeNode;
-        } catch (error) {
-          throw new Error(`Could not create proptypes for ${componentName}#${propName}:\n${error}`);
-        }
-      });
+            return propTypeNode;
+          } catch (error) {
+            throw new Error(
+              `Could not create proptypes for ${componentName}#${propName}:\n${error}`,
+            );
+          }
+        })
+        .filter(Boolean) as ttp.PropTypeNode[];
 
       promises.push(
         generateProptypes(
