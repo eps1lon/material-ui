@@ -29,7 +29,11 @@ export default function TriggersTooltips() {
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip disableFocusListener disableTouchListener title="Add">
+          <Tooltip
+            disableFocusListener
+            enterTouchDelay={Number.POSITIVE_INFINITY}
+            title="Add"
+          >
             <Button>Hover</Button>
           </Tooltip>
         </Grid>
@@ -44,7 +48,7 @@ export default function TriggersTooltips() {
                 open={open}
                 disableFocusListener
                 disableHoverListener
-                disableTouchListener
+                enterTouchDelay={Number.POSITIVE_INFINITY}
                 title="Add"
               >
                 <Button onClick={handleTooltipOpen}>Click</Button>

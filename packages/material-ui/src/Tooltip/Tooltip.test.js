@@ -421,20 +421,6 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
-
-    it('should not open if disableTouchListener', () => {
-      const { getByRole, queryByRole } = render(
-        <Tooltip title="Hello World" disableTouchListener>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-
-      fireEvent.touchStart(getByRole('button'));
-      fireEvent.mouseOver(getByRole('button'));
-      expect(queryByRole('tooltip')).to.equal(null);
-    });
   });
 
   describe('mount', () => {

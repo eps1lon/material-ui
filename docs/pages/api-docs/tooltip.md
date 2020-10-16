@@ -35,7 +35,6 @@ The `MuiTooltip` name can be used for providing [default props](/customization/g
 | <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to focus events. |
 | <span class="prop-name">disableHoverListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to hover events. |
 | <span class="prop-name">disableInteractive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the `leaveDelay` is expired. |
-| <span class="prop-name">disableTouchListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to long press touch events. |
 | <span class="prop-name">enterDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">100</span> | The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`). |
 | <span class="prop-name">enterNextDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The number of milliseconds to wait before showing the tooltip when one was already recently opened. |
 | <span class="prop-name">enterTouchDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">700</span> | The number of milliseconds a user must touch the element before showing the tooltip. |

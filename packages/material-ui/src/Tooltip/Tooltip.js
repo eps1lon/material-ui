@@ -169,7 +169,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
-    disableTouchListener = false,
     enterDelay = 100,
     enterNextDelay = 0,
     enterTouchDelay = 700,
@@ -377,17 +376,14 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, leaveDelay);
   };
 
-  const detectTouchStart = (event) => {
+  const handleTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
 
     const childrenProps = children.props;
     if (childrenProps.onTouchStart) {
       childrenProps.onTouchStart(event);
     }
-  };
 
-  const handleTouchStart = (event) => {
-    detectTouchStart(event);
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
     clearTimeout(touchTimer.current);
@@ -472,7 +468,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     ...other,
     ...children.props,
     className: clsx(other.className, children.props.className),
-    onTouchStart: detectTouchStart,
+    onTouchStart: handleTouchStart,
+    onTouchEnd: handleTouchEnd,
     ref: handleRef,
     ...(followCursor ? { onMouseMove: handleMouseMove } : {}),
   };
@@ -494,11 +491,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }
 
   const interactiveWrapperListeners = {};
-
-  if (!disableTouchListener) {
-    childrenProps.onTouchStart = handleTouchStart;
-    childrenProps.onTouchEnd = handleTouchEnd;
-  }
 
   if (!disableHoverListener) {
     childrenProps.onMouseOver = handleEnter();
@@ -649,11 +641,6 @@ Tooltip.propTypes = {
    * @default false
    */
   disableInteractive: PropTypes.bool,
-  /**
-   * Do not respond to long press touch events.
-   * @default false
-   */
-  disableTouchListener: PropTypes.bool,
   /**
    * The number of milliseconds to wait before showing the tooltip.
    * This prop won't impact the enter touch delay (`enterTouchDelay`).

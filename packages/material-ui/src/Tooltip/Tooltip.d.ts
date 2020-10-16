@@ -63,11 +63,6 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   disableInteractive?: boolean;
   /**
-   * Do not respond to long press touch events.
-   * @default false
-   */
-  disableTouchListener?: boolean;
-  /**
    * The number of milliseconds to wait before showing the tooltip.
    * This prop won't impact the enter touch delay (`enterTouchDelay`).
    * @default 100
