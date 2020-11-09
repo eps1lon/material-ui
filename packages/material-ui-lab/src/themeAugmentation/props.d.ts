@@ -28,7 +28,6 @@ import { TreeViewProps } from '../TreeView';
 import { YearPickerProps } from '../YearPicker';
 
 export interface LabComponentsPropsList {
- 
   MuiAvatarGroup: AvatarGroupProps;
   MuiClockPicker: ClockPickerProps<unknown>;
   MuiDatePicker: DatePickerProps;
