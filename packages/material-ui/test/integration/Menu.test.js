@@ -69,6 +69,8 @@ function ButtonMenu(props) {
 
 ButtonMenu.propTypes = { selectedIndex: PropTypes.number };
 
+throw new Error(123123);
+
 describe('<Menu /> integration', () => {
   /**
    * @type {ReturnType<useFakeTimers>}

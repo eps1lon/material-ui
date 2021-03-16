@@ -29,14 +29,17 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
+  const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup', 'test']);
 
   const presets = [
     [
       '@babel/preset-env',
       {
         bugfixes: true,
-        browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
+        browserslistEnv:
+          process.env.BABEL_ENV === 'test'
+            ? 'stable'
+            : process.env.BABEL_ENV || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
         shippedProposals: api.env('modern'),

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import sourceMapSupport from 'source-map-support';
-import { createMochaHooks } from './mochaHooks';
+const { createMochaHooks } = require('./mochaHooks');
 
 const mochaHooks = createMochaHooks(window.Mocha);
 

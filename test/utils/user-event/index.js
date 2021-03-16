@@ -1,6 +1,9 @@
 import { fireEvent, getConfig } from '@testing-library/dom';
-// eslint-disable-next-line no-restricted-imports
-import { defaultGetTabbable as getTabbable } from '@material-ui/unstyled/Unstable_TrapFocus/Unstable_TrapFocus';
+
+// FIXME: Switch to browser tests
+function getTabbable() {
+  return [];
+}
 
 // Absolutely NO events fire on label elements that contain their control
 // if that control is disabled. NUTS!
