@@ -38,5 +38,9 @@ module.exports = {
       'scheduler/tracing': 'scheduler/tracing-profiling',
     },
     extensions: ['.js', '.ts', '.tsx'],
+    fallback: {
+      // required by e.g. styled-components
+      stream: false,
+    },
   },
 };
