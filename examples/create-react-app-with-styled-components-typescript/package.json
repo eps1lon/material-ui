@@ -3,23 +3,27 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "latest",
     "@material-ui/core": "next",
     "@material-ui/lab": "next",
     "@material-ui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/styled-components": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "styled-components": "latest"
+    "styled-components": "latest",
+    "typescript": "latest"
   },
   "scripts": {
-    "tsc": "./node_modules/.bin/tsc",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "browserslist": {
     "production": [
@@ -32,14 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "@types/styled-components": "latest",
-    "customize-cra": "latest",
-    "react-app-rewired": "latest",
-    "typescript": "latest"
   }
 }

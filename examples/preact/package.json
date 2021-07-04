@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@babel/helper-builder-react-jsx": "latest",
+    "@craco/craco": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
@@ -11,13 +11,13 @@
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "preact": "latest",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "latest"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "browserslist": {
     "production": [
@@ -30,9 +30,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "customize-cra": "latest",
-    "react-app-rewired": "latest"
   }
 }
