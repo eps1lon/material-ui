@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
 
 export default function useControlled({ controlled, default: defaultProp, name, state = 'value' }) {
@@ -8,6 +7,7 @@ export default function useControlled({ controlled, default: defaultProp, name, 
   const value = isControlled ? controlled : valueState;
 
   if (process.env.NODE_ENV !== 'production') {
+    /* eslint-disable react-hooks/rules-of-hooks -- `process.env.NODE_ENV` is invariant during runtim */
     React.useEffect(() => {
       if (isControlled !== (controlled !== undefined)) {
         console.error(
@@ -23,7 +23,7 @@ export default function useControlled({ controlled, default: defaultProp, name, 
           ].join('\n'),
         );
       }
-    }, [state, name, controlled]);
+    }, [state, name, controlled, isControlled]);
 
     const { current: defaultValue } = React.useRef(defaultProp);
 
@@ -37,13 +37,17 @@ export default function useControlled({ controlled, default: defaultProp, name, 
         );
       }
     }, [JSON.stringify(defaultProp)]);
+    /* eslint-enable react-hooks/rules-of-hooks */
   }
 
-  const setValueIfUncontrolled = React.useCallback((newValue) => {
-    if (!isControlled) {
-      setValue(newValue);
-    }
-  }, []);
+  const setValueIfUncontrolled = React.useCallback(
+    (newValue) => {
+      if (!isControlled) {
+        setValue(newValue);
+      }
+    },
+    [isControlled],
+  );
 
   return [value, setValueIfUncontrolled];
 }
