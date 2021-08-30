@@ -76,18 +76,23 @@ describe('useControlled', () => {
     );
   });
 
-  it('warns when changing the defaultValue prop after initial rendering', () => {
+  it('does not warn when changing the defaultValue prop after initial rendering', () => {
     let setProps;
 
+    function MinimalDateInput(props) {
+      const { defaultDate } = props;
+      useControlled({ controlled: undefined, default: defaultDate, name: 'defaultDate' });
+
+      return <input type="date" defaultValue={defaultDate} readOnly />;
+    }
+
     expect(() => {
-      ({ setProps } = render(<TestComponent>{() => null}</TestComponent>));
+      ({ setProps } = render(<MinimalDateInput defaultDate={new Date()} />));
     }).not.toErrorDev();
 
     expect(() => {
-      setProps({ defaultValue: 1 });
-    }).toErrorDev(
-      'Material-UI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
-    );
+      setProps({ defaultDate: new Date() });
+    }).not.toErrorDev();
   });
 
   it('should not raise a warning if changing the defaultValue when controlled', () => {

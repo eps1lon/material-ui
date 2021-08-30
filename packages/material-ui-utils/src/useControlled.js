@@ -24,19 +24,6 @@ export default function useControlled({ controlled, default: defaultProp, name, 
         );
       }
     }, [state, name, controlled, isControlled]);
-
-    const { current: defaultValue } = React.useRef(defaultProp);
-
-    React.useEffect(() => {
-      if (!isControlled && defaultValue !== defaultProp) {
-        console.error(
-          [
-            `Material-UI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
-              `To suppress this warning opt to use a controlled ${name}.`,
-          ].join('\n'),
-        );
-      }
-    }, [JSON.stringify(defaultProp)]);
     /* eslint-enable react-hooks/rules-of-hooks */
   }
 
