@@ -196,8 +196,8 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
       }
     }
 
-    if (!child.props.disabled) {
-      if (variant === 'selectedMenu' && child.props.selected) {
+    if (!(child.props as any).disabled) {
+      if (variant === 'selectedMenu' && (child.props as any).selected) {
         activeItemIndex = index;
       } else if (activeItemIndex === -1) {
         activeItemIndex = index;

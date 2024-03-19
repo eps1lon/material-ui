@@ -384,7 +384,7 @@ const Chip = React.forwardRef(function Chip<
   if (onDelete) {
     deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
-        React.cloneElement(deleteIconProp as React.ReactElement, {
+        React.cloneElement(deleteIconProp as React.ReactElement<any>, {
           className: clsx((deleteIconProp.props as any)?.className, classes.deleteIcon),
           onClick: handleDeleteIconClick,
         })
@@ -395,14 +395,14 @@ const Chip = React.forwardRef(function Chip<
 
   let avatar = null;
   if (hasAvatar) {
-    avatar = React.cloneElement(avatarProp as React.ReactElement, {
+    avatar = React.cloneElement(avatarProp as React.ReactElement<any>, {
       className: clsx(classes.avatar, (avatarProp.props as any)?.className),
     });
   }
 
   let icon = null;
   if (hasIcon) {
-    icon = React.cloneElement(iconProp as React.ReactElement, {
+    icon = React.cloneElement(iconProp as React.ReactElement<any>, {
       className: clsx(classes.icon, (iconProp.props as any)?.className),
     });
   }

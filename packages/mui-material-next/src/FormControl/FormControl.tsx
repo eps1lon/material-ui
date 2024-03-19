@@ -117,7 +117,7 @@ const FormControl = React.forwardRef(function FormControl<
 
         const input =
           React.isValidElement(child) && isMuiElement(child, ['Select'])
-            ? child.props.input
+            ? (child.props as any).input
             : child;
 
         if (input && isAdornedStart(input.props)) {
@@ -141,7 +141,7 @@ const FormControl = React.forwardRef(function FormControl<
 
         if (
           React.isValidElement(child) &&
-          (isFilled(child.props, true) || isFilled(child.props.slotProps?.input, true))
+          (isFilled(child.props, true) || isFilled((child.props as any).slotProps?.input, true))
         ) {
           initialFilled = true;
         }

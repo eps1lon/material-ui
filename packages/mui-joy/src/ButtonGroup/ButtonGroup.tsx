@@ -236,11 +236,15 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
           const extraProps: Record<string, any> = {};
           if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+            const dividerElement = child as React.ReactElement<any>;
+            extraProps.inset =
+              'inset' in dividerElement.props ? dividerElement.props.inset : 'context';
 
             const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
             extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : dividerOrientation;
+              'orientation' in dividerElement.props
+                ? dividerElement.props.orientation
+                : dividerOrientation;
             extraProps.role = 'presentation';
             extraProps.component = 'span';
           }

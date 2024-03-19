@@ -1,4 +1,4 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -22,7 +22,7 @@ import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 
-import type { JSX } from "react";
+import type { JSX } from 'react';
 
 interface InternalChangeEventHandler<Value> {
   (event: React.MouseEvent, value: Value | Array<Value> | null): void;
@@ -163,11 +163,15 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
             }
             const extraProps: Record<string, any> = {};
             if (isMuiElement(child, ['Divider'])) {
-              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+              const dividerElement = child as React.ReactElement<any>;
+              extraProps.inset =
+                'inset' in dividerElement.props ? dividerElement.props.inset : 'context';
 
               const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
               extraProps.orientation =
-                'orientation' in child.props ? child.props.orientation : dividerOrientation;
+                'orientation' in dividerElement.props
+                  ? dividerElement.props.orientation
+                  : dividerOrientation;
               extraProps.role = 'presentation';
               extraProps.component = 'span';
             }

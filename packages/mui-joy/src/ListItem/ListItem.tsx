@@ -256,7 +256,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
                   ...(index === 0 && { 'data-first-child': '' }),
                   ...(isMuiElement(child, ['ListItem']) && {
                     // The ListItem of ListItem should not be 'li'
-                    component: child.props.component || 'div',
+                    component: (child as React.ReactElement<any>).props.component || 'div',
                   }),
                 })
               : child,

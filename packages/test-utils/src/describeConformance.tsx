@@ -81,7 +81,7 @@ function assertDOMNode(node: unknown) {
  * The element should have a component wrapped in withStyles as the root
  */
 function testRef(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   mount: ConformanceOptions['mount'],
   onRef: (instance: unknown, wrapper: import('enzyme').ReactWrapper) => void = assertDOMNode,
 ) {
@@ -131,7 +131,7 @@ function throwMissingPropError(field: string): never {
  * MUI components have a `className` prop. The `className` is applied to
  * the root component.
  */
-export function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function testClassName(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', () => {
     const { mount } = getOptions();
     if (!mount) {
@@ -151,7 +151,7 @@ export function testClassName(element: React.ReactElement, getOptions: () => Con
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -171,7 +171,7 @@ export function testComponentProp(
 /**
  * MUI components can spread additional props to a documented component.
  */
-export function testPropsSpread(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function testPropsSpread(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { inheritComponent, mount } = getOptions();
@@ -222,7 +222,7 @@ export function describeRef(element: React.ReactElement, getOptions: () => Confo
 /**
  * Tests that the root component has the root class
  */
-export function testRootClass(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+export function testRootClass(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   it('applies the root class to the root component if it has this class', () => {
     const { classes, render, skip } = getOptions();
     if (classes.root == null) {
@@ -288,7 +288,7 @@ function forEachSlot(
   });
 }
 
-function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testSlotsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<
@@ -459,7 +459,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
   });
 }
 
-function testSlotPropsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   if (!render) {
@@ -542,7 +542,7 @@ function testSlotPropsProp(element: React.ReactElement, getOptions: () => Confor
   });
 }
 
-function testSlotPropsCallback(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testSlotPropsCallback(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   const { render, slots } = getOptions();
 
   if (!render) {
@@ -570,7 +570,7 @@ function testSlotPropsCallback(element: React.ReactElement, getOptions: () => Co
  * MUI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
  */
-function testComponentsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testComponentsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   describe('prop components:', () => {
     it('can render another root component with the `components` prop', () => {
       const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
@@ -879,7 +879,7 @@ function testThemeStyleOverrides(
  * MUI theme has a components section that allows specifying custom variants.
  * Components from @inheritComponent
  */
-function testThemeVariants(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
   describe('theme variants:', () => {
     it("respect theme's variants", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {

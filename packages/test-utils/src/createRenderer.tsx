@@ -281,7 +281,7 @@ export interface MuiRenderToStringResult {
 }
 
 function render(
-  element: React.ReactElement,
+  element: React.ReactElement<any>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
