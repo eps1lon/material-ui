@@ -18,6 +18,8 @@ import { PaperProps } from '@mui/material/Paper';
 import { PopperProps } from '@mui/material/Popper';
 import { AutocompleteClasses } from './autocompleteClasses';
 
+import type { JSX } from "react";
+
 export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,

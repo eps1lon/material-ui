@@ -5,6 +5,8 @@ import { Theme } from '../styles';
 import { TouchRippleActions, TouchRippleProps } from './TouchRipple.types';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
+import type { JSX } from "react";
+
 export interface ButtonBaseTypeMap<
   AdditionalProps = {},
   DefaultComponent extends React.ElementType = 'button',

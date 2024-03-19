@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 type TextFieldProps<A extends boolean> = A extends true ? { testProp: string } : { testProp: boolean }
 
 type Props<A extends boolean = false> = Omit<TextFieldProps<A>, 'b'>

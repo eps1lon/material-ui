@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { SnackbarContentClasses } from './snackbarContentClasses';
 
+import type { JSX } from "react";
+
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.

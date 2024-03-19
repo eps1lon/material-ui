@@ -5,6 +5,8 @@ import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
+import type { JSX } from "react";
+
 export interface ButtonBaseOwnProps {
   /**
    * A ref for imperative actions.

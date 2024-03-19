@@ -7,6 +7,8 @@ import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
 import { SnackbarClasses } from './snackbarClasses';
 
+import type { JSX } from "react";
+
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
   horizontal: 'left' | 'center' | 'right';

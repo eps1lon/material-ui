@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 import Avatar from '../Avatar';
 
+import type { JSX } from "react";
+
 export interface AvatarGroupPropsVariantOverrides {}
 
 export interface AvatarGroupComponentsPropsOverrides {}

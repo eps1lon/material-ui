@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { CheckboxClasses } from './checkboxClasses';
 
+import type { JSX } from "react";
+
 export interface CheckboxPropsSizeOverrides {}
 
 export interface CheckboxPropsColorOverrides {}

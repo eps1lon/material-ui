@@ -90,7 +90,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(
     const { center: centerProp = false, classes = {}, className, ...other } = props;
     const [ripples, setRipples] = React.useState<React.ReactNode[]>([]);
     const nextKey = React.useRef(0);
-    const rippleCallback = React.useRef<(() => void) | null>();
+    const rippleCallback = React.useRef<(() => void) | null>(undefined);
 
     React.useEffect(() => {
       if (rippleCallback.current) {

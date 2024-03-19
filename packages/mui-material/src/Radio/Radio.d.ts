@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { RadioClasses } from './radioClasses';
 
+import type { JSX } from "react";
+
 export interface RadioPropsSizeOverrides {}
 
 export interface RadioPropsColorOverrides {}

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 type Breakpoint = 'xs' | 'md' | 'xl';
 
 export interface Props {

@@ -13,6 +13,8 @@ import { SelectProps } from '../Select';
 import { Theme } from '../styles';
 import { TextFieldClasses } from './textFieldClasses';
 
+import type { JSX } from "react";
+
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}
 

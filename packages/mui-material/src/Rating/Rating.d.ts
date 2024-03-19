@@ -4,6 +4,8 @@ import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { RatingClasses } from './ratingClasses';
 
+import type { JSX } from "react";
+
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }

@@ -8,6 +8,8 @@ import {
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
+import type { JSX } from "react";
+
 export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIndicatorCenter';
 
 export interface ButtonSlots {

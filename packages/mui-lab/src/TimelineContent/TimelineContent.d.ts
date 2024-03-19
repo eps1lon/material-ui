@@ -4,6 +4,8 @@ import { Theme } from '@mui/material/styles';
 import { InternalStandardProps as StandardProps, TypographyProps } from '@mui/material';
 import { TimelineContentClasses } from './timelineContentClasses';
 
+import type { JSX } from "react";
+
 export interface TimelineContentProps extends StandardProps<TypographyProps> {
   /**
    * The content of the component.

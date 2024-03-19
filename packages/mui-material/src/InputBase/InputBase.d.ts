@@ -5,6 +5,8 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { InputBaseClasses } from './inputBaseClasses';
 
+import type { JSX } from "react";
+
 export interface InputBasePropsSizeOverrides {}
 
 export interface InputBasePropsColorOverrides {}

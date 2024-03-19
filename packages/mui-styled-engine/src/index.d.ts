@@ -2,6 +2,8 @@ import * as CSS from 'csstype';
 import { StyledComponent, StyledOptions } from '@emotion/styled';
 import { PropsOf } from '@emotion/react';
 
+import type { JSX } from "react";
+
 export * from '@emotion/styled';
 export { default } from '@emotion/styled';
 export { ThemeContext, keyframes, css } from '@emotion/react';

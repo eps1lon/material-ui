@@ -6,6 +6,8 @@ import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
+import type { JSX } from "react";
+
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}

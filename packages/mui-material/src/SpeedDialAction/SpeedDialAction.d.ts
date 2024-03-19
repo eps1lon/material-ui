@@ -6,6 +6,8 @@ import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
 import { SpeedDialActionClasses } from './speedDialActionClasses';
 
+import type { JSX } from "react";
+
 export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps>, 'children'> {
   /**
    * Override or extend the styles applied to the component.

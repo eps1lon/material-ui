@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -25,6 +25,8 @@ import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
+
+import type { JSX } from "react";
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,

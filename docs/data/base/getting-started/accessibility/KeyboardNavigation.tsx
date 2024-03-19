@@ -13,6 +13,8 @@ import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled, alpha } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
+import type { JSX } from "react";
+
 export default function KeyboardNavigation() {
   return (
     <Container>

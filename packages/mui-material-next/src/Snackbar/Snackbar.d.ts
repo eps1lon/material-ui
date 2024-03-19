@@ -7,6 +7,8 @@ import { TransitionProps } from '@mui/material/transitions';
 import { Theme } from '../styles';
 import { SnackbarClasses } from './snackbarClasses';
 
+import type { JSX } from "react";
+
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
   horizontal: 'left' | 'center' | 'right';

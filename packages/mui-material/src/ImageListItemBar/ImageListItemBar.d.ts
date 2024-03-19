@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { ImageListItemBarClasses } from './imageListItemBarClasses';
 
+import type { JSX } from "react";
+
 export interface ImageListItemBarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**

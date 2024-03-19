@@ -8,6 +8,8 @@ import createDescribe from './createDescribe';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import { MuiRenderResult } from './createRenderer';
 
+import type { JSX } from "react";
+
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }

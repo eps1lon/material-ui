@@ -10,6 +10,8 @@ import Dropdown, { DropdownProps } from '@mui/joy/Dropdown';
 import MenuButton from '@mui/joy/MenuButton';
 import { Theme } from '@mui/joy';
 
+import type { JSX } from "react";
+
 type MenuBarButtonProps = Pick<DropdownProps, 'children' | 'open'> & {
   onOpen: DropdownProps['onOpenChange'];
   onKeyDown: React.KeyboardEventHandler;

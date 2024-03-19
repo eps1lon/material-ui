@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
 
+import type { JSX } from "react";
+
 export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchPropsColorOverrides {}

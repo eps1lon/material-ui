@@ -1,5 +1,7 @@
 import type * as CSS from 'csstype';
 
+import type { JSX } from "react";
+
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
 
 export type CSSPropertiesMultiValue = {

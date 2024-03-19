@@ -4,6 +4,8 @@ import { ApplyColorInversion } from '../styles/types';
 import { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
+import type { JSX } from "react";
+
 export type MenuItemSlot = 'root';
 
 export interface MenuItemSlots {

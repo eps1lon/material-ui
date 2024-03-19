@@ -4,6 +4,8 @@ import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { StepIconClasses } from './stepIconClasses';
 
+import type { JSX } from "react";
+
 export interface StepIconProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**

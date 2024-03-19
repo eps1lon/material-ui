@@ -9,6 +9,8 @@ import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
+import type { JSX } from "react";
+
 export default function UnstyledSelectForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -4,6 +4,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TableCellClasses } from './tableCellClasses';
 
+import type { JSX } from "react";
+
 export interface TableCellPropsSizeOverrides {}
 export interface TableCellPropsVariantOverrides {}
 

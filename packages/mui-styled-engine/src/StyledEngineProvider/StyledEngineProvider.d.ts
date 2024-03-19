@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import type { JSX } from "react";
+
 export interface StyledEngineProviderProps {
   children?: React.ReactNode;
   injectFirst?: boolean;

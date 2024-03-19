@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, PaperProps, Theme } from '@mui/material';
 import { SnackbarContentClasses } from './snackbarContentClasses';
 
+import type { JSX } from "react";
+
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.

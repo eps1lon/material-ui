@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 interface Props {
   /**
    * The type of the button relevant to its `<form>`.

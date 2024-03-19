@@ -8,6 +8,8 @@ import { SelectClasses } from './selectClasses';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { FilledInputProps } from '../FilledInput';
 
+import type { JSX } from "react";
+
 export { SelectChangeEvent };
 
 export interface BaseSelectProps<Value = unknown>

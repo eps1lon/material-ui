@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 type Type = 'one' | 'two' | 'three'
 
 interface ParentProps<T extends Type> {

@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
+import type { JSX } from "react";
+
 export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.

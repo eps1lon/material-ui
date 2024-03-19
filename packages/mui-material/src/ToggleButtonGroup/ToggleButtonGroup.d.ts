@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
 
+import type { JSX } from "react";
+
 export interface ToggleButtonGroupPropsSizeOverrides {}
 
 export interface ToggleButtonGroupPropsColorOverrides {}

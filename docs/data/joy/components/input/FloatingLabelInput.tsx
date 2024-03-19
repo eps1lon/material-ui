@@ -3,6 +3,8 @@ import { styled } from '@mui/joy/styles';
 import Input from '@mui/joy/Input';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 
+import type { JSX } from "react";
+
 const StyledInput = styled('input')({
   border: 'none', // remove the native input border
   minWidth: 0, // remove the native input width

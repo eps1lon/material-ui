@@ -5,6 +5,8 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { CardHeaderClasses } from './cardHeaderClasses';
 
+import type { JSX } from "react";
+
 export interface CardHeaderOwnProps<
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',

@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { TypographyProps } from '@mui/material/Typography';
 import { ListItemTextClasses } from './listItemTextClasses';
 
+import type { JSX } from "react";
+
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',

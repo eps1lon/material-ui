@@ -8,7 +8,7 @@ interface UseTouchRippleProps {
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
   disableTouchRipple?: boolean;
-  rippleRef: React.RefObject<TouchRippleActions>;
+  rippleRef: React.RefObject<TouchRippleActions | null>;
 }
 
 interface RippleEventHandlers {

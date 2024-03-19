@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import { Input } from '@mui/base/Input';
 import { styled, GlobalStyles } from '@mui/system';
 
+import type { JSX } from "react";
+
 const fieldStyles = `
   --TextInput-height: 64px;
   --TextInput-paddingTop: 2rem;

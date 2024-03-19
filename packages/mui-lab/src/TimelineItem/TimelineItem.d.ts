@@ -4,6 +4,8 @@ import { Theme } from '@mui/material/styles';
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { TimelineItemClasses } from './timelineItemClasses';
 
+import type { JSX } from "react";
+
 export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The position where the timeline's item should appear.

@@ -11,6 +11,8 @@ import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
 
+import type { JSX } from "react";
+
 export { SelectChangeEvent };
 
 export interface SelectProps<Value = unknown>

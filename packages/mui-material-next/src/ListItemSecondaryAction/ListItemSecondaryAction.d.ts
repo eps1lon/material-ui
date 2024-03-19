@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
 
+import type { JSX } from "react";
+
 export interface ListItemSecondaryActionProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

@@ -3,6 +3,8 @@ import { useTheme, styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { SxProps } from '@mui/system';
 
+import type { JSX } from "react";
+
 export type IconImageProps = {
   name:
     | 'product-core'

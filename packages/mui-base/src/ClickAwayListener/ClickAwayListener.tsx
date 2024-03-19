@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -8,6 +8,8 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
+
+import type { JSX } from "react";
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(

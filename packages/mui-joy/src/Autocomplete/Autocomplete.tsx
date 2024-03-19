@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -43,9 +43,11 @@ import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteLi
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
 
+import type { JSX } from "react";
+
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
-const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
+const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement | null>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
 // @ts-ignore
 const defaultGetOptionLabel = (option) => option.label ?? option;

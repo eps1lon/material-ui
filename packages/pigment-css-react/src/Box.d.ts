@@ -1,6 +1,8 @@
 import type { BaseDefaultProps, Substitute, NoInfer } from './base';
 import type { SxProp } from './sx';
 
+import type { JSX } from "react";
+
 export type PolymorphicComponentProps<
   BaseProps extends object,
   AsTarget extends React.ElementType | undefined,

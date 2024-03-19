@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as CSS from 'csstype';
 import * as hoistNonReactStatics from 'hoist-non-react-statics';
 
+import type { JSX } from "react";
+
 type WithOptionalTheme<P extends { theme?: T | undefined }, T> = OmitU<P, 'theme'> & {
   theme?: T | undefined;
 };

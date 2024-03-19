@@ -8,6 +8,8 @@ import {
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
+import type { JSX } from "react";
+
 export type OptionSlot = 'root';
 
 export interface OptionSlots {

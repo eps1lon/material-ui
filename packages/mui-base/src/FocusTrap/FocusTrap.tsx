@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -9,6 +9,8 @@ import {
   unstable_ownerDocument as ownerDocument,
 } from '@mui/utils';
 import { FocusTrapProps } from './FocusTrap.types';
+
+import type { JSX } from "react";
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [

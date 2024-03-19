@@ -6,6 +6,8 @@ import { Theme } from '../styles';
 import { UsePaginationItem, UsePaginationProps } from '../usePagination/usePagination';
 import { PaginationClasses } from './paginationClasses';
 
+import type { JSX } from "react";
+
 export interface PaginationRenderItemParams extends UsePaginationItem {
   color: PaginationProps['color'];
   shape: PaginationProps['shape'];

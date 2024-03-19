@@ -8,6 +8,8 @@ import {
 import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
 
+import type { JSX } from "react";
+
 export interface ButtonPropsVariantOverrides {}
 
 export interface ButtonPropsColorOverrides {}

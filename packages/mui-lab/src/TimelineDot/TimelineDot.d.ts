@@ -5,6 +5,8 @@ import { Theme } from '@mui/material/styles';
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { TimelineDotClasses } from './timelineDotClasses';
 
+import type { JSX } from "react";
+
 export interface TimelineDotPropsVariantOverrides {}
 
 export interface TimelineDotPropsColorOverrides {}

@@ -8,6 +8,8 @@ import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import describeConformance from '../../test/describeConformance';
 
+import type { JSX } from "react";
+
 const testContext: MenuProviderValue = {
   registerItem: () => ({ id: '0', deregister: () => {} }),
   getItemIndex: () => 0,

@@ -4,6 +4,8 @@ import { Theme } from '@mui/material/styles';
 import { InternalStandardProps as StandardProps, TypographyProps } from '@mui/material';
 import { TimelineOppositeContentClasses } from './timelineOppositeContentClasses';
 
+import type { JSX } from "react";
+
 export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
   /**
    * The content of the component.

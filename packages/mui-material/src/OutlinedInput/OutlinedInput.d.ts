@@ -4,6 +4,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
 import { OutlinedInputClasses } from './outlinedInputClasses';
 
+import type { JSX } from "react";
+
 export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   /**
    * Override or extend the styles applied to the component.

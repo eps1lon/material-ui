@@ -9,6 +9,8 @@ import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
+import type { JSX } from "react";
+
 const Select = React.forwardRef(function Select<
   TValue extends {},
   Multiple extends boolean,

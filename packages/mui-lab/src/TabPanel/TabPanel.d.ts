@@ -4,6 +4,8 @@ import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TabPanelClasses } from './tabPanelClasses';
 
+import type { JSX } from "react";
+
 export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.

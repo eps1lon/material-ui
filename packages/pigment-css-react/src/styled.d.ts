@@ -4,6 +4,8 @@ import type { ThemeArgs } from './theme';
 import type { SxProp } from './sx';
 import { Primitve } from './keyframes';
 
+import type { JSX } from "react";
+
 type Falsy = false | 0 | '' | null | undefined;
 
 export interface StyledVariants<Props extends BaseDefaultProps> {

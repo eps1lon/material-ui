@@ -1,8 +1,10 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { NoSsrProps } from './NoSsr.types';
+
+import type { JSX } from "react";
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).

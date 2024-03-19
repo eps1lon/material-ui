@@ -4,6 +4,8 @@ import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { CircularProgressClasses } from './circularProgressClasses';
 
+import type { JSX } from "react";
+
 export interface CircularProgressPropsColorOverrides {}
 
 export interface CircularProgressProps

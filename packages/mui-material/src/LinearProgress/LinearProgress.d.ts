@@ -4,6 +4,8 @@ import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { LinearProgressClasses } from './linearProgressClasses';
 
+import type { JSX } from "react";
+
 export interface LinearProgressPropsColorOverrides {}
 
 export interface LinearProgressProps

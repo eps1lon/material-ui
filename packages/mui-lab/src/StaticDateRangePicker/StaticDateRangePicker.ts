@@ -2,6 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
+import type { JSX } from "react";
+
 let warnedOnce = false;
 
 const warn = () => {

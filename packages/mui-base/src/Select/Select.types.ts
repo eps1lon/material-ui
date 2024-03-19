@@ -5,6 +5,8 @@ import { SelectOption } from '../useOption';
 import { PopupProps } from '../Unstable_Popup';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
+import type { JSX } from "react";
+
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
 export interface SelectPopupSlotPropsOverrides {}

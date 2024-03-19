@@ -5,6 +5,8 @@ import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 import { NativeSelectClasses } from './nativeSelectClasses';
 
+import type { JSX } from "react";
+
 export interface NativeSelectProps
   extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {
   /**

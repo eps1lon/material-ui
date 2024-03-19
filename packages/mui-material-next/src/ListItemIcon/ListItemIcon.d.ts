@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ListItemIconClasses } from './listItemIconClasses';
 
+import type { JSX } from "react";
+
 export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,

@@ -1,5 +1,7 @@
-'use client';
+'use client';;
 import * as React from 'react';
+
+import type { JSX } from "react";
 
 let warnedOnce = false;
 

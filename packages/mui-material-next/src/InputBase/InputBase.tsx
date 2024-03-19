@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -32,6 +32,8 @@ import {
   InputBaseTypeMap,
 } from './InputBase.types';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
+
+import type { JSX } from "react";
 
 const useUtilityClasses = (ownerState: InputBaseOwnerState) => {
   const {
@@ -322,7 +324,7 @@ const InputBase = React.forwardRef(function InputBase<
 
   const { current: isControlled } = React.useRef(value != null);
 
-  const inputRef = React.useRef<HTMLInputElement>();
+  const inputRef = React.useRef<HTMLInputElement>(undefined);
 
   const muiFormControl = useFormControl();
 

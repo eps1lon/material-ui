@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { FormGroupProps } from '../FormGroup';
 
+import type { JSX } from "react";
+
 export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
   /**
    * The default value. Use when the component is not controlled.

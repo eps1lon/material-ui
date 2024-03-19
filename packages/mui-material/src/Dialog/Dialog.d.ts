@@ -6,6 +6,8 @@ import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
 import { DialogClasses } from './dialogClasses';
 
+import type { JSX } from "react";
+
 export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   /**
    * The id(s) of the element(s) that describe the dialog.

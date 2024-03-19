@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { AccordionActionsClasses } from './accordionActionsClasses';
 
+import type { JSX } from "react";
+
 export interface AccordionActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.

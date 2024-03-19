@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps } from '@mui/material';
 import { InputBaseProps } from '@mui/material/InputBase';
 import { OutlinedInputClasses } from './outlinedInputClasses';
 
+import type { JSX } from "react";
+
 export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   /**
    * Override or extend the styles applied to the component.

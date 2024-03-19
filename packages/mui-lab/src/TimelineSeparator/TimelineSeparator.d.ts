@@ -4,6 +4,8 @@ import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineSeparatorClasses } from './timelineSeparatorClasses';
 
+import type { JSX } from "react";
+
 export interface TimelineSeparatorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

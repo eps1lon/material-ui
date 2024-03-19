@@ -1,7 +1,9 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+
+import type { JSX } from "react";
 
 export interface RippleProps {
   className?: string;

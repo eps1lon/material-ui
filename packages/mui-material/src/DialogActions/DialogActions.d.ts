@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { DialogActionsClasses } from './dialogActionsClasses';
 
+import type { JSX } from "react";
+
 export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.

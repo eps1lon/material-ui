@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
@@ -16,6 +16,8 @@ import InputBase from '../InputBase';
 import { InputBaseOwnerState } from '../InputBase/InputBase.types';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import { FilledInputOwnerState, FilledInputProps, FilledInputTypeMap } from './FilledInput.types';
+
+import type { JSX } from "react";
 
 const useUtilityClasses = (ownerState: FilledInputOwnerState) => {
   const { classes, disableUnderline } = ownerState;

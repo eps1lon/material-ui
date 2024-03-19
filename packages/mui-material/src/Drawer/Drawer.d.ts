@@ -7,6 +7,8 @@ import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
 import { DrawerClasses } from './drawerClasses';
 
+import type { JSX } from "react";
+
 export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'children'> {
   /**
    * Side from which the drawer will appear.

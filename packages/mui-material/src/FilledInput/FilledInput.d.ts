@@ -3,6 +3,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
 import { FilledInputClasses } from './filledInputClasses';
 
+import type { JSX } from "react";
+
 export interface FilledInputProps extends StandardProps<InputBaseProps> {
   /**
    * Override or extend the styles applied to the component.

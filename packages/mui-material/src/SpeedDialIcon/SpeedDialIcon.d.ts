@@ -4,6 +4,8 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SpeedDialIconClasses } from './speedDialIconClasses';
 
+import type { JSX } from "react";
+
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**

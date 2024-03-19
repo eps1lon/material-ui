@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { CardActionsClasses } from './cardActionsClasses';
 
+import type { JSX } from "react";
+
 export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.

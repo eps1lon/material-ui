@@ -6,6 +6,8 @@ import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
 import { EmotionCacheProviderProps } from './pagesRouterV13App';
 import createEmotionCache from './createCache';
 
+import type { JSX } from "react";
+
 interface Plugin {
   enhanceApp: (
     App: React.ComponentType<React.ComponentProps<AppType>>,
@@ -92,9 +94,9 @@ export async function documentGetInitialProps(
       enhanceApp: (
         App: React.ComponentType<React.ComponentProps<AppType> & EmotionCacheProviderProps>,
       ) =>
-        function EnhanceApp(props) {
+        (function EnhanceApp(props) {
           return <App emotionCache={cache} {...props} />;
-        },
+        }),
       resolveProps: async (initialProps) => {
         const { styles } = extractCriticalToChunks(initialProps.html);
         return {

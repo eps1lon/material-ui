@@ -4,6 +4,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { CollapseClasses } from './collapseClasses';
 
+import type { JSX } from "react";
+
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**
    * The content node to be collapsed.

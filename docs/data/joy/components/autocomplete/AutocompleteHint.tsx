@@ -2,6 +2,8 @@ import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import { Typography, styled } from '@mui/joy';
 
+import type { JSX } from "react";
+
 const StyledDiv = styled('div')({
   flex: 1, // stretch to fill the root slot
   minWidth: 0, // won't push end decorator out of the autocomplete

@@ -4,6 +4,8 @@ import JoyLink from '@mui/material/Link';
 import { expectType } from '@mui/types';
 import Button, { ButtonOwnerState } from '@mui/joy/Button';
 
+import type { JSX } from "react";
+
 <Button>Button</Button>;
 
 function handleClick(event: React.MouseEvent) {}

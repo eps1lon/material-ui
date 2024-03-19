@@ -6,6 +6,8 @@ import {
   styled,
 } from '@mui/material/styles';
 
+import type { JSX } from "react";
+
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,
   color: (theme.vars || theme).palette.text.primary,

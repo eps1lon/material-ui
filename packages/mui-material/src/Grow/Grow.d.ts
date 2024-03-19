@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { TransitionProps } from '../transitions/transition';
 
+import type { JSX } from "react";
+
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.

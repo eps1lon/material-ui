@@ -14,6 +14,8 @@ import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
+import type { JSX } from "react";
+
 const Navigation = styled('nav')(({ theme }) => [
   {
     '& > div': {

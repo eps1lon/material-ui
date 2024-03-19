@@ -5,6 +5,8 @@ import { StepIconProps } from '../StepIcon';
 import { Theme } from '../styles';
 import { StepLabelClasses } from './stepLabelClasses';
 
+import type { JSX } from "react";
+
 export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * In most cases will simply be a string containing a title for the label.

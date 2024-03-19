@@ -8,6 +8,8 @@ import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
 
+import type { JSX } from "react";
+
 export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
   horizontal: 'left' | 'center' | 'right' | number;

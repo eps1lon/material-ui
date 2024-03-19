@@ -261,7 +261,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const id = useId(idProp);
 
-  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
+  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef(undefined);
   const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
@@ -559,14 +559,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       anchorEl: followCursor
         ? {
             getBoundingClientRect: () =>
-              ({
+              (({
                 top: cursorPosition.y,
                 left: cursorPosition.x,
                 right: cursorPosition.x,
                 bottom: cursorPosition.y,
                 width: 0,
-                height: 0,
-              }) as DOMRect,
+                height: 0
+              }) as DOMRect),
           }
         : childNode,
       open: childNode ? open : false,

@@ -5,6 +5,8 @@ import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { StepContentClasses } from './stepContentClasses';
 
+import type { JSX } from "react";
+
 export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.

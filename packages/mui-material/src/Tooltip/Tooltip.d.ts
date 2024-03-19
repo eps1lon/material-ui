@@ -5,6 +5,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { TooltipClasses } from './tooltipClasses';
 
+import type { JSX } from "react";
+
 export interface TooltipComponentsPropsOverrides {}
 
 export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {

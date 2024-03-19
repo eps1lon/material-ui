@@ -8,6 +8,8 @@ import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 
+import type { JSX } from "react";
+
 export interface MenuProps extends StandardProps<PopoverProps> {
   /**
    * An HTML element, or a function that returns one.

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 export function Foo(props: {
   element: Element;
   optional?: Element;

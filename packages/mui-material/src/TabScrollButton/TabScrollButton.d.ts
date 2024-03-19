@@ -5,6 +5,8 @@ import { ButtonBaseProps } from '../ButtonBase';
 import { SvgIcon, Theme } from '..';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
+import type { JSX } from "react";
+
 export interface TabScrollButtonStartIconSlotPropsOverrides {}
 export interface TabScrollButtonEndIconSlotPropsOverrides {}
 

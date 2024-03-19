@@ -4,6 +4,8 @@ import { Theme, InternalStandardProps as StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 
+import type { JSX } from "react";
+
 export interface FormControlLabelProps
   extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
   /**

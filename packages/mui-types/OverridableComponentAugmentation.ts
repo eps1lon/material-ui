@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import type { JSX } from "react";
+
 declare module '@mui/types' {
   /**
    * A component whose root component can be controlled via a `component` prop.

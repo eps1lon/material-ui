@@ -4,6 +4,8 @@ import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { StepConnectorClasses } from './stepConnectorClasses';
 
+import type { JSX } from "react";
+
 export type StepConnectorIcon = React.ReactElement | string | number;
 
 export interface StepConnectorProps

@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import type { JSX } from "react";
+
 export interface TabContextValue {
   idPrefix: string;
   value: string;

@@ -5,6 +5,8 @@ import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 import { MobileStepperClasses } from './mobileStepperClasses';
 
+import type { JSX } from "react";
+
 export interface MobileStepperProps extends StandardProps<PaperProps, 'children' | 'variant'> {
   /**
    * Set the active step (zero based index).

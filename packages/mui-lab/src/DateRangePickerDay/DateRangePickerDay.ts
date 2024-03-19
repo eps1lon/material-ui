@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 
+import type { JSX } from "react";
+
 let warnedOnce = false;
 
 const warn = () => {

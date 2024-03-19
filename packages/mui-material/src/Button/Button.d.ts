@@ -6,6 +6,8 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonClasses } from './buttonClasses';
 
+import type { JSX } from "react";
+
 export interface ButtonPropsVariantOverrides {}
 
 export interface ButtonPropsColorOverrides {}

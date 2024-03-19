@@ -6,6 +6,8 @@ import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
 
+import type { JSX } from "react";
+
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 

@@ -3,6 +3,8 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
 import { InputClasses } from './inputClasses';
 
+import type { JSX } from "react";
+
 export interface InputProps extends StandardProps<InputBaseProps> {
   /**
    * Override or extend the styles applied to the component.

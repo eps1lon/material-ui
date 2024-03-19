@@ -6,6 +6,8 @@ import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
+import type { JSX } from "react";
+
 const ratio = 900 / 494;
 
 // 'transparent' is interpreted as transparent black in Safari

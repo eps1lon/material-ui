@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { TransitionProps } from '../transitions/transition';
 
+import type { JSX } from "react";
+
 export interface ZoomProps extends TransitionProps {
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.

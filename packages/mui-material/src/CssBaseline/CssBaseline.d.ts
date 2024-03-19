@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { StyledComponentProps } from '../styles';
 
+import type { JSX } from "react";
+
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**
    * You can wrap a node.

@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -21,6 +21,8 @@ import useSlot from '../utils/useSlot';
 import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
+
+import type { JSX } from "react";
 
 interface InternalChangeEventHandler<Value> {
   (event: React.MouseEvent, value: Value | Array<Value> | null): void;

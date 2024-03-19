@@ -3,6 +3,8 @@ import { Simplify } from '@mui/types';
 import { UseOptionRootSlotProps } from '../useOption';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
+import type { JSX } from "react";
+
 export interface OptionRootSlotPropsOverrides {}
 
 export interface OptionOwnProps<OptionValue> {
