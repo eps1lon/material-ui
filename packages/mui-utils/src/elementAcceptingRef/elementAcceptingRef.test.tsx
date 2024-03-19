@@ -26,6 +26,7 @@ describe('elementAcceptingRef', () => {
       function testAct() {
         checkPropType(element);
         if (shouldMount) {
+          // @ts-expect-error FIXME: `render` was removed
           // TODO: replace with React 18 implementation after https://github.com/testing-library/react-testing-library/issues/1216 is closed.
           // eslint-disable-next-line react/no-deprecated
           ReactDOM.render(
@@ -45,6 +46,7 @@ describe('elementAcceptingRef', () => {
     });
 
     afterEach(() => {
+      // @ts-expect-error FIXME: `unmountComponentAtNode` was removed
       // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(rootNode);
     });

@@ -983,7 +983,7 @@ function filterGlobalVariantTokens(palette: Partial<PaletteVariant>, variant: Va
   return tokens;
 }
 
-type StateReducer<T> = (state: T, action: Partial<T>) => T;
+type State = { hover: boolean; active: boolean; disabled: boolean };
 
 function GlobalVariantForm({
   color,
@@ -1001,13 +1001,17 @@ function GlobalVariantForm({
   onRemove: (token: string) => void;
 }) {
   const [selectedVariant, setSelectedVariant] = React.useState<VariantProp>('solid');
-  const [states, setStates] = React.useReducer<
-    StateReducer<{ hover: boolean; active: boolean; disabled: boolean }>
-  >((prevState, action) => ({ ...prevState, ...action }), {
-    hover: false,
-    active: false,
-    disabled: false,
-  });
+  const [states, setStates] = React.useReducer(
+    (prevState, action: Partial<State>) => ({
+      ...prevState,
+      ...action,
+    }),
+    {
+      hover: false,
+      active: false,
+      disabled: false,
+    },
+  );
   const themeDefaultValue = filterGlobalVariantTokens(themeDefaultValueProp, selectedVariant);
   const value = filterGlobalVariantTokens(valueProp, selectedVariant);
   const mergedValue = { ...themeDefaultValue, ...value };
@@ -1273,7 +1277,7 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
+function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {

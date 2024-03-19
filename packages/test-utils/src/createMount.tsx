@@ -85,6 +85,7 @@ export default function createMount(options: CreateMountOptions = {}) {
 
   afterEach(() => {
     ReactDOMTestUtils.act(() => {
+      // @ts-expect-error FIXME: `unmountComponentAtNode` was removed
       // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(container!);
     });
@@ -104,6 +105,7 @@ export default function createMount(options: CreateMountOptions = {}) {
       );
     }
     ReactDOMTestUtils.act(() => {
+      // @ts-expect-error FIXME: `unmountComponentAtNode` was removed
       // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(container!);
     });
