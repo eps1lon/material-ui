@@ -213,9 +213,9 @@
     "@definitelytyped/typescript-versions": "^0.1.1",
     "@definitelytyped/utils": "^0.1.5",
     "@types/node": "^18.19.22",
-    "@types/react": "npm:@eps1lon/react-19-types",
-    "@types/react-dom": "npm:@eps1lon/react-dom-19-types",
-    "@types/react-is": "npm:@eps1lon/react-is-19-types",
+    "@types/react": "npm:types-react@19.0.0-alpha.3",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-alpha.3",
+    "@types/react-is": "npm:types-react-is@19.0.0-alpha.3",
     "cross-fetch": "^4.0.0"
   },
   "nyc": {
